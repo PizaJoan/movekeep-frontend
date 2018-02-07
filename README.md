@@ -14,6 +14,8 @@ $ quasar dev
 # build for production with minification
 $ quasar build
 
-# lint code
+# lint code not working
 $ quasar lint
 ```
+
+© Joan Piza Ferra
