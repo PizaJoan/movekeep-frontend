@@ -21,7 +21,7 @@ if (__THEME === 'mat') {
   require('quasar-extras/roboto-font')
 }
 import 'quasar-extras/material-icons'
-// import 'quasar-extras/ionicons'
+import 'quasar-extras/ionicons'
 // import 'quasar-extras/fontawesome'
 // import 'quasar-extras/animate'
 
@@ -32,4 +32,14 @@ Quasar.start(() => {
     router,
     render: h => h(require('./App').default)
   })
+})
+
+Vue.filter('capitalize', (animal) => {
+  animal.name = animal.name.charAt(0).toUpperCase() + animal.name.slice(1)
+  return animal
+})
+
+Vue.filter('isLovely', (animal) => {
+  let tmp = `En ${animal.name} `
+  return animal.lovely ? `${tmp} és carinyos` : `${tmp} no és molt carinyos`
 })

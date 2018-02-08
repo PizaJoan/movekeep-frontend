@@ -27,10 +27,20 @@ export default new VueRouter({
   routes: [
     { 
       path: '/', 
-      component: load('navigation/notLogged'), 
+      component: load('navigation/NotLogged'), 
       children: [
-        { path: 'login', component: load('Login')}
+        { path: 'login', component: load('Login') },
+        { path: 'reset', component: load('Reset') }
       ] 
+    },
+
+    {
+      path: '/logged',
+      component: load('navigation/Logged'),
+      children: [
+        { path: 'list', component: load('List') },
+        { path: 'form', component: load('form') }
+      ]
     },
 
     // Always leave this last one
