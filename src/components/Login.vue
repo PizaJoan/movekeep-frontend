@@ -12,7 +12,7 @@
                 <q-input v-model="text" float-label="Nom d'usuari"/>
                 <q-input v-model="password" type="password" float-label="Contrasenya"/>
                 <div id="bottom">
-                    <router-link to="reset">Recuperar Contrasenya</router-link>
+                    <router-link class="text-blue-5" to="reset">Recuperar Contrasenya</router-link>
                     <q-btn color="primary" big>
                         Enviar
                     </q-btn>
