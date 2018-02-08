@@ -15,11 +15,11 @@
         <div slot="left">
             <q-list no-border separator>
                 <q-list-header>Seccions</q-list-header>
-                <q-side-link item to="/notlogged/login">
+                <q-side-link item to="/login">
                     <q-item-side icon="face"/>
                     <q-item-main sublabel="Login">Pantalla login</q-item-main>
                 </q-side-link>
-                <q-side-link item to="/notlogged/reset">
+                <q-side-link item to="/reset">
                     <q-item-side icon="mail"/>
                     <q-item-main sublabel="Reset">Pantalla reset</q-item-main>
                 </q-side-link>

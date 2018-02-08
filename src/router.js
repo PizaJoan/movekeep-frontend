@@ -35,11 +35,11 @@ export default new VueRouter({
     },
 
     {
-      path: '/logged',
+      path: '/',
       component: load('navigation/Logged'),
       children: [
         { path: 'list', component: load('List') },
-        { path: 'form', component: load('form') }
+        { path: 'form', component: load('Form') }
       ]
     },
 
