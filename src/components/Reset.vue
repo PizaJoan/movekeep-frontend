@@ -1,6 +1,6 @@
 <template>
-    <div id="carta" class="row" @resize="myEvent($event)">
-        <q-card class="col-lg-4">
+    <div id="carta" class="row">
+        <q-card :flat="this.$q.platform.is.mobile" class="col-lg-4">
             <q-card-title align="center">
                 <h5>
                     <q-icon name="ion-email" />
@@ -54,14 +54,7 @@ export default {
     },
     data() {
         return {
-            mail: ''
-        }
-    },
-    mounted() {
-    },
-    methods: {
-        myEvent(event) {
-            console.log(event)
+            mail: '',
         }
     }
 }

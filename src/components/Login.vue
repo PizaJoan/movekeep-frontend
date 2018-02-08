@@ -1,6 +1,6 @@
 <template>
     <div id="lay" class="row">
-        <q-card square class="col-lg-4">
+        <q-card :flat="this.$q.platform.is.mobile" square class="col-lg-4">
             <q-card-title align="center">
                 <h5>
                     <q-icon name="ion-person" /> 
