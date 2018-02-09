@@ -35,7 +35,7 @@ export default new VueRouter({
     },
 
     {
-      path: '/',
+      path: '/logged',
       component: load('navigation/Logged'),
       children: [
         { path: 'list', component: load('List') },

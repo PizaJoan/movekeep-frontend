@@ -9,8 +9,18 @@
                 <span slot="subtitle">Formulari Login</span>   
             </q-card-title>
             <q-card-main>
-                <q-input v-model="text" float-label="Nom d'usuari"/>
-                <q-input v-model="password" type="password" float-label="Contrasenya"/>
+                <q-input 
+                    v-model.trim="text" 
+                    float-label="Nom d'usuari" 
+                    @input="test()" 
+                    :error="!this.$v.text.required"
+                    />
+                <q-input 
+                    v-model.trim="password" 
+                    type="password" 
+                    float-label="Contrasenya"
+                    :error="!this.$v.password.required"
+                    />
                 <div id="bottom">
                     <router-link class="text-blue-5" to="reset">Recuperar Contrasenya</router-link>
                     <q-btn color="primary" big>
@@ -31,8 +41,14 @@ import {
     QIcon,
     QCard,
     QCardTitle,
-    QCardMain
+    QCardMain,
+    Toast
 } from 'quasar'
+
+import {
+    required,
+    minLength
+} from 'vuelidate/lib/validators'
 
 export default {
     components: {
@@ -41,8 +57,11 @@ export default {
         QBtn,
         QIcon,
         QCard,
+        Toast,
         QCardTitle,
-        QCardMain
+        QCardMain,
+        required,
+        minLength
     },
     data() {
         return {
@@ -50,8 +69,21 @@ export default {
             password: ''
         }
     },
+    validations: {
+        text: {
+            required
+        },
+        password: {
+            required
+        }
+    },
     methods: {
         //TODO add methods for login validation
+        test() {
+            if (!this.$v.text.required) {
+                
+            }
+        }
     }
 }
 
