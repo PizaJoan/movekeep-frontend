@@ -14,10 +14,12 @@ import Vue from 'vue'
 import Quasar from 'quasar'
 import router from './router'
 import Vuelidate from 'vuelidate'
+import VueResource from 'vue-resource'
 
 Vue.config.productionTip = false
 Vue.use(Quasar) // Install Quasar Framework
 Vue.use(Vuelidate)
+Vue.use(VueResource)
 
 if (__THEME === 'mat') {
   require('quasar-extras/roboto-font')
@@ -34,6 +36,13 @@ Quasar.start(() => {
     router,
     render: h => h(require('./App').default)
   })
+})
+
+Vue.http.options.emulateJSON = true;
+
+Vue.http.interceptors.push((req, next) => {
+  req.headers.set('Access-Control-Allow-Origin', '*')
+  next()
 })
 
 Vue.filter('capitalize', (animal) => {

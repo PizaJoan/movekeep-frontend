@@ -99,6 +99,13 @@ export default {
                 this.$v.password.$touch()
                 return
             }
+            //TODO this is not good but will fix later...
+            this.$http.post('/api/login', {
+                user: this.user,
+                password: this.password
+            }).then(res => {
+                console.log(res)
+            })
         }
     }
 }
