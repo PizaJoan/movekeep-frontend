@@ -25,18 +25,27 @@ export default new VueRouter({
   scrollBehavior: () => ({ y: 0 }),
 
   routes: [
-    { path: '/login', component: load('Login') },
-    { path: '/reset', component: load('Reset') },
+
     {
       path: '/',
       component: load('navigation/Logged'),
       children: [
         { path: 'list', component: load('List') },
         { path: 'form', component: load('Form') },
-        { path: 'routines', component: load('RoutineManager') }
+        { path: 'routines', component: load('RoutineManager') },
+        { path: '', component: load('Index') }
       ]
     },
 
+    { 
+      path: '/', 
+      component: load('navigation/NotLogged'),
+      children: [
+        { path: 'login', component: load('Login') },
+        { path: 'reset', component: load('Reset') },
+      ]
+    },
+  
     // Always leave this last one
     { path: '*', component: load('Error404') } // Not found
   ]

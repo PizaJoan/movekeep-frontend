@@ -12,4 +12,10 @@
 export default {}
 </script>
 
-<style></style>
+<style scoped>
+
+  .my-tooltip {
+    background-color: aqua;
+  }
+
+</style>

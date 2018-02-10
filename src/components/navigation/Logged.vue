@@ -3,13 +3,16 @@
         view="hHh LpR fff"
         ref="layout"
     >
-        <q-toolbar slot="header">
+        <q-toolbar slot="header" class="row items-stretch content-center">
             <q-btn big flat @click="$refs.layout.toggleLeft()">
                 <q-icon name="menu" />
             </q-btn>
-            <q-toolbar-title>
-                Aplicació
-            </q-toolbar-title>
+            <router-link to="/" class="text-white self-center">
+                    Inici
+            </router-link>
+            <router-link to="/login" class="text-white self-center">
+                    Compte
+            </router-link>
         </q-toolbar>
 
         <div slot="left">
@@ -46,12 +49,16 @@ import {
     QItem,
     QItemSide,
     QItemMain,
-    QIcon
+    QIcon,
+    QTabs,
+    QTab
 } from 'quasar'
 
 export default {
     components: {
         QLayout,
+        QTabs,
+        QTab,
         QIcon,
         QToolbar,
         QToolbarTitle,

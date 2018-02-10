@@ -2,10 +2,10 @@
     <div id="lay" class="row">
         <q-card :flat="this.$q.platform.is.mobile" square class="col-lg-4">
             <q-card-title align="center">
-                <q-tooltip>
+                <q-tooltip class="my-tooltip" color="negative">
                     Anar a la pantalla principal
                 </q-tooltip>
-                <router-link to="/" hover="Anar al login">
+                <router-link to="/" hover="Anar a la pantalla principal">
                     <h5>
                         <q-icon name="ion-person" /> 
                         Login
@@ -52,7 +52,8 @@ import {
     QCard,
     QCardTitle,
     QCardMain,
-    QTooltip
+    QTooltip,
+    Toast
 } from 'quasar'
 
 import {
@@ -71,7 +72,8 @@ export default {
         QCardMain,
         required,
         minLength,
-        QTooltip
+        QTooltip,
+        Toast
     },
     data() {
         return {
@@ -91,6 +93,12 @@ export default {
         //TODO add methods for login validation
         checkLogin(e) {
             e.preventDefault()
+            if (!this.user || !this.password) {
+                Toast.create('Has d\'emplenar tant l\'usuari com la contrasenya')
+                this.$v.user.$touch()
+                this.$v.password.$touch()
+                return
+            }
         }
     }
 }

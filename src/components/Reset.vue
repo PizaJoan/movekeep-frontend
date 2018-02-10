@@ -14,15 +14,6 @@
                 suffix="example@example.com" 
                 type="email" 
                 float-label="Email"
-                :before="[
-                    {
-                        icon: 'mail',
-                        handler() {
-                            
-                            //Do suff later...
-                        }
-                    }
-                ]"
                 />
                 <q-btn color="primary">
                     <q-icon name="send"/>
