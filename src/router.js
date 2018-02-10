@@ -25,21 +25,15 @@ export default new VueRouter({
   scrollBehavior: () => ({ y: 0 }),
 
   routes: [
-    { 
-      path: '/', 
-      component: load('navigation/NotLogged'), 
-      children: [
-        { path: 'login', component: load('Login') },
-        { path: 'reset', component: load('Reset') }
-      ] 
-    },
-
+    { path: '/login', component: load('Login') },
+    { path: '/reset', component: load('Reset') },
     {
-      path: '/logged',
+      path: '/',
       component: load('navigation/Logged'),
       children: [
         { path: 'list', component: load('List') },
-        { path: 'form', component: load('Form') }
+        { path: 'form', component: load('Form') },
+        { path: 'routines', component: load('RoutineManager') }
       ]
     },
 

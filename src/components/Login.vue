@@ -2,28 +2,38 @@
     <div id="lay" class="row">
         <q-card :flat="this.$q.platform.is.mobile" square class="col-lg-4">
             <q-card-title align="center">
-                <h5>
-                    <q-icon name="ion-person" /> 
-                    Login
-                </h5>
+                <q-tooltip>
+                    Anar a la pantalla principal
+                </q-tooltip>
+                <router-link to="/" hover="Anar al login">
+                    <h5>
+                        <q-icon name="ion-person" /> 
+                        Login
+                    </h5>
+                </router-link>
                 <span slot="subtitle">Formulari Login</span>   
             </q-card-title>
             <q-card-main>
-                <q-input 
-                    v-model.trim="text" 
-                    float-label="Nom d'usuari" 
-                    @input="test()" 
-                    :error="!this.$v.text.required"
+                <q-input
+                    v-model.trim="user" 
+                    type="text"
+                    float-label="Nom d'usuari"
+                    name="user"
+                    @click="$v.user.$touch()"
+                    :error="$v.user.$invalid && $v.user.$dirty"
                     />
                 <q-input 
                     v-model.trim="password" 
                     type="password" 
                     float-label="Contrasenya"
-                    :error="!this.$v.password.required"
+                    no-pass-toggle
+                    name="password"
+                    @click="$v.password.$touch()"
+                    :error="$v.password.$invalid && $v.password.$dirty"
                     />
                 <div id="bottom">
                     <router-link class="text-blue-5" to="reset">Recuperar Contrasenya</router-link>
-                    <q-btn color="primary" big>
+                    <q-btn color="primary" big @click="checkLogin">
                         Enviar
                     </q-btn>
                 </div>
@@ -42,7 +52,7 @@ import {
     QCard,
     QCardTitle,
     QCardMain,
-    Toast
+    QTooltip
 } from 'quasar'
 
 import {
@@ -57,20 +67,20 @@ export default {
         QBtn,
         QIcon,
         QCard,
-        Toast,
         QCardTitle,
         QCardMain,
         required,
-        minLength
+        minLength,
+        QTooltip
     },
     data() {
         return {
-            text: '',
+            user: '',
             password: ''
         }
     },
     validations: {
-        text: {
+        user: {
             required
         },
         password: {
@@ -79,10 +89,8 @@ export default {
     },
     methods: {
         //TODO add methods for login validation
-        test() {
-            if (!this.$v.text.required) {
-                
-            }
+        checkLogin(e) {
+            e.preventDefault()
         }
     }
 }

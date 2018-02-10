@@ -1,5 +1,11 @@
 <template>
     <q-layout>
+        <q-toolbar slot="header">
+            <q-toolbar-title>
+                Headder provisional
+            </q-toolbar-title>
+        </q-toolbar>
+
         <router-view />
 
         <q-toolbar slot="footer">

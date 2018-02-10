@@ -1,7 +1,14 @@
 <template>
     <div>
         <q-list stripped link separator no-border>
-            <q-list-header>Animals</q-list-header>
+            <q-list-header inset>
+                Rutines
+                <q-btn round icon="ion-plus" class="on-right">
+                    <q-tooltip>
+                        Afegir rutina
+                    </q-tooltip>
+                </q-btn>
+            </q-list-header>
             <q-item v-for="animal in data" :key="animal.name">
                 <q-item-side>
                     <q-item-tile icon="ion-ios-paw" />
@@ -11,12 +18,15 @@
                     :sublabel="`Té ${animal.age} anys i fa ${animal.height} d'altura`"
                 />
                 <q-item-side>
-                    Editar
-                    <q-btn rounded>
-                        <q-icon name="ion-plus" />
+                    <q-btn round icon="ion-close-round">
+                        <q-tooltip>
+                            Esborrar
+                        </q-tooltip>    
                     </q-btn>
-                    <q-btn rounded>
-                        <q-icon name="ion-edit" />
+                    <q-btn round icon="ion-edit">
+                        <q-tooltip>
+                            Editar
+                        </q-tooltip>
                     </q-btn>
                 </q-item-side>
             </q-item>
@@ -33,7 +43,8 @@ import {
     QItemMain,
     QItemSide,
     QItemTile,
-    QBtn
+    QBtn,
+    QTooltip
 } from 'quasar'
 
 export default {
@@ -45,7 +56,8 @@ export default {
         QListHeader,
         QItem,
         QItemMain,
-        QItemTile
+        QItemTile,
+        QTooltip
     },
     data() {
         return {
@@ -67,7 +79,7 @@ export default {
                 {
                     name: 'dog',
                     age: '2',
-                    lovely: false,
+                    lovely: true,
                     height: 100
                 }
             ]
