@@ -2,8 +2,11 @@
     <q-layout>
         <router-view />
         <q-toolbar slot="footer">
-            <q-toolbar-title>
-                Footer &copy Joan Pizà Ferrà
+            <q-toolbar-title class="toolbar-flex">
+                <router-link to="/">
+                    <img class="logo-footer" alr="logo" src="./../../statics/logo-movekeep-png.png" /> 
+                </router-link>    
+                Movekeep
             </q-toolbar-title>
         </q-toolbar>
     </q-layout>

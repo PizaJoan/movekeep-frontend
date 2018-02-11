@@ -12,10 +12,16 @@
 export default {}
 </script>
 
-<style scoped>
+<style>
 
-  .my-tooltip {
-    background-color: aqua;
+  .toolbar-flex {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
+
+  .logo-footer {
+    width: 25px;
+  } 
 
 </style>

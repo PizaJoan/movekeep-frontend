@@ -42,11 +42,9 @@
         </div>
         <router-view />
         <q-toolbar slot="footer">
-            <q-toolbar-title>
-                <span>
-                    Joan Pizà Ferrà ©
-                    <img id="logo-petit" alr="logo" src="./../../statics/logo-movekeep-png.png" /> 
-                </span>
+            <q-toolbar-title class="toolbar-flex">
+                <img class="logo-footer" alr="logo" src="./../../statics/logo-movekeep-png.png" /> 
+                Movekeep
             </q-toolbar-title>
         </q-toolbar>
     </q-layout>
@@ -98,9 +96,5 @@ export default {
    .text-blanc {
        color: white;
    } 
-
-   #logo-petit {
-       width: 25px;
-   }
 
 </style>
