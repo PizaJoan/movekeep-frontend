@@ -105,6 +105,8 @@ export default {
                 password: this.password
             }).then(res => {
                 console.log(res)
+            }, error => {
+                console.log(error)
             })
         }
     }

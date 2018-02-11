@@ -5,6 +5,10 @@
 </template>
 
 <script>
+import {
+
+} from 'quasar'
+
 export default {
 
 }

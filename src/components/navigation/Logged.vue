@@ -7,11 +7,23 @@
             <q-btn big flat @click="$refs.layout.toggleLeft()">
                 <q-icon name="menu" />
             </q-btn>
-            <router-link to="/" class="text-white self-center">
+            <router-link to="/" class="text-blanc self-center">
+                <!--h5 v-if="this.$q.platform.is.desktop"-->
                     Inici
+                <!--/h5-->
             </router-link>
-            <router-link to="/login" class="text-white self-center">
+            <router-link to="/login" class="text-blanc self-center on-right">
+                <!--h5 v-if="this.$q.platform.is.desktop"-->
                     Compte
+                <!--/h5-->
+            </router-link>
+            <router-link to="/history" class="text-blanc self-center on-right">
+                <!--h5 v-if="this.$q.platform.is.desktop"-->
+                    Historial
+                <!--/h5-->
+            </router-link>
+            <router-link to="/logoff" class="self-center text-blanc on-right">
+                Tancar sesió
             </router-link>
         </q-toolbar>
 
@@ -31,7 +43,10 @@
         <router-view />
         <q-toolbar slot="footer">
             <q-toolbar-title>
-                Footer © Joan Pizà Ferrà
+                <span>
+                    Joan Pizà Ferrà ©
+                    <img id="logo-petit" alr="logo" src="./../../statics/logo-movekeep-png.png" /> 
+                </span>
             </q-toolbar-title>
         </q-toolbar>
     </q-layout>
@@ -51,7 +66,7 @@ import {
     QItemMain,
     QIcon,
     QTabs,
-    QTab
+    QTab,
 } from 'quasar'
 
 export default {
@@ -69,10 +84,23 @@ export default {
         QItem,
         QItemSide,
         QItemMain
+    },
+    mounted() {
+    },
+    methods: {
+
     }
 }
 </script>
 
 <style>
+
+   .text-blanc {
+       color: white;
+   } 
+
+   #logo-petit {
+       width: 25px;
+   }
 
 </style>
