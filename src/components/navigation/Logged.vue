@@ -1,6 +1,6 @@
 <template>
     <q-layout
-        view="hHh LpR fff"
+        view="hhh LpR fff"
         ref="layout"
     >
         <q-toolbar slot="header" class="row items-stretch content-center">
