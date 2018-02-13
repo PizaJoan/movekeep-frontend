@@ -4,14 +4,16 @@
             <q-card-title align="center">
                 <q-tooltip class="my-tooltip" color="negative">
                     Anar a la pantalla principal
-                </q-tooltip>
-                <router-link to="/" hover="Anar a la pantalla principal">
+                </q-tooltip>                
+                <router-link to="/">
+                    <img src="./../statics/logo-movekeep-png.png" />
                     <h5>
-                        <q-icon name="ion-person" /> 
+                        <!--q-icon name="ion-person" /-->
                         Login
                     </h5>
                 </router-link>
                 <span slot="subtitle">Formulari Login</span>   
+                
             </q-card-title>
             <q-card-main>
                 <q-input

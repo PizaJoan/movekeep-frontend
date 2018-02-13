@@ -6,7 +6,6 @@
                 <router-link to="/">
                     <img class="logo-footer" alr="logo" src="./../../statics/logo-movekeep-png.png" /> 
                 </router-link>
-                    
                 Movekeep
             </q-toolbar-title>
         </q-toolbar>
