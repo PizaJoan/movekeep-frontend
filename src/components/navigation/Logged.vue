@@ -40,7 +40,9 @@
                 </q-side-link>
             </q-list>
         </div>
-        <router-view />
+        <div class="row justify-center no-scroll">
+                <router-view />
+        </div>
         <q-toolbar slot="footer">
             <q-toolbar-title class="toolbar-flex">
                 <img class="logo-footer" alr="logo" src="./../../statics/logo-movekeep-png.png" /> 
@@ -96,5 +98,6 @@ export default {
    .text-blanc {
        color: white;
    } 
+
 
 </style>
