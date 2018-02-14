@@ -6,7 +6,7 @@
                     Anar a la pantalla principal
                 </q-tooltip>                
                 <router-link to="/">
-                    <img src="./../statics/logo-movekeep-png.png" />
+                    <img alt="logo" class="avatar responsive" src="./../statics/logo-movekeep-working-png-big.png" />
                     <h5>
                         <!--q-icon name="ion-email" /-->
                         Reiniciar contrasenya

@@ -90,7 +90,7 @@
                 <q-card>
                     <q-card-title align="center"> 
                         <b>TU</b> decideixes
-                        <q-icon name="ion-person" size="2rem" class="on-right" />
+                        <q-icon name="ion-ios-body" size="2rem" class="on-right" />
                     </q-card-title>
                     <q-card-main>
                         <q-item-tile sublabel>
@@ -144,7 +144,7 @@ export default {
     },
     methods: {
         someMeth(e) {
-            if (e.width > 992) document.querySelector('#big-container').style.height = 'calc(100vh - 100px)'
+            if (e.width > 992 && e.height > 500) document.querySelector('#big-container').style.height = 'calc(100vh - 100px)'
             else document.querySelector('#big-container').style.height = ''
         }
     }

@@ -6,7 +6,7 @@
                     Anar a la pantalla principal
                 </q-tooltip>                
                 <router-link to="/">
-                    <img src="./../statics/logo-movekeep-png.png" />
+                    <img class="responsive avatar" src="./../statics/logo-movekeep-working-png-big.png" />
                     <h5>
                         <!--q-icon name="ion-person" /-->
                         Login
