@@ -36,7 +36,7 @@
                         <router-link class="text-blue-5" to="reset">Recuperar Contrasenya</router-link>
                         <router-link class="text-blue-5" to="create">Creat compte</router-link>
                     </div>    
-                    <q-btn color="primary" big @click="checkLogin">
+                    <q-btn color="primary" big @click="checkLogin" :disable="!user || !password">
                         Enviar
                     </q-btn>
                 </div>
@@ -73,8 +73,6 @@ export default {
         QCard,
         QCardTitle,
         QCardMain,
-        required,
-        minLength,
         QTooltip,
         Toast
     },

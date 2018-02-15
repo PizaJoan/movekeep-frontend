@@ -23,7 +23,7 @@
                 @click="$v.mail.$touch()"
                 :error="$v.mail.$invalid && $v.mail.$dirty"
                 />
-                <q-btn color="primary" big @click="checkSend">
+                <q-btn color="primary" big @click="checkSend" :disable="$v.mail.$invalid">
                     <!--q-icon name="send"/-->
                     Enviar
                 </q-btn>
@@ -45,7 +45,8 @@ import {
 } from 'quasar'
 
 import {
-    required
+    required,
+    email
 } from 'vuelidate/lib/validators'
 
 export default {
@@ -61,7 +62,8 @@ export default {
     },
     validations: {
         mail: {
-            required
+            required,
+            email
         } 
     },
     data() {
