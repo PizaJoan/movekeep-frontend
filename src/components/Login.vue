@@ -117,13 +117,6 @@ export default {
 
 <style scoped>
 
-    #lay {
-        display: flex;
-        height: calc(100vh - 50px);
-        justify-content: center;
-        align-items: center;
-    }
-
     #bottom {
         display: flex;
         align-items: baseline;

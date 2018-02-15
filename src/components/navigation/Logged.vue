@@ -92,7 +92,7 @@
                 </q-side-link>
             </q-list>
         </div>
-        <div class="row justify-center no-scroll">
+        <div class="row justify-center">
                 <router-view />
         </div>
         <q-toolbar slot="footer">
@@ -154,5 +154,4 @@ export default {
 </script>
 
 <style>
-
 </style>

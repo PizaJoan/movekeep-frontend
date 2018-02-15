@@ -136,7 +136,6 @@ export default {
     },
     data() {
         return {
-            needHeight: this.$q.platform.is.desktop
         }
     },
     mounted() {
@@ -144,7 +143,7 @@ export default {
     },
     methods: {
         someMeth(e) {
-            if (e.width > 992 && e.height > 500) document.querySelector('#big-container').style.height = 'calc(100vh - 100px)'
+            if (e.width >= 770 && e.height >= 500) document.querySelector('#big-container').style.height = 'calc(100vh - 100px)'
             else document.querySelector('#big-container').style.height = ''
         }
     }

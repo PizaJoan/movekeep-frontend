@@ -8,10 +8,10 @@
                 <router-link to="/">
                     <img class="responsive avatar" src="./../statics/logo-movekeep-working-png-big.png" alt="logo" />
                     <h5>
-                        Compte nova
+                        Nou compte
                     </h5>
                 </router-link>
-                <span slot="subtitle">Crear compte nova</span>
+                <span slot="subtitle">Crear nou compte</span>
             </q-card-title>
             <q-card-main>
                 <q-input
@@ -19,7 +19,8 @@
                     suffix="movekeep-user"
                     v-model="user"
                     @click="$v.user.$touch()"
-                    :error="$v.user.$invalid && $v.user.$dirty"
+                    @focus="$v.user.$touch()"
+                    :error="$v.user.$error"
                 />
                 <q-input
                     float-label="Nom complet"
@@ -32,22 +33,34 @@
                     v-model="mail"
                     type="email"
                     @click="$v.mail.$touch()"
-                    :error="$v.mail.$invalid && $v.mail.$dirty"
+                    @focus="$v.mail.$touch()"
+                    :error="$v.mail.$error"
                 />
                 <q-input 
                     float-label="Contrasenya"
                     v-model="password"
                     type="password"
                     @click="$v.password.$touch()"
-                    :error="$v.password.$invalid && $v.password.$dirty"                    
+                    @focus="$v.password.$touch()"
+                    :error="$v.password.$error"                    
                 />
                 <q-input 
                     float-label="Repetir contrasenya"
                     v-model="repeatPassword"
                     type="password"
                     @click="$v.repeatPassword.$touch()"
-                    :error="$v.repeatPassword.$invalid && $v.repeatPassword.$dirty"
+                    @focus="$v.repeatPassword.$touch()"
+                    :error="$v.repeatPassword.$error"
                 />
+                <div id="boto-formulari">
+                    <q-btn 
+                        align="center" 
+                        color="primary"
+                        :disable="$v.all.$error || !$v.all.$dirty"
+                    >
+                        Enviar
+                    </q-btn>
+                </div>                    
                 <!-- 
                     Possible opció de penjar una foto...
                 <q-input 
@@ -64,7 +77,8 @@ import {
     QCardTitle, 
     QTooltip, 
     QCardMain, 
-    QInput 
+    QInput,
+    QBtn,
 } from 'quasar'
 
 import {
@@ -80,7 +94,8 @@ export default {
         QCardTitle,
         QTooltip,
         QCardMain,
-        QInput
+        QInput,
+        QBtn
     },
     data() {
         return {
@@ -95,6 +110,10 @@ export default {
         user: {
             required
         },
+        mail: {
+            required,
+            email
+        },
         password: {
             required,
             minLength: minLength(6)
@@ -103,14 +122,16 @@ export default {
             required,
             sameAsPassword: sameAs('password')
         },
-        mail: {
-            required,
-            email
-        }
+        all: [ 'user', 'mail', 'password', 'repeatPassword' ]
     }
 }
 </script>
 
-<style>
+<style scoped>
+
+    #boto-formulari {
+        display: flex;
+        justify-content: center;
+    }
 
 </style>
