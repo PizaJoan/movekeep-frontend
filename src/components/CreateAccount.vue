@@ -14,44 +14,60 @@
                 <span slot="subtitle">Crear nou compte</span>
             </q-card-title>
             <q-card-main>
-                <q-input
-                    float-label="Nom d'usuari"
-                    suffix="movekeep-user"
-                    v-model="user"
-                    @click="$v.user.$touch()"
-                    @focus="$v.user.$touch()"
-                    :error="$v.user.$error"
-                />
-                <q-input
-                    float-label="Nom complet"
-                    suffix="Movekeep User"
-                    v-model="name"
-                />
-                <q-input 
-                    float-label="E-mail"
-                    suffix="yourmail@movekeep.com"
-                    v-model="mail"
-                    type="email"
-                    @click="$v.mail.$touch()"
-                    @focus="$v.mail.$touch()"
+                <q-field 
+                    :error="$v.user.$error"    
+                >
+                    <q-input
+                        float-label="Nom d'usuari"
+                        suffix="movekeep-user"
+                        v-model="user"
+                        @click="$v.user.$touch()"
+                        @focus="$v.user.$touch()"
+                    />
+                </q-field>    
+                <q-field>
+                    <q-input
+                        float-label="Nom complet"
+                        suffix="Movekeep User"
+                        v-model="name"
+                    />
+                </q-field>
+                <q-field 
                     :error="$v.mail.$error"
-                />
-                <q-input 
-                    float-label="Contrasenya"
-                    v-model="password"
-                    type="password"
-                    @click="$v.password.$touch()"
-                    @focus="$v.password.$touch()"
-                    :error="$v.password.$error"                    
-                />
-                <q-input 
-                    float-label="Repetir contrasenya"
-                    v-model="repeatPassword"
-                    type="password"
-                    @click="$v.repeatPassword.$touch()"
-                    @focus="$v.repeatPassword.$touch()"
+                >
+                    <q-input 
+                        float-label="E-mail"
+                        suffix="yourmail@movekeep.com"
+                        v-model="mail"
+                        type="email"
+                        @click="$v.mail.$touch()"
+                        @focus="$v.mail.$touch()"
+                    />
+                </q-field>
+                <q-field 
+                    :error="$v.password.$error" 
+                    error-label="La contrasenya ha de tenir mínim 6 caràcters"
+                >
+                    <q-input 
+                        float-label="Contrasenya"
+                        v-model="password"
+                        type="password"
+                        @click="$v.password.$touch()"
+                        @focus="$v.password.$touch()"
+                    />
+                </q-field>
+                <q-field 
                     :error="$v.repeatPassword.$error"
-                />
+                    error-label="Les contrasenyes han de coincidir"
+                >
+                    <q-input 
+                        float-label="Repetir contrasenya"
+                        v-model="repeatPassword"
+                        type="password"
+                        @click="$v.repeatPassword.$touch()"
+                        @focus="$v.repeatPassword.$touch()"
+                    />
+                </q-field>
                 <div id="boto-formulari">
                     <q-btn 
                         align="center" 
@@ -79,6 +95,7 @@ import {
     QCardMain, 
     QInput,
     QBtn,
+    QField
 } from 'quasar'
 
 import {
@@ -95,7 +112,8 @@ export default {
         QTooltip,
         QCardMain,
         QInput,
-        QBtn
+        QBtn,
+        QField
     },
     data() {
         return {

@@ -14,23 +14,31 @@
                 <span slot="subtitle">Formulari Login</span>
             </q-card-title>
             <q-card-main>
-                <q-input
-                    v-model.trim="user" 
-                    type="text"
-                    float-label="Nom d'usuari"
-                    name="user"
-                    @click="$v.user.$touch()"
-                    :error="$v.user.$invalid && $v.user.$dirty"
-                    />
-                <q-input 
-                    v-model.trim="password" 
-                    type="password" 
-                    float-label="Contrasenya"
-                    no-pass-toggle
-                    name="password"
-                    @click="$v.password.$touch()"
-                    :error="$v.password.$invalid && $v.password.$dirty"
-                    />
+                <q-field  
+                    :error="$v.user.$error"
+                    >
+                    <q-input
+                        v-model.trim="user" 
+                        type="text"
+                        float-label="Nom d'usuari"
+                        name="user"
+                        @click="$v.user.$touch()"
+                        @focus="$v.user.$touch()"
+                        />
+                </q-field>
+                <q-field
+                    :error="$v.password.$error"
+                >
+                    <q-input 
+                        v-model.trim="password" 
+                        type="password" 
+                        float-label="Contrasenya"
+                        no-pass-toggle
+                        name="password"
+                        @click="$v.password.$touch()"
+                        @focus="$v.password.$touch()" 
+                        />
+                </q-field>
                 <div id="bottom">
                     <div id="bottom-links">
                         <router-link class="text-blue-5" to="reset">Recuperar Contrasenya</router-link>
@@ -56,7 +64,8 @@ import {
     QCardTitle,
     QCardMain,
     QTooltip,
-    Toast
+    Toast,
+    QField,
 } from 'quasar'
 
 import {
@@ -66,6 +75,7 @@ import {
 
 export default {
     components: {
+        QField,
         QInput,
         QCardSeparator,
         QBtn,

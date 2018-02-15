@@ -32,7 +32,9 @@ export default new VueRouter({
       children: [
         { path: 'form', component: load('Form') },
         { path: 'routines', component: load('RoutineManager') },
-        { path: '', component: load('Index') }
+        { path: '', component: load('Index') },
+        { path: 'manage-routine/:id', component: load('Routine') },
+        { path: 'manage-routine', component: load('Routine') }
       ]
     },
 

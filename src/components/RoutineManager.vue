@@ -8,7 +8,9 @@
                         Afegir rutina
                     </q-tooltip>
                 </q-btn>
+                <span v-if="this.$q.platform.is.desktop" class="on-right">Dins aquesta pantalla podrás afegir, modificar i esborrar les teves pròpies rutines</span>
             </q-list-header>
+            <q-item-separator />
             <q-item v-for="animal in data" :key="animal.name">
                 <q-item-side>
                     <q-item-tile icon="ion-ios-paw" />
@@ -44,13 +46,15 @@ import {
     QItemSide,
     QItemTile,
     QBtn,
-    QTooltip
+    QTooltip,
+    QItemSeparator
 } from 'quasar'
 
 export default {
     components: {
         QList,
         QBtn,
+        QItemSeparator,
         QItemSide,
         QIcon,
         QListHeader,
