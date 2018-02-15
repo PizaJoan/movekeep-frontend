@@ -1,5 +1,5 @@
 <template>
-        <div class="row justify-center contenidor items-center content-center" id="big-container">
+        <div class="row justify-center items-center content-center" id="big-container">
             <q-window-resize-observable @resize="someMeth"></q-window-resize-observable>
             <h5 class="col-12" align="center">Que volem aconseguir?</h5>
             <div class="col-md-4 col-xs-12">
@@ -150,10 +150,5 @@ export default {
 }
 </script>
 
-<style scoped>
-
-    .contenidor {
-        max-width: 90vw;
-    }
-
+<style>
 </style>

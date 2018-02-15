@@ -30,7 +30,6 @@ export default new VueRouter({
       path: '/',
       component: load('navigation/Logged'),
       children: [
-        { path: 'list', component: load('List') },
         { path: 'form', component: load('Form') },
         { path: 'routines', component: load('RoutineManager') },
         { path: '', component: load('Index') }

@@ -4,10 +4,6 @@
         ref="layout"
     >
         <q-toolbar slot="header">
-            <!--q-btn @click="$refs.layout.toggleLeft()"  big>
-                <q-icon name="menu" />
-                Explora
-            </q-btn-->
             <q-tabs class="col-md-12">
                 <img v-if="$q.platform.is.desktop" slot="title" class="avatar self-center" src="./../../statics/logo-movekeep-png.png" alt="logo" />
                 <q-tab 
@@ -17,9 +13,6 @@
                     icon="ion-navicon-round"
                     hide="label"
                 >
-                    <!--q-btn @click="$refs.layout.toggleLeft()"  big>
-                        <q-icon name="menu" />
-                    </q-btn-->
                  </q-tab> 
                 <q-route-tab 
                     to="/" 
@@ -29,11 +22,6 @@
                     icon="ion-home"
                     hide="label"
                 >
-                    <!--router-link to="/" class="text-blanc self-center">
-                            <!--h5 v-if="this.$q.platform.is.desktop"-->
-                            
-                            <!--/h5-->
-                    <!--/router-link-->
                 </q-route-tab>
                 <q-route-tab 
                     to="/login" 
@@ -42,11 +30,6 @@
                     icon="ion-person"
                     hide="label"
                 >
-                    <!--router-link to="/login" class="text-blanc self-center on-right"-->
-                            <!--h5 v-if="this.$q.platform.is.desktop"-->
-                        
-                            <!--/h5-->
-                    <!--/router-link-->
                 </q-route-tab>
                 <q-route-tab 
                     slot="title"
@@ -55,11 +38,6 @@
                     icon="ion-ios-clock"
                     hide="label"
                 >
-                    <!--router-link to="/history" class="text-blanc self-center on-right"-->
-                            <!--h5 v-if="this.$q.platform.is.desktop"-->
-                    
-                            <!--/h5-->
-                    <!--/router-link-->
                 </q-route-tab>                        
                 <q-route-tab 
                     to="/logoff" 
@@ -68,15 +46,8 @@
                     icon="ion-android-exit"
                     hide="label"
                 >
-                    <!--router-link to="/logoff" class="self-center text-blanc on-right"-->
-                          
-                    <!--/router-link-->
                 </q-route-tab>
             </q-tabs>
-            <!--q-btn icon="ion-android-exit" >
-                <!--q-icon name="ion-android-exit" /-->
-                <!--Tancar sesió-->
-            <!--/q-btn-->
         </q-toolbar>
 
         <div slot="left">
@@ -92,9 +63,7 @@
                 </q-side-link>
             </q-list>
         </div>
-        <div class="row justify-center">
-                <router-view />
-        </div>
+        <router-view />
         <q-toolbar slot="footer">
             <q-toolbar-title class="toolbar-flex">
                 <img class="logo-footer" alr="logo" src="./../../statics/logo-movekeep-png.png" /> 
@@ -144,11 +113,6 @@ export default {
     mounted() {
     },
     methods: {
-        click(e) {
-            console.log(e, this)
-            e.preventDefault()
-            
-        } 
     }
 }
 </script>
