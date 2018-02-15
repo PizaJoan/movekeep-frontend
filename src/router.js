@@ -43,6 +43,7 @@ export default new VueRouter({
       children: [
         { path: 'login', component: load('Login') },
         { path: 'reset', component: load('Reset') },
+        { path: 'create', component: load('CreateAccount')}
       ]
     },
   

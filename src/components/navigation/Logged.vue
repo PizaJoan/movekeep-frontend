@@ -144,16 +144,15 @@ export default {
     mounted() {
     },
     methods: {
-
+        click(e) {
+            console.log(e, this)
+            e.preventDefault()
+            
+        } 
     }
 }
 </script>
 
-<style scoped>
-
-    #main-container {
-        align-items: center;
-    } 
-
+<style>
 
 </style>

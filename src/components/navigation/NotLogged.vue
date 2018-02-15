@@ -4,7 +4,7 @@
         <q-toolbar slot="footer">
             <q-toolbar-title class="toolbar-flex">
                 <router-link to="/">
-                    <img class="logo-footer" alr="logo" src="./../../statics/logo-movekeep-png.png" /> 
+                    <img class="logo-footer" alr="logo" src="./../../statics/logo-movekeep-png.png" alt="logo" /> 
                 </router-link>
                 Movekeep
             </q-toolbar-title>

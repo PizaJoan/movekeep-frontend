@@ -1,5 +1,5 @@
 <template>
-    <div id="carta" class="row">
+    <div class="row carta">
         <q-card :flat="this.$q.platform.is.mobile" class="col-lg-4">
             <q-card-title align="center">
                 <q-tooltip class="my-tooltip" color="negative">
@@ -82,13 +82,5 @@ export default {
 }
 </script>
 
-<style scoped>
-
-    #carta {
-        display: flex;
-        height: calc(100vh - 50px);
-        justify-content: center;
-        align-items: center;
-    }
-
+<style>
 </style>

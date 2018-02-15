@@ -1,19 +1,17 @@
 <template>
-    <div id="lay" class="row">
+    <div class="row carta">
         <q-card :flat="this.$q.platform.is.mobile" square class="col-lg-4">
             <q-card-title align="center">
                 <q-tooltip class="my-tooltip" color="negative">
                     Anar a la pantalla principal
                 </q-tooltip>                
                 <router-link to="/">
-                    <img class="responsive avatar" src="./../statics/logo-movekeep-working-png-big.png" />
+                    <img class="responsive avatar" src="./../statics/logo-movekeep-working-png-big.png" alt="logo" />
                     <h5>
-                        <!--q-icon name="ion-person" /-->
                         Login
                     </h5>
                 </router-link>
-                <span slot="subtitle">Formulari Login</span>   
-                
+                <span slot="subtitle">Formulari Login</span>
             </q-card-title>
             <q-card-main>
                 <q-input
@@ -34,7 +32,10 @@
                     :error="$v.password.$invalid && $v.password.$dirty"
                     />
                 <div id="bottom">
-                    <router-link class="text-blue-5" to="reset">Recuperar Contrasenya</router-link>
+                    <div id="bottom-links">
+                        <router-link class="text-blue-5" to="reset">Recuperar Contrasenya</router-link>
+                        <router-link class="text-blue-5" to="create">Creat compte</router-link>
+                    </div>    
                     <q-btn color="primary" big @click="checkLogin">
                         Enviar
                     </q-btn>
@@ -129,6 +130,12 @@ export default {
         display: flex;
         align-items: baseline;
         justify-content: space-between;
+        flex-flow: row;
+    }
+
+    #bottom-links {
+        display: flex;
+        flex-flow: column;
     }
     
 </style>
