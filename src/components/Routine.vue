@@ -1,6 +1,6 @@
 <template>
-    <div class="row carta">
-        <q-card :flat="this.$q.platform.is.mobile" class="col-6 col-xs-12">
+    <div>
+        <q-card flat>
             <q-card-title align="center">
                 <img alt="logo" class="avatar responsive" src="./../statics/logo-movekeep-working-png-big.png" />
                 <h5>
@@ -13,7 +13,7 @@
                 helper="Títol de la rutina"
             >
                 <q-input 
-                    v-model.trim="titol"
+                    v-model.trim="title"
                     type="text"
                     float-label="Títol"
                 />
@@ -25,22 +25,69 @@
                 !!!!!!! Validate will be that this field only allows max 160 characters in total!!!!!!!!!
             -->
                 <q-input 
-                    v-model.trim="descripcio"
+                    v-model.trim="description"
                     type="textarea"
                     float-label="Breu descripció"
                     :max-height="50"                    
                 />
             </q-field>
-            <div v-for="exercici in exercicis" :key="exercici.titol">
+            <q-field
+                helper="Selecciona la/les categoríes de la rutina"
+            >
+                <q-select
+                    v-if="$q.platform.is.desktop"
+                    multiple
+                    filter
+                    filter-placeholder="Cerca una categoria"
+                    :options="categories"
+                    v-model="categoriesSelected"
+                    float-label="Categories seleccionades"
+                />
+                <q-dialog-select 
+                    v-else
+                    multiple
+                    :options="categories"
+                    v-model="categoriesSelected"
+                    title="Categories"
+                    ok-label="Selecciona"
+                    cancel-label="Cancelar"
+                    float-label="Categories seleccionades"                
+                />
+            </q-field>
+            <q-field
+                helper="Marca l'opció si la teva rutina va per temps o per repeticions"
+            >
+                <q-option-group
+                    type="radio"
+                    v-model="type"
+                    inline
+                    :options="[
+                        { label:'De temps', value: 'time'},
+                        { label:'De repeticions', value: 'reps'},
+                    ]"
+                />
+            </q-field>
+            <div v-for="exercice in exercices" :key="exercice.title" class="column">
                 <q-field
-
+                    :helper="`Exercici ${exercices.indexOf(exercice) + 1}`"
                 >
                     <q-input
-                        :float-label="`Exercici ${exercicis.indexOf(exercici) + 1}`"
-                        v-model.trim="exercici.repeticions"
+                        v-model.trim="exercice.number"
+                        type="number"
+                    />
+                    <q-input
+                        v-model.trim="exercice.description"
+                        type="text"
                     />
                 </q-field>
             </div>
+            <q-btn
+                @click="addExercice"
+                color="primary"
+                big
+            >
+                Afegir exercici
+            </q-btn>
           </q-card-main>
       </q-card>
   </div>
@@ -50,35 +97,52 @@
 import {
     QCard,
     QCardTitle,
+    QOptionGroup,
     QCardMain,
     QField,
     QInput,
+    QBtn,
+    QDialogSelect,
+    QSelect,
 } from 'quasar'
 
 export default {
     components: {
         QCard,
+        QBtn,
+        QDialogSelect,
         QCardTitle,
         QCardMain,
+        QOptionGroup,
         QField,
         QInput,
+        QSelect,
     },
     data() {
         return {
-            titol: '',
-            descripcio: '',
-            exercicis: [
+            title: '',
+            description: '',
+            exercices: [
                 {
-                    repeticions: 0,
-                    descripcio: '',
+                    number: 0,
+                    description: '',
 
                 },
                 {
-                    repeticions: 0,
-                    descripcio: '',
+                    number: 0,
+                    description: '',
 
                 }
             ],
+            type: '',
+            categories: [
+                { label: 'Braços', value: 'arms' },
+                { label: 'Cames', value: 'legs' },
+                { label: 'Pit', value: 'chest' }
+            ],
+            categoriesSelected: [
+
+            ]
         }
     },
     /* 
@@ -89,6 +153,15 @@ export default {
         console.log(to, from, next)
         if (!to.params.id) next()
         next()
+    },
+    methods: {
+        addExercice(e) {
+            e.preventDefault()
+            this.exercicis.push({
+                repeticions: 0,
+                descripcio: ''
+            })
+        }
     }
 
 }
