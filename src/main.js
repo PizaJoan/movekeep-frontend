@@ -12,6 +12,7 @@ require(`./themes/app.${__THEME}.styl`)
 
 import Vue from 'vue'
 import Quasar from 'quasar'
+import { LocalStorage } from 'quasar'
 import router from './router'
 import Vuelidate from 'vuelidate'
 import VueResource from 'vue-resource'
@@ -39,9 +40,13 @@ Quasar.start(() => {
 })
 
 Vue.http.options.emulateJSON = true;
+/*
+    // Maybe this will be the way to add allways the token to the api \\
+*/
+Vue.http.headers.common['Authorization'] = `Bearer ${LocalStorage.get.item('token')}`
 
 Vue.http.interceptors.push((req, next) => {
-  req.headers.set('Access-Control-Allow-Origin', '*')
+  //req.headers.set('Access-Control-Allow-Origin', '*')
   next()
 })
 

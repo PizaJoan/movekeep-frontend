@@ -13,7 +13,7 @@
                 </router-link>
                 <span slot="subtitle">Formulari Login</span>
             </q-card-title>
-            <q-card-main>
+            <q-card-main @keypress="checkKey"> 
                 <q-field  
                     :error="$v.user.$error"
                     >
@@ -36,7 +36,7 @@
                         no-pass-toggle
                         name="password"
                         @click="$v.password.$touch()"
-                        @focus="$v.password.$touch()" 
+                        @focus="$v.password.$touch()"
                         />
                 </q-field>
                 <div id="bottom">
@@ -66,6 +66,7 @@ import {
     QTooltip,
     Toast,
     QField,
+    LocalStorage
 } from 'quasar'
 
 import {
@@ -104,22 +105,36 @@ export default {
         //TODO add methods for login validation
         checkLogin(e) {
             e.preventDefault()
-            if (!this.user || !this.password) {
-                Toast.create('Has d\'emplenar tant l\'usuari com la contrasenya')
-                this.$v.user.$touch()
-                this.$v.password.$touch()
-                return
-            }
+            /*if (!this.user || !this.password) {
+                return checkCredentials
+            } */
             //TODO this is not good but will fix later...
-            this.$http.post('/api/login', {
-                user: this.user,
+            this.$http.post('/api/token-local', {
+                username: this.user,
                 password: this.password
             }).then(res => {
-                console.log(res)
+
+                //console.log(res, res.headers.map.authorization[0].split(' ')[1])
+                //LocalStorage.set('token', res.headers.map.authorization[0].split(' ')[1])
             }, error => {
                 console.log(error)
+                this.checkCredentials()
             })
+        },
+        checkCredentials() {
+            console.log('aajahah')
+            Toast.create('L\'usuari o la contrasenya no són correctes')
+            //this.$v.user.$touch()
+            //this.$v.password.$reset()
+            this.password = ''
+        },
+        checkKey(e) {
+            //console.log(e)
+            if (e.key === 'Enter') document.querySelector('#bottom button').click()
         }
+    },
+    mounted() {
+        //console.log(LocalStorage.get.item('token'))
     }
 }
 

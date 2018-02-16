@@ -1,6 +1,6 @@
 <template>
     <div class="row carta">
-        <q-card :flat="this.$q.platform.is.mobile" class="col-6">
+        <q-card :flat="this.$q.platform.is.mobile" class="col-6 col-xs-12">
             <q-card-title align="center">
                 <img alt="logo" class="avatar responsive" src="./../statics/logo-movekeep-working-png-big.png" />
                 <h5>
@@ -10,7 +10,7 @@
             </q-card-title>
             <q-card-main>
             <q-field
-                helper="Títol rutina"
+                helper="Títol de la rutina"
             >
                 <q-input 
                     v-model.trim="titol"
@@ -33,8 +33,10 @@
             </q-field>
             <div v-for="exercici in exercicis" :key="exercici.titol">
                 <q-field
+
                 >
                     <q-input
+                        :float-label="`Exercici ${exercicis.indexOf(exercici) + 1}`"
                         v-model.trim="exercici.repeticions"
                     />
                 </q-field>
@@ -66,6 +68,11 @@ export default {
             titol: '',
             descripcio: '',
             exercicis: [
+                {
+                    repeticions: 0,
+                    descripcio: '',
+
+                },
                 {
                     repeticions: 0,
                     descripcio: '',
