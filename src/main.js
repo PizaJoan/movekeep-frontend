@@ -59,3 +59,15 @@ Vue.filter('isLovely', (animal) => {
   let tmp = `En ${animal.name} `
   return animal.lovely ? `${tmp} és carinyos` : `${tmp} no és molt carinyos`
 })
+
+Vue.filter('typeRoutine', (type) => {
+    switch(type) {
+        case 'time':
+            return 'Temps en segons*'
+        case 'reps':
+            return 'Nº Repeticions*'
+        default:
+            return ''
+    }
+    
+})

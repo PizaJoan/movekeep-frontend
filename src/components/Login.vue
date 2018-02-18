@@ -114,7 +114,7 @@ export default {
                 password: this.password
             }).then(res => {
 
-                //console.log(res, res.headers.map.authorization[0].split(' ')[1])
+                console.log(res/* res.headers.map.authorization[0].split(' ')[1]*/)
                 //LocalStorage.set('token', res.headers.map.authorization[0].split(' ')[1])
             }, error => {
                 console.log(error)

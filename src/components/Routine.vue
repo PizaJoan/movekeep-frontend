@@ -67,27 +67,60 @@
                     ]"
                 />
             </q-field>
-            <div v-for="exercice in exercices" :key="exercice.title" class="column">
+            <div v-for="exercice in exercices" :key="exercice.title" v-show="type">
                 <q-field
-                    :helper="`Exercici ${exercices.indexOf(exercice) + 1}`"
+                    :label="`Exercici ${exercices.indexOf(exercice) + 1}`"
+                    :label-width="1"
                 >
-                    <q-input
-                        v-model.trim="exercice.number"
-                        type="number"
-                    />
-                    <q-input
-                        v-model.trim="exercice.description"
-                        type="text"
-                    />
+                    <div class="row justify-between">
+                        <q-field class="col-md-5 col-xs-12">
+                            <q-input
+                                :float-label="type | typeRoutine"
+                                v-model.trim="exercice.number"
+                                type="number"
+                            />
+                        </q-field>
+                        <q-field class="col-md-5 col-xs-12">
+                            <q-input
+                                class="col-md-5 col-xs-12"
+                                v-model.trim="exercice.description"
+                                type="text"
+                                float-label="Descripció exercici"
+                            />
+                        </q-field>
+                        <div class="row col-md-1">
+                            <q-btn 
+                                class="col-md-8"
+                                :round="$q.platform.is.desktop"
+                                icon="ion-close"
+                                color="primary"
+                                big
+                                @click="removeExercice($event, exercice)"
+                            />
+                        </div> 
+                    </div>
                 </q-field>
             </div>
-            <q-btn
-                @click="addExercice"
-                color="primary"
-                big
-            >
-                Afegir exercici
-            </q-btn>
+            <div class="row justify-around">
+                <div align="left" class="col-md-6 col-xs-5">
+                    <q-btn
+                        @click="addExercice"
+                        color="primary"
+                        big
+                    >
+                        Afegir exercici
+                    </q-btn>
+                </div>
+                <div align="right" class="col-md-6 col-xs-5">
+                    <q-btn
+                        color="primary"
+                        big
+                    >
+                        <span v-if="$route.params.id">Modificar rutina</span>
+                        <span v-else>Afegir rutina</span>
+                    </q-btn>
+                </div>
+            </div>    
           </q-card-main>
       </q-card>
   </div>
@@ -157,10 +190,14 @@ export default {
     methods: {
         addExercice(e) {
             e.preventDefault()
-            this.exercicis.push({
+            this.exercices.push({
                 repeticions: 0,
                 descripcio: ''
             })
+        },
+        removeExercice(e, exercice) {
+            e.preventDefault()
+            this.exercices.splice(this.exercices.indexOf(exercice), 1)
         }
     }
 

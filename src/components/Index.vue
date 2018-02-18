@@ -1,15 +1,18 @@
 <template>
         <div class="row justify-center items-center content-center" id="big-container">
-            <q-window-resize-observable @resize="someMeth"></q-window-resize-observable>
+            <q-window-resize-observable @resize="someMeth" />
             <h5 class="col-12" align="center">Que volem aconseguir?</h5>
             <div class="col-md-4 col-xs-12">
                 <q-card>
+                    <q-card-media>
+                        <img src="http://www.arqhys.com/wp-content/uploads/2017/12/caracteristicas-del-positivismo.jpg" alt="positiu"/>
+                    </q-card-media>
                     <q-card-title align="center">
                         Mantenir-se positiu
                         <q-icon name="ion-plus" size="2rem" class="on-right" />
                     </q-card-title>
                     <q-card-main>
-                        <q-item-tile sublabel>
+                        <q-item-tile sublabel align="center">
                             Avui en día és necessari per mantenir una rutina de deport mantenir-se positiu
                             i amb ganes de seguir realitzant activitat física
                         </q-item-tile>
@@ -18,12 +21,15 @@
             </div>
             <div class="col-md-4 col-xs-12">
                     <q-card>
+                    <q-card-media>
+                        <img src="https://lamenteesmaravillosa.com/wp-content/uploads/2015/01/motivacion.jpg" alt="motivat">
+                    </q-card-media>
                     <q-card-title align="center">
                         Estar motivat
                         <q-icon name="ion-android-happy" size="2rem" class="on-right" />
                     </q-card-title>
                     <q-card-main>
-                        <q-item-tile sublabel>
+                        <q-item-tile sublabel align="center">
                             Amb una comunitat que volen ajudar no només compartint rutines
                             d'exercici de tot tipus i manera sino que també donant ànims
                         </q-item-tile>
@@ -32,12 +38,15 @@
             </div>
             <div class="col-md-4 col-xs-12">
                 <q-card>
+                    <q-card-media>
+                        <img src="http://www.lavanguardia.com/r/GODO/LV/p4/WebSite/2017/01/02/Recortada/img_msanoja_20160719-200128_imagenes_lv_getty_istock_86684025_small-kbsH-U413057833758KzC-992x558@LaVanguardia-Web.jpg" alt="saludable">
+                    </q-card-media>
                     <q-card-title align="center"> 
                         Ser saludable
                         <q-icon name="ion-thumbsup" size="2rem" class="on-right" />
                     </q-card-title>
                     <q-card-main>
-                        <q-item-tile sublabel>
+                        <q-item-tile sublabel align="center">
                             Gràcies a la comunitat i a les pròpies rutines et mantindràs saludable i milloraras la 
                             teva condició física
                         </q-item-tile>
@@ -46,12 +55,15 @@
             </div>
             <div class="col-md-6 col-xs-12">
                 <q-card>
+                    <q-card-media>
+                        <img src="http://www.roastbrief.com.mx/wp-content/uploads/2016/03/variedad-798x350.jpg" alt="rutines">
+                    </q-card-media>
                     <q-card-title align="center">
                         Rutines
                         <q-icon name="ion-android-walk" size="2rem" class="on-right" />
                     </q-card-title>
                     <q-card-main>
-                        <q-item-tile sublabel>
+                        <q-item-tile sublabel align="center">
                             Gràcies a la pròpia comunitat i a tu tindràs accés total a les rutines i 
                             podrás fer tantes com vulguis
                         </q-item-tile>
@@ -60,12 +72,15 @@
             </div>
             <div class="col-md-6 col-xs-12">
                 <q-card>
+                    <q-card-media>
+                        <img src="http://3.bp.blogspot.com/_kPbYdjHUZLU/S__J65FuotI/AAAAAAAAAZk/80Bbpnmc-QY/s1600/objeto+abanico+de+posibilidade.jpg" alt="varietat">
+                    </q-card-media>
                     <q-card-title align="center"> 
                         Varietat
                         <q-icon name="ion-ios-box" size="2rem" class="on-right" />
                     </q-card-title>
                     <q-card-main>
-                        <q-item-tile sublabel>
+                        <q-item-tile sublabel align="center">
                             Ja que tots contribuïum la varietat de rutines és amplia separades per categoríes i
                             nivell de la mateixa
                         </q-item-tile>
@@ -74,12 +89,15 @@
             </div>
             <div class="col-md-6 col-xs-12">
                 <q-card>
+                    <q-card-media>
+                        <img src="https://seanwes.com/wp-content/uploads/2012/12/no-compromise.jpg" alt="compromisos" class="imatge">
+                    </q-card-media>
                     <q-card-title align="center">
                         <b>NO</b> compromisos
                         <q-icon name="ion-ios-clock" size="2rem" class="on-right" />
                     </q-card-title>
                     <q-card-main>
-                        <q-item-tile sublabel>
+                        <q-item-tile sublabel align="center">
                             Dins aquesta app no es marca cap tipus d'objectiu menys el clar de mantenir-se
                             saludable i en moviment fent rutines
                         </q-item-tile>
@@ -88,12 +106,15 @@
             </div>
             <div class="col-md-6 col-xs-12">
                 <q-card>
+                    <q-card-media>
+                        <img src="http://moziru.com/images/finger-clipart-point-at-you-15.jpg" alt="tu" class="imatge">
+                    </q-card-media>
                     <q-card-title align="center"> 
                         <b>TU</b> decideixes
                         <q-icon name="ion-ios-body" size="2rem" class="on-right" />
                     </q-card-title>
                     <q-card-main>
-                        <q-item-tile sublabel>
+                        <q-item-tile sublabel align="center">
                             Aquí tu ets qui marca el que vols fer realitzant rutines sense cap tipus d'entrenador
                             ni obligacions tu decideixes quan i com
                         </q-item-tile>
@@ -116,7 +137,7 @@ import {
     QItemMain,
     QItem,
     QItemTile,
-    QItemSide
+    QItemSide,
 } from 'quasar'
 
 export default {
@@ -132,7 +153,7 @@ export default {
         QItemMain,
         QItem,
         QItemTile,
-        QItemSide
+        QItemSide,
     },
     data() {
         return {
@@ -150,5 +171,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+    .imatge {
+        height: 200px;
+    }
+
 </style>
