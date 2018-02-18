@@ -4,11 +4,11 @@
             <div class="col-md-4 col-xs-12">
                 <q-card>
                     <q-card-media>
-                        <img src="./../statics/positivisme.png" alt="positiu"/>
+                        <img src="./../statics/positivisme.png" alt="positiu" class="imatge"/>
                     </q-card-media>
                     <q-card-title align="center">
                         Mantenir-se positiu
-                        <q-icon name="ion-plus" size="2rem" class="on-right" />
+                        <q-icon name="ion-plus" class="on-right" />
                     </q-card-title>
                     <q-card-main>
                         <q-item-tile sublabel align="center">
@@ -21,11 +21,11 @@
             <div class="col-md-4 col-xs-12">
                     <q-card>
                     <q-card-media>
-                        <img src="./../statics/motivacio.png" alt="motivat">
+                        <img src="./../statics/motivacio.jpg" alt="motivat" class="imatge"/>
                     </q-card-media>
                     <q-card-title align="center">
                         Estar motivat
-                        <q-icon name="ion-android-happy" size="2rem" class="on-right" />
+                        <q-icon name="ion-android-happy" class="on-right" />
                     </q-card-title>
                     <q-card-main>
                         <q-item-tile sublabel align="center">
@@ -38,11 +38,11 @@
             <div class="col-md-4 col-xs-12">
                 <q-card>
                     <q-card-media>
-                        <img src="./../statics/saludable.png" alt="saludable">
+                        <img src="./../statics/saludable.png" alt="saludable" class="imatge"/>
                     </q-card-media>
                     <q-card-title align="center"> 
                         Ser saludable
-                        <q-icon name="ion-thumbsup" size="2rem" class="on-right" />
+                        <q-icon name="ion-thumbsup" class="on-right" />
                     </q-card-title>
                     <q-card-main>
                         <q-item-tile sublabel align="center">
@@ -55,11 +55,11 @@
             <div class="col-md-6 col-xs-12">
                 <q-card>
                     <q-card-media>
-                        <img src="./../statics/rutines.jpg" alt="rutines">
+                        <img src="./../statics/rutines.png" alt="rutines" class="imatge-2" />
                     </q-card-media>
                     <q-card-title align="center">
                         Rutines
-                        <q-icon name="ion-android-walk" size="2rem" class="on-right" />
+                        <q-icon name="ion-android-walk" class="on-right" />
                     </q-card-title>
                     <q-card-main>
                         <q-item-tile sublabel align="center">
@@ -72,11 +72,11 @@
             <div class="col-md-6 col-xs-12">
                 <q-card>
                     <q-card-media>
-                        <img src="./../statics/possiblitats.png" alt="varietat">
+                        <img src="./../statics/possiblitats.jpg" alt="varietat" class="imatge-2" />
                     </q-card-media>
                     <q-card-title align="center"> 
                         Varietat
-                        <q-icon name="ion-ios-box" size="2rem" class="on-right" />
+                        <q-icon name="ion-ios-box" class="on-right" />
                     </q-card-title>
                     <q-card-main>
                         <q-item-tile sublabel align="center">
@@ -89,11 +89,11 @@
             <div class="col-md-6 col-xs-12">
                 <q-card>
                     <q-card-media>
-                        <img src="./../statics/compromisos.png" alt="compromisos" class="imatge">
+                        <img src="./../statics/compromisos.png" alt="compromisos" class="imatge-2" />
                     </q-card-media>
                     <q-card-title align="center">
                         <b>NO</b> compromisos
-                        <q-icon name="ion-ios-clock" size="2rem" class="on-right" />
+                        <q-icon name="ion-ios-clock" class="on-right" />
                     </q-card-title>
                     <q-card-main>
                         <q-item-tile sublabel align="center">
@@ -106,16 +106,16 @@
             <div class="col-md-6 col-xs-12">
                 <q-card>
                     <q-card-media>
-                        <img src="./../statics/decideixes.png" alt="tu" class="imatge">
+                        <img src="./../statics/decideixes.jpg" alt="tu" class="imatge-2" />
                     </q-card-media>
                     <q-card-title align="center"> 
                         <b>TU</b> decideixes
-                        <q-icon name="ion-ios-body" size="2rem" class="on-right" />
+                        <q-icon name="ion-ios-body" class="on-right" />
                     </q-card-title>
                     <q-card-main>
                         <q-item-tile sublabel align="center">
                             Aquí tu ets qui marca el que vols fer realitzant rutines sense cap tipus d'entrenador
-                            ni obligacions tu decideixes quan i com
+                            ni obligacions tu decideixes
                         </q-item-tile>
                     </q-card-main>
                 </q-card>
@@ -168,5 +168,15 @@ export default {
 </script>
 
 <style scoped>
+
+    .imatge {
+        width: 100%;
+        height: 265px;
+    }
+
+    .imatge-2 {
+        width: 100%;
+        height: 300px;
+    }
 
 </style>
