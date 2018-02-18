@@ -182,11 +182,11 @@ export default {
         TODO need to check if there is a parameter from the url to fetch 
         the data from the actual routine and be able modify
     */
-    beforeRouteEnter(to, from, next) {
+    /*beforeRouteEnter(to, from, next) {
         console.log(to, from, next)
         if (!to.params.id) next()
         next()
-    },
+    },*/
     methods: {
         addExercice(e) {
             e.preventDefault()

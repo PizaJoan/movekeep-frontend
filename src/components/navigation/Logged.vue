@@ -60,7 +60,7 @@
 
         <div slot="left">
             <q-list no-border separator>
-                <q-list-header>Seccions</q-list-header>
+                <q-list-header>Categories</q-list-header>
                 <q-side-link item to="/login">
                     <q-item-side icon="face"/>
                     <q-item-main sublabel="Login">Pantalla login</q-item-main>

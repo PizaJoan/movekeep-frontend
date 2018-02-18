@@ -3,11 +3,13 @@
         <q-list stripped link separator no-border>
             <q-list-header inset>
                 Rutines
-                <q-btn round icon="ion-plus" class="on-right">
-                    <q-tooltip>
-                        Afegir rutina
-                    </q-tooltip>
-                </q-btn>
+                <router-link to="/manage-routine">
+                    <q-btn round color="primary" icon="ion-plus" class="on-right">
+                        <q-tooltip>
+                            Afegir rutina
+                        </q-tooltip>
+                    </q-btn>
+                </router-link>
                 <span v-if="this.$q.platform.is.desktop" class="on-right">Dins aquesta pantalla podrás afegir, modificar i esborrar les teves pròpies rutines</span>
             </q-list-header>
             <q-item-separator />
@@ -20,12 +22,12 @@
                     :sublabel="`Té ${animal.age} anys i fa ${animal.height} d'altura`"
                 />
                 <q-item-side>
-                    <q-btn round icon="ion-close-round">
+                    <q-btn round color="primary" icon="ion-close-round">
                         <q-tooltip>
                             Esborrar
                         </q-tooltip>    
                     </q-btn>
-                    <q-btn round icon="ion-edit">
+                    <q-btn round color="primary" icon="ion-edit">
                         <q-tooltip>
                             Editar
                         </q-tooltip>
