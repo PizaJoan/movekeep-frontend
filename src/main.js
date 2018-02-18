@@ -47,6 +47,8 @@ Vue.http.headers.common['Authorization'] = `Bearer ${LocalStorage.get.item('toke
 
 Vue.http.interceptors.push((req, next) => {
   //req.headers.set('Access-Control-Allow-Origin', '*')
+  
+  console.log(req, next)
   next()
 })
 

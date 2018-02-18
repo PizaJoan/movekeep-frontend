@@ -15,7 +15,7 @@
                 >
                  </q-tab> 
                 <q-route-tab 
-                    to="/" 
+                    to="/"
                     default 
                     label="Inici" 
                     slot="title"
@@ -24,7 +24,7 @@
                 >
                 </q-route-tab>
                 <q-route-tab 
-                    to="/login" 
+                    to="/account" 
                     label="Compte" 
                     slot="title"
                     icon="ion-person"

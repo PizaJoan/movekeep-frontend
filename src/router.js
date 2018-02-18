@@ -30,11 +30,11 @@ export default new VueRouter({
       path: '/',
       component: load('navigation/Logged'),
       children: [
-        { path: 'account', component: load('Account') },
-        { path: 'routines', component: load('RoutineManager') },
+        { path: 'account', component: load('Account'), beforeEnter: checkLoggedIn },
+        { path: 'routines', component: load('RoutineManager'), beforeEnter: checkLoggedIn },
         { path: '', component: load('Index') },
-        { path: 'manage-routine/:id', component: load('Routine') },
-        { path: 'manage-routine', component: load('Routine') }
+        { path: 'manage-routine/:id', component: load('Routine'), beforeEnter: checkLoggedIn },
+        { path: 'manage-routine', component: load('Routine'), beforeEnter: checkLoggedIn }
       ]
     },
 
@@ -44,7 +44,7 @@ export default new VueRouter({
       children: [
         { path: 'login', component: load('Login') },
         { path: 'reset', component: load('Reset') },
-        { path: 'create', component: load('CreateAccount')}
+        { path: 'create', component: load('CreateAccount') }
       ]
     },
   
@@ -52,3 +52,13 @@ export default new VueRouter({
     { path: '*', component: load('Error404') } // Not found
   ]
 })
+
+import { LocalStorage } from 'quasar'
+
+function checkLoggedIn(to, from, next) {
+    //console.log('entram')
+   // if (LocalStorage.get.item('token')) {
+        next()
+   // }
+   // else next('/login')
+}
