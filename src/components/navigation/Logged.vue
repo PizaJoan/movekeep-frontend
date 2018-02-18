@@ -31,6 +31,14 @@
                     hide="label"
                 >
                 </q-route-tab>
+                <q-route-tab
+                    to="/routines"
+                    label="Rutines"
+                    slot="title"
+                    hide="label"
+                    icon="ion-stats-bars"
+                >
+                </q-route-tab>
                 <q-route-tab 
                     slot="title"
                     label="Historial"

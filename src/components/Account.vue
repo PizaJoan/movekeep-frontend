@@ -1,5 +1,7 @@
 <template>
-  
+    <div>
+        
+    </div>
 </template>
 
 <script>
@@ -14,7 +16,7 @@ export default {
     },
     mounted() {
         /*
-            TODO add some fetching data to get the user information...
+            TODO add some fetching data to get the user information...(maybe)
         */
     }
 }

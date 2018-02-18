@@ -35,12 +35,12 @@ module.exports = {
   },
   module: {
     rules: [
-      {
+     /* {
         test: /\.js$/,
         loader: 'jshint-loader',
         exclude: /node_modules/,
-        enforce: "pre"
-      },
+        enforce: 'pre'
+      },*/
       {
         test: /\.js$/,
         loader: 'babel-loader',
