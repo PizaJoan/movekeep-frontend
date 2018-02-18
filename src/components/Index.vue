@@ -1,11 +1,10 @@
 <template>
         <div class="row justify-center items-center content-center" id="big-container">
-            <q-window-resize-observable @resize="someMeth" />
             <h5 class="col-12" align="center">Que volem aconseguir?</h5>
             <div class="col-md-4 col-xs-12">
                 <q-card>
                     <q-card-media>
-                        <img src="http://www.arqhys.com/wp-content/uploads/2017/12/caracteristicas-del-positivismo.jpg" alt="positiu"/>
+                        <img src="./../statics/positivisme.png" alt="positiu"/>
                     </q-card-media>
                     <q-card-title align="center">
                         Mantenir-se positiu
@@ -22,7 +21,7 @@
             <div class="col-md-4 col-xs-12">
                     <q-card>
                     <q-card-media>
-                        <img src="https://lamenteesmaravillosa.com/wp-content/uploads/2015/01/motivacion.jpg" alt="motivat">
+                        <img src="./../statics/motivacio.png" alt="motivat">
                     </q-card-media>
                     <q-card-title align="center">
                         Estar motivat
@@ -39,7 +38,7 @@
             <div class="col-md-4 col-xs-12">
                 <q-card>
                     <q-card-media>
-                        <img src="http://www.lavanguardia.com/r/GODO/LV/p4/WebSite/2017/01/02/Recortada/img_msanoja_20160719-200128_imagenes_lv_getty_istock_86684025_small-kbsH-U413057833758KzC-992x558@LaVanguardia-Web.jpg" alt="saludable">
+                        <img src="./../statics/saludable.png" alt="saludable">
                     </q-card-media>
                     <q-card-title align="center"> 
                         Ser saludable
@@ -56,7 +55,7 @@
             <div class="col-md-6 col-xs-12">
                 <q-card>
                     <q-card-media>
-                        <img src="http://www.roastbrief.com.mx/wp-content/uploads/2016/03/variedad-798x350.jpg" alt="rutines">
+                        <img src="./../statics/rutines.jpg" alt="rutines">
                     </q-card-media>
                     <q-card-title align="center">
                         Rutines
@@ -73,7 +72,7 @@
             <div class="col-md-6 col-xs-12">
                 <q-card>
                     <q-card-media>
-                        <img src="http://3.bp.blogspot.com/_kPbYdjHUZLU/S__J65FuotI/AAAAAAAAAZk/80Bbpnmc-QY/s1600/objeto+abanico+de+posibilidade.jpg" alt="varietat">
+                        <img src="./../statics/possiblitats.png" alt="varietat">
                     </q-card-media>
                     <q-card-title align="center"> 
                         Varietat
@@ -90,7 +89,7 @@
             <div class="col-md-6 col-xs-12">
                 <q-card>
                     <q-card-media>
-                        <img src="https://seanwes.com/wp-content/uploads/2012/12/no-compromise.jpg" alt="compromisos" class="imatge">
+                        <img src="./../statics/compromisos.png" alt="compromisos" class="imatge">
                     </q-card-media>
                     <q-card-title align="center">
                         <b>NO</b> compromisos
@@ -107,7 +106,7 @@
             <div class="col-md-6 col-xs-12">
                 <q-card>
                     <q-card-media>
-                        <img src="http://moziru.com/images/finger-clipart-point-at-you-15.jpg" alt="tu" class="imatge">
+                        <img src="./../statics/decideixes.png" alt="tu" class="imatge">
                     </q-card-media>
                     <q-card-title align="center"> 
                         <b>TU</b> decideixes
@@ -163,18 +162,11 @@ export default {
 
     },
     methods: {
-        someMeth(e) {
-            if (e.width >= 770 && e.height >= 500) document.querySelector('#big-container').style.height = 'calc(100vh - 100px)'
-            else document.querySelector('#big-container').style.height = ''
-        }
+
     }
 }
 </script>
 
 <style scoped>
-
-    .imatge {
-        height: 200px;
-    }
 
 </style>
