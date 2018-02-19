@@ -1,8 +1,8 @@
 <template>
-    <div>
-        <q-card flat>
+    <div class="row justify-center">
+        <q-card flat class="col-md-6">
             <q-card-title align="center">
-                <img alt="logo" class="avatar responsive" src="./../statics/logo-movekeep-working-png-big.png" />
+                <img alt="logo" class="responsive" width="100px" src="./../statics/logo-movekeep-working-png-big.png" />
                 <h5>
                     <span v-if="$route.params.id">Modificar rutina {{ $route.params.id }}</span>
                     <span v-else>Afegir rutina nova</span>
@@ -94,7 +94,6 @@
                                 :round="$q.platform.is.desktop"
                                 icon="ion-close"
                                 color="primary"
-                                big
                                 @click="removeExercice($event, exercice)"
                             />
                         </div> 

@@ -6,7 +6,7 @@
                     Anar a la pantalla principal
                 </q-tooltip>                
                 <router-link to="/">
-                    <img class="responsive avatar" src="./../statics/logo-movekeep-working-png-big.png" alt="logo" />
+                    <img class="responsive" width="100px" src="./../statics/logo-movekeep-working-png-big.png" alt="logo" />
                     <h5>
                         Nou compte
                     </h5>
