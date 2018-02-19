@@ -11,15 +11,20 @@
             <q-card-main>
             <q-field
                 helper="Títol de la rutina"
+                :error="$v.title.$error"
+                error-label="Aquest camp s'ha d'emplenar"
             >
                 <q-input 
                     v-model.trim="title"
                     type="text"
                     float-label="Títol"
+                    @click="$v.title.$touch()"
                 />
             </q-field>
             <q-field
+                :error="$v.description.$error"
                 helper="Describeix la teva rutina breument"
+                error-label="Máxim 300 caràcters"
             >
             <!--
                 !!!!!!! Validate will be that this field only allows max 160 characters in total!!!!!!!!!
@@ -28,19 +33,23 @@
                     v-model.trim="description"
                     type="textarea"
                     float-label="Breu descripció"
-                    :max-height="50"                    
+                    :max-height="50"  
+                    @click="$v.description.$touch()"                  
                 />
             </q-field>
             <q-field
                 helper="Selecciona la/les categoríes de la rutina"
+                :error="$v.categoriesSelected.$error"
+                error-label="N'has de triar al manco 1"
             >
                 <q-select
                     v-if="$q.platform.is.desktop"
                     multiple
                     filter
+                    v-model="categoriesSelected"
+                    @focus="$v.categoriesSelected.$touch()"
                     filter-placeholder="Cerca una categoria"
                     :options="categories"
-                    v-model="categoriesSelected"
                     float-label="Categories seleccionades"
                 />
                 <q-dialog-select 
@@ -48,6 +57,7 @@
                     multiple
                     :options="categories"
                     v-model="categoriesSelected"
+                    @focus="$v.categoriesSelected.$touch()"
                     title="Categories"
                     ok-label="Selecciona"
                     cancel-label="Cancelar"
@@ -56,11 +66,14 @@
             </q-field>
             <q-field
                 helper="Marca l'opció si la teva rutina va per temps o per repeticions"
+                error-label="Has de triar qualcuna opció"
+                :error="$v.type.$error"
             >
                 <q-option-group
                     type="radio"
                     v-model="type"
                     inline
+                    @change="$v.type.$touch()"
                     :options="[
                         { label:'De temps', value: 'time'},
                         { label:'De repeticions', value: 'reps'},
@@ -90,7 +103,7 @@
                         </q-field>
                         <div class="row col-md-1">
                             <q-btn 
-                                class="col-md-8"
+                                class="col-md-12"
                                 :round="$q.platform.is.desktop"
                                 icon="ion-close"
                                 color="primary"
@@ -105,7 +118,6 @@
                     <q-btn
                         @click="addExercice"
                         color="primary"
-                        big
                     >
                         Afegir exercici
                     </q-btn>
@@ -114,6 +126,7 @@
                     <q-btn
                         color="primary"
                         big
+                        :disable="$v.all.$error || !$v.all.$dirty"
                     >
                         <span v-if="$route.params.id">Modificar rutina</span>
                         <span v-else>Afegir rutina</span>
@@ -137,6 +150,13 @@ import {
     QDialogSelect,
     QSelect,
 } from 'quasar'
+
+import { 
+    required,
+    maxLength,
+    minLength 
+} from 'vuelidate/lib/validators'
+
 
 export default {
     components: {
@@ -176,6 +196,22 @@ export default {
 
             ]
         }
+    },
+    validations: {
+        title: {
+            required
+        },
+        description: {
+            maxLength: maxLength(300)
+        },
+        categoriesSelected: {
+            required,
+            minLength: minLength(1),
+        },
+        type: {
+            required
+        },
+        all: ['title', 'description', 'categoriesSelected', 'type']
     },
     /* 
         TODO need to check if there is a parameter from the url to fetch 

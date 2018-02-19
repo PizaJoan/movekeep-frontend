@@ -10,6 +10,19 @@
             </q-list-header>
             <q-item>
                 <q-item-side>
+                    <q-item-side avatar>
+                        <img :src="user.picture" alt="userpic" class="avatar" />
+                    </q-item-side>
+                </q-item-side>
+                <q-item-main 
+                    label="Foto de perfil"
+                />
+                <q-item-side>
+                    <q-btn round icon="ion-edit" color="primary" disable />
+                </q-item-side>
+            </q-item>
+            <q-item>
+                <q-item-side>
                     <q-item-tile icon="ion-person"></q-item-tile>
                 </q-item-side>
                 <q-item-main 
@@ -74,7 +87,8 @@ export default {
                 name: 'Joan Pizà Ferrà',
                 userName: 'jpizaf',
                 mail: 'jpizaf@gmail.com',
-                score: 100
+                score: 100,
+                picture: 'http://simpleicon.com/wp-content/uploads/user-5.png'
             }
         }
     },

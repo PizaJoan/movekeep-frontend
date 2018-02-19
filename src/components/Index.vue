@@ -1,7 +1,8 @@
 <template>
-        <div class="row justify-center items-center content-center" id="big-container">
+        <div>
             <h5 class="col-12" align="center">Que volem aconseguir?</h5>
-            <div class="col-md-4 col-xs-12">
+            <div class="row justify-center">
+            <div class="col-md-4 col-xl-3 col-xs-12">
                 <q-card>
                     <q-card-media>
                         <img src="./../statics/positivisme.png" alt="positiu" class="imatge"/>
@@ -18,7 +19,7 @@
                     </q-card-main>
                 </q-card>
             </div>
-            <div class="col-md-4 col-xs-12">
+            <div class="col-md-4 col-xl-3 col-xs-12">
                     <q-card>
                     <q-card-media>
                         <img src="./../statics/motivacio.jpg" alt="motivat" class="imatge"/>
@@ -35,7 +36,7 @@
                     </q-card-main>
                 </q-card>
             </div>
-            <div class="col-md-4 col-xs-12">
+            <div class="col-md-4 col-xl-3 col-xs-12">
                 <q-card>
                     <q-card-media>
                         <img src="./../statics/saludable.png" alt="saludable" class="imatge"/>
@@ -52,7 +53,9 @@
                     </q-card-main>
                 </q-card>
             </div>
-            <div class="col-md-6 col-xs-12">
+            </div>
+            <div class="row justify-center">
+            <div class="col-md-6 col-xl-4 col-xs-12">
                 <q-card>
                     <q-card-media>
                         <img src="./../statics/rutines.png" alt="rutines" class="imatge-2" />
@@ -69,7 +72,7 @@
                     </q-card-main>
                 </q-card>
             </div>
-            <div class="col-md-6 col-xs-12">
+            <div class="col-md-6 col-xl-4 col-xs-12">
                 <q-card>
                     <q-card-media>
                         <img src="./../statics/possiblitats.jpg" alt="varietat" class="imatge-2" />
@@ -86,7 +89,9 @@
                     </q-card-main>
                 </q-card>
             </div>
-            <div class="col-md-6 col-xs-12">
+            </div>
+            <div class="row justify-center">
+            <div class="col-md-6 col-xl-4 col-xs-12">
                 <q-card>
                     <q-card-media>
                         <img src="./../statics/compromisos.png" alt="compromisos" class="imatge-2" />
@@ -103,7 +108,7 @@
                     </q-card-main>
                 </q-card>
             </div>
-            <div class="col-md-6 col-xs-12">
+            <div class="col-md-6 col-xl-4 col-xs-12">
                 <q-card>
                     <q-card-media>
                         <img src="./../statics/decideixes.jpg" alt="tu" class="imatge-2" />
@@ -119,6 +124,7 @@
                         </q-item-tile>
                     </q-card-main>
                 </q-card>
+            </div>
             </div>
     </div>
 </template>
@@ -171,7 +177,7 @@ export default {
 
     .imatge {
         width: 100%;
-        height: 265px;
+        height: 260px;
     }
 
     .imatge-2 {
