@@ -43,13 +43,15 @@ Vue.http.options.emulateJSON = true;
 /*
     // Maybe this will be the way to add allways the token to the api \\
 */
-Vue.http.headers.common['Authorization'] = `Bearer ${LocalStorage.get.item('token')}`
-
+if (LocalStorage.get.item('token')) {
+    Vue.http.headers.common['Authorization'] = `Bearer ${LocalStorage.get.item('token')}`
+}
 Vue.http.interceptors.push((req, next) => {
-  //req.headers.set('Access-Control-Allow-Origin', '*')
-  
-  console.log(req, next)
-  next()
+    if (!LocalStorage.get.item('token')) {
+
+    }
+    console.log(req, next)
+    next()
 })
 
 Vue.filter('capitalize', (animal) => {

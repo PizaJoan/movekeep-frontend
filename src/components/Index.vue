@@ -48,7 +48,7 @@
                     <q-card-main>
                         <q-item-tile sublabel align="center">
                             Gràcies a la comunitat i a les pròpies rutines et mantindràs saludable i milloraras la 
-                            teva condició física
+                            teva condició física amb el pas del temps
                         </q-item-tile>
                     </q-card-main>
                 </q-card>

@@ -22,12 +22,12 @@
                     :sublabel="`Té ${animal.age} anys i fa ${animal.height} d'altura`"
                 />
                 <q-item-side>
-                    <q-btn round color="primary" icon="ion-close-round">
+                    <q-btn round color="primary" icon="ion-close-round" @click="deleteRoutineCheck($event, animal)">
                         <q-tooltip>
                             Esborrar
                         </q-tooltip>    
                     </q-btn>
-                    <q-btn round color="primary" icon="ion-edit">
+                    <q-btn round color="primary" icon="ion-edit" @click="$router.push(`/manage-routine/${animal.name}`)">
                         <q-tooltip>
                             Editar
                         </q-tooltip>
@@ -49,7 +49,8 @@ import {
     QItemTile,
     QBtn,
     QTooltip,
-    QItemSeparator
+    QItemSeparator,
+    Dialog,
 } from 'quasar'
 
 export default {
@@ -67,7 +68,10 @@ export default {
     },
     data() {
         return {
-            data: []
+            data: [],
+            requesting: {
+                indeterminate: false
+            }
         }
     },
     mounted() {
@@ -89,7 +93,39 @@ export default {
                     height: 100
                 }
             ]
-        }
+        },
+        deleteRoutineCheck: (e, routine) => {
+            Dialog.create({
+                title: 'Estas segur que vols esborrar la rutina ' + routine.title,
+                message: 'Alerta, un cop borrat no es pot recuperar!',
+                buttons: [
+                    {
+                        label: 'CANCELAR',
+                        handler() {
+                        },
+                        raised: true,
+                        color: 'primary'
+                    },
+                    {
+                        label: 'OK',
+                        handler: () => {
+                           let dialog = Dialog.create({
+                               title: 'Esborrant...',
+                                progress: { 
+                                    indeterminate: true 
+                                },
+                                noButtons: true,
+                            })
+                            setTimeout(() => { 
+                                dialog.close()
+                            },  1000)
+                        },
+                        color: 'negative',
+                        raised: true,
+                    }
+                ]
+            })
+        },
     }
 }
 </script>
