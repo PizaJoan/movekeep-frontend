@@ -75,6 +75,7 @@
                         align="center" 
                         color="primary"
                         :disable="$v.all.$error || !$v.all.$dirty"
+                        @click="createUser"
                     >
                         Enviar
                     </q-btn>
@@ -106,6 +107,8 @@ import {
     email,
     minLength
 } from 'vuelidate/lib/validators'
+
+import moment from 'moment'
 
 export default {
     components: {
@@ -144,6 +147,16 @@ export default {
             sameAsPassword: sameAs('password')
         },
         all: [ 'user', 'mail', 'password', 'repeatPassword' ]
+    },
+    methods: {
+        createUser(e) {
+            e.preventDefault()
+            this.$http.put('/api/addUser', {
+                userName: this.user,
+                name: this.name,
+                creationDate: moment().format('YYYY-MM-DD')
+            }).then(console.log, console.log)
+        }
     }
 }
 </script>

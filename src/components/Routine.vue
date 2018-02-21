@@ -187,14 +187,8 @@ export default {
                 }
             ],
             type: '',
-            categories: [
-                { label: 'Braços', value: 'arms' },
-                { label: 'Cames', value: 'legs' },
-                { label: 'Pit', value: 'chest' }
-            ],
-            categoriesSelected: [
-
-            ]
+            categories: [],
+            categoriesSelected: []
         }
     },
     validations: {
@@ -222,6 +216,14 @@ export default {
         if (!to.params.id) next()
         next()
     },*/
+    mounted() {
+        this.$http.get('/api/getCategories').then(res => res.json(), console.log)
+            .then(categories => {
+                categories.forEach(category => {
+                    this.categories.push({ label: category.title, value: category.id })
+                })
+            })
+    },
     methods: {
         addExercice(e) {
             e.preventDefault()

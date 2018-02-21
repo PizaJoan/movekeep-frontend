@@ -39,7 +39,7 @@ Quasar.start(() => {
   })
 })
 
-Vue.http.options.emulateJSON = true;
+//Vue.http.options.emulateJSON = true;
 /*
     // Maybe this will be the way to add allways the token to the api \\
 */
@@ -50,7 +50,7 @@ Vue.http.interceptors.push((req, next) => {
     if (!LocalStorage.get.item('token')) {
 
     }
-    console.log(req, next)
+    //console.log(req, next)
     next()
 })
 

@@ -96,7 +96,17 @@ export default {
         /*
             TODO add some fetching data to get the user information...(maybe)
         */
-    }
+       this.$http.get('/api/getInfo', {
+            params: { 
+               username: 'jpizaf'
+            }
+        }).then(res => res.json(), console.log)
+        .then(user => {
+           this.user.name = user.name
+           this.user.userName = user.userName,
+           this.user.score = user.points
+        })
+    },
 }
 </script>
 

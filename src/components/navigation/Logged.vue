@@ -61,13 +61,9 @@
         <div slot="left">
             <q-list no-border separator>
                 <q-list-header>Categories</q-list-header>
-                <q-side-link item to="/login">
-                    <q-item-side icon="face"/>
-                    <q-item-main sublabel="Login">Pantalla login</q-item-main>
-                </q-side-link>
-                <q-side-link item to="/reset">
-                    <q-item-side icon="mail"/>
-                    <q-item-main sublabel="Reset">Pantalla reset</q-item-main>
+                <q-side-link item v-for="category in categories" :key="category.id" :to="`/${category.title}`">
+                    <q-item-side icon="ion-android-list" />
+                    <q-item-main :sublabel="category.title">Veure rutines de {{ category.title }}</q-item-main>
                 </q-side-link>
             </q-list>
         </div>
@@ -118,7 +114,18 @@ export default {
         QRouteTab,
         QTabPane
     },
+    data() {
+        return {
+            categories: []
+        }
+    },
     mounted() {
+        this.$http.get('/api/getCategories').then(response => response.json(), error => {
+            console.log(error)
+        }).then(categories => {
+            console.log(categories)
+            this.categories = categories
+        })
     },
     methods: {
     }

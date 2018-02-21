@@ -45,7 +45,7 @@ export default new VueRouter({
         { path: 'login', component: load('Login') },
         { path: 'reset', component: load('Reset') },
         { path: 'create', component: load('CreateAccount') },
-        { path: '*', component: load('History') }
+        //{ path: '*', component: load('History') }
       ]
     },
   
