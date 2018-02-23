@@ -61,9 +61,9 @@
         <div slot="left">
             <q-list no-border separator>
                 <q-list-header>Categories</q-list-header>
-                <q-side-link item v-for="category in categories" :key="category.id" :to="`/${category.title}`">
+                <q-side-link item v-for="category in categories" :key="category.id" :to="`/${category}`">
                     <q-item-side icon="ion-android-list" />
-                    <q-item-main :sublabel="category.title">Veure rutines de {{ category.title }}</q-item-main>
+                    <q-item-main :sublabel="category">Veure rutines de {{ category }}</q-item-main>
                 </q-side-link>
             </q-list>
         </div>
