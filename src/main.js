@@ -41,15 +41,19 @@ Quasar.start(() => {
 
 //Vue.http.options.emulateJSON = true;
 /*
+
     // Maybe this will be the way to add allways the token to the api \\
-*/
-if (LocalStorage.get.item('token')) {
+if (LocalStorage.get.item('access_token')) {
     Vue.http.headers.common['Authorization'] = `Bearer ${LocalStorage.get.item('token')}`
 }
-Vue.http.interceptors.push((req, next) => {
-    if (!LocalStorage.get.item('token')) {
 
+*/
+Vue.http.interceptors.push((req, next) => {
+    if (!LocalStorage.get.item('access_token')) {
+        console.log('eee')
+        //Vue.router.push('/login')
     }
+    req.headers.set('authorization', `Bearer ${LocalStorage.get.item('access_token')}`)
     //console.log(req, next)
     next()
 })

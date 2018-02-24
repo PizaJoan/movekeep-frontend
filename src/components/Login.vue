@@ -102,38 +102,34 @@ export default {
         }
     },
     methods: {
-        //TODO add methods for login validation
         checkLogin(e) {
             e.preventDefault()
-            /*if (!this.user || !this.password) {
-                return checkCredentials
-            } */
-            //TODO this is not good but will fix later...
-            this.$http.post('/api/token-local', {
+            this.$http.post('/auth/token-local', {
                 username: this.user,
                 password: this.password
             }).then(res => {
-
-                console.log(res/* res.headers.map.authorization[0].split(' ')[1]*/)
-                //LocalStorage.set('token', res.headers.map.authorization[0].split(' ')[1])
+                LocalStorage.set('access_token', res.headers.map.authorization[0].split(' ')[1])
+                LocalStorage.set('refresh_token', res.body)
+                this.$router.push('/routines')
             }, error => {
                 console.log(error)
                 this.checkCredentials()
             })
         },
         checkCredentials() {
-            console.log('aajahah')
             Toast.create('L\'usuari o la contrasenya no són correctes')
-            //this.$v.user.$touch()
-            //this.$v.password.$reset()
             this.password = ''
         },
         checkKey(e) {
-            //console.log(e)
             if (e.key === 'Enter') document.querySelector('#bottom button').click()
         }
     },
     mounted() {
+        this.$http.post('/auth/verify-token').then(res => {
+            console.log(res)
+        }, err => {
+            console.log(err)
+        })
         //console.log(LocalStorage.get.item('token'))
     }
 }

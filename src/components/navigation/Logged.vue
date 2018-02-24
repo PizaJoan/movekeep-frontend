@@ -47,14 +47,14 @@
                     hide="label"
                 >
                 </q-route-tab>                        
-                <q-route-tab 
-                    to="/logoff" 
+                <q-tab 
                     label="Tancar sesió"
                     slot="title"
                     icon="ion-android-exit"
+                    @click="logOut"
                     hide="label"
                 >
-                </q-route-tab>
+                </q-tab>
             </q-tabs>
         </q-toolbar>
 
@@ -93,7 +93,8 @@ import {
     QTabs,
     QTab,
     QRouteTab,
-    QTabPane
+    QTabPane,
+    LocalStorage
 } from 'quasar'
 
 export default {
@@ -128,6 +129,11 @@ export default {
         })
     },
     methods: {
+        logOut(e) {
+            console.log(e)
+            LocalStorage.clear()
+            this.$router.push('/')
+        }
     }
 }
 </script>

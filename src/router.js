@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
+import { LocalStorage } from 'quasar'
 
 Vue.use(VueRouter)
 
@@ -8,7 +9,7 @@ function load (component) {
   return () => import(`@/${component}.vue`)
 }
 
-export default new VueRouter({
+const router =  new VueRouter({
   /*
    * NOTE! VueRouter "history" mode DOESN'T works for Cordova builds,
    * it is only to be used only for websites.
@@ -30,11 +31,11 @@ export default new VueRouter({
       path: '/',
       component: load('navigation/Logged'),
       children: [
-        { path: 'account', component: load('Account'), beforeEnter: checkLoggedIn },
-        { path: 'routines', component: load('RoutineManager'), beforeEnter: checkLoggedIn },
+        { path: 'account', component: load('Account'), meta: { requiresAuth: true} },
+        { path: 'routines', component: load('RoutineManager'), meta: { requiresAuth: true} },
         { path: '', component: load('Index') },
-        { path: 'manage-routine/:id', component: load('Routine'), beforeEnter: checkLoggedIn },
-        { path: 'manage-routine', component: load('Routine'), beforeEnter: checkLoggedIn }
+        { path: 'manage-routine/:id', component: load('Routine'), meta: { requiresAuth: true} },
+        { path: 'manage-routine', component: load('Routine'), meta: { requiresAuth: true} }
       ]
     },
 
@@ -54,12 +55,12 @@ export default new VueRouter({
   ]
 })
 
-import { LocalStorage } from 'quasar'
-
-function checkLoggedIn(to, from, next) {
-    //console.log('entram')
-   // if (LocalStorage.get.item('token')) {
+router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth) && !LocalStorage.get.item('access_token')) {
+        next('/login')
+    } else {
         next()
-   // }
-   // else next('/login')
-}
+    }
+})
+
+export default router
