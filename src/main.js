@@ -12,10 +12,10 @@ require(`./themes/app.${__THEME}.styl`)
 
 import Vue from 'vue'
 import Quasar from 'quasar'
-import { LocalStorage } from 'quasar'
 import router from './router'
 import Vuelidate from 'vuelidate'
 import VueResource from 'vue-resource'
+import { LocalStorage } from 'quasar'
 
 Vue.config.productionTip = false
 Vue.use(Quasar) // Install Quasar Framework
@@ -50,9 +50,10 @@ if (LocalStorage.get.item('access_token')) {
 */
 Vue.http.interceptors.push((req, next) => {
     if (!LocalStorage.get.item('access_token')) {
-        console.log('eee')
-        //Vue.router.push('/login')
+            //console.log('eee')
+            //next('/login')
     }
+    //console.log(req)
     req.headers.set('authorization', `Bearer ${LocalStorage.get.item('access_token')}`)
     //console.log(req, next)
     next()
@@ -78,4 +79,10 @@ Vue.filter('typeRoutine', (type) => {
             return ''
     }
     
+})
+
+Vue.filter('capitalize', (title) => {
+    if (!title) return ''
+    title = title.toString()
+    return title.charAt(0).toUpperCase() + title.slice(1)
 })

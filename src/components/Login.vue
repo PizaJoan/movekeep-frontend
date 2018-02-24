@@ -108,11 +108,11 @@ export default {
                 username: this.user,
                 password: this.password
             }).then(res => {
-                LocalStorage.set('access_token', res.headers.map.authorization[0].split(' ')[1])
+                LocalStorage.set('access_token', res.headers.map.authorization[0].replace(/Bearer /, ''))
                 LocalStorage.set('refresh_token', res.body)
                 this.$router.push('/routines')
             }, error => {
-                console.log(error)
+                //console.log(error)
                 this.checkCredentials()
             })
         },
@@ -125,11 +125,13 @@ export default {
         }
     },
     mounted() {
-        this.$http.post('/auth/verify-token').then(res => {
-            console.log(res)
-        }, err => {
-            console.log(err)
-        })
+        if (LocalStorage.get.item('access_token')) {
+            this.$http.post('/auth/verify-token').then(res => res.json())
+                .then(response => {
+                    console.log(response)
+                    if (response === 'OK') this.$router.push('/routines')
+                })
+        }
         //console.log(LocalStorage.get.item('token'))
     }
 }

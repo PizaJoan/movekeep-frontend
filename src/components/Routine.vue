@@ -4,7 +4,7 @@
             <q-card-title align="center">
                 <img alt="logo" class="responsive" width="100px" src="./../statics/logo-movekeep-working-png-big.png" />
                 <h5>
-                    <span v-if="$route.params.id">Modificar rutina {{ $route.params.id }}</span>
+                    <span v-if="$route.params.id">Modificar rutina {{ $route.params.id | capitalize }}</span>
                     <span v-else>Afegir rutina nova</span>
                 </h5>
             </q-card-title>

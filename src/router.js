@@ -32,10 +32,11 @@ const router =  new VueRouter({
       component: load('navigation/Logged'),
       children: [
         { path: 'account', component: load('Account'), meta: { requiresAuth: true} },
-        { path: 'routines', component: load('RoutineManager'), meta: { requiresAuth: true} },
+        { path: 'my-routines', component: load('RoutineManager'), meta: { requiresAuth: true} },
         { path: '', component: load('Index') },
         { path: 'manage-routine/:id', component: load('Routine'), meta: { requiresAuth: true} },
-        { path: 'manage-routine', component: load('Routine'), meta: { requiresAuth: true} }
+        { path: 'manage-routine', component: load('Routine'), meta: { requiresAuth: true} },
+        { path: 'routines/:category', component: load('RoutineViewer') }
       ]
     },
 
