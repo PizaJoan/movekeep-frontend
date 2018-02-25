@@ -27,11 +27,15 @@
                         @focus="$v.user.$touch()"
                     />
                 </q-field>    
-                <q-field>
+                <q-field
+                    :error="$v.name.$error"
+                >
                     <q-input
-                        float-label="Nom complet"
+                        float-label="* Nom complet"
                         suffix="ex: Movekeep User"
                         v-model="name"
+                        @click="$v.name.$touch()"
+                        @focus="$v.name.$touch()"
                     />
                 </q-field>
                 <q-field 
@@ -98,7 +102,8 @@ import {
     QCardMain, 
     QInput,
     QBtn,
-    QField
+    QField,
+    date
 } from 'quasar'
 
 import {
@@ -107,8 +112,6 @@ import {
     email,
     minLength
 } from 'vuelidate/lib/validators'
-
-import moment from 'moment'
 
 export default {
     components: {
@@ -134,6 +137,9 @@ export default {
         user: {
             required
         },
+        name: {
+            required
+        },
         mail: {
             required,
             email
@@ -154,10 +160,10 @@ export default {
             this.$http.put('/api/addUser', {
                 userName: this.user,
                 name: this.name,
-                creationDate: moment().format('YYYY-MM-DD')
+                creationDate: date.formatDate(new Date(), 'YYYY-MM-DD')
             }).then(console.log, console.log)
         }
-    }
+    },
 }
 </script>
 
