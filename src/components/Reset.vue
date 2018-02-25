@@ -8,7 +8,6 @@
                 <router-link to="/">
                     <img alt="logo" class="responsive" width="100px" src="./../statics/logo-movekeep-working-png-big.png" />
                     <h5>
-                        <!--q-icon name="ion-email" /-->
                         Reiniciar contrasenya
                     </h5>    
                 </router-link>
@@ -24,7 +23,6 @@
                 :error="$v.mail.$invalid && $v.mail.$dirty"
                 />
                 <q-btn color="primary" big @click="checkSend" :disable="$v.mail.$invalid">
-                    <!--q-icon name="send"/-->
                     Enviar
                 </q-btn>
             </q-card-main>

@@ -14,12 +14,21 @@
                         <img :src="user.picture" alt="userpic" class="avatar" />
                     </q-item-side>
                 </q-item-side>
-                <q-item-main 
-                    label="Foto de perfil"
-                />
-                <q-item-side>
-                    <q-btn round icon="ion-edit" color="primary" disable />
-                </q-item-side>
+                <q-item-main>
+                        <q-uploader
+                            prefix="Penja una foto de perfil distinta"
+                            url="/api/imageUpload"
+                            name="image"
+                            :multiple="false"
+                            extenseions=".png.jpg.jpeg"
+                            :additionalFields="[
+                                {
+                                    name: 'username',
+                                    value: user.userName
+                                }
+                            ]"
+                        />
+                </q-item-main>
             </q-item>
             <q-item>
                 <q-item-side>
@@ -70,10 +79,14 @@ import {
     QItemTile,
     QItemSide,
     QListHeader,
+    QUploader,
+    QField
 } from 'quasar'
 export default {
     components: {
         QList,
+        QField,
+        QUploader,
         QBtn,
         QListHeader,
         QItemMain,
