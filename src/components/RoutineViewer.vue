@@ -1,42 +1,55 @@
 <template>
   <div>
-      <q-data-table
-        :data="routines"
-        :config="config"
-        :columns="columns"
-        @refresh="getRoutines"
-        @rowclick="veureRutina"
-      >
+        <q-btn
+            color="primary"
+        >
+            <excel 
+                :data="routines"
+                :fields="{
+                        'Titol rutina': 'titol',
+                        'Autor rutina': 'author',
+                        'Temps/Repeticions': 'tipus',
+                        'Data creacio': 'date'
+                    }"
+                name="rutines.xls"
+            >
+                Exportar Excel
+            </excel>
+        </q-btn>  
+        <q-btn
+            color="primary"
+            @click="pdfExport"
+        >
+            Exportar PDF
+        </q-btn>
+        <q-data-table
+            :data="routines"
+            :config="config"
+            :columns="columns"
+            @refresh="getRoutines"
+            @rowclick="veureRutina"
+        >
 
-      </q-data-table>
-
-      <download-excel 
-        :data="routines"
-        :fields="{
-                'Titol rutina': 'titol',
-                'Autor rutina': 'author',
-                'Temps/Repeticions': 'tipus',
-                'Data creacio': 'date'
-            }"
-        name="rutines.xls"
-      >
-
-      </download-excel>
+        </q-data-table>  
   </div>
 </template>
 
 <script>
 import {
     QDataTable,
-    date
+    date,
+    QBtn
 } from 'quasar'
 
 import JsonExcel from 'vue-json-excel'
 
+import jsPDF from 'jsPDF'
+
 export default {
     components: {
         QDataTable,
-        DownloadExcel: JsonExcel
+        Excel: JsonExcel,
+        QBtn
     },
     data() {
         return {
@@ -136,6 +149,48 @@ export default {
         veureRutina(row) {
             //TODO implementar la funcionalitat per vure la rutina en sí per la próxima entrega
             console.log(row)
+        },
+        pdfExport(e) {
+            e.preventDefault()
+            let pdf = new jsPDF()
+        /*
+
+            let taula = document.createElement('table')
+            let tr = document.createElement('tr')
+            this.columns.forEach(col => {
+                let th = document.createElement('th')
+                th.innerHTML = col.label
+                tr.appendChild(th)
+            })
+            taula.appendChild(tr)
+
+            this.routines.forEach(routine => {
+                let tr = document.createElement('tr')
+                
+                let titol = document.createElement('td')
+                titol.innerHTML = routine.titol
+
+                let author = document.createElement('td')
+                author.innerHTML = routine.author
+
+                let tipus = document.createElement('td')
+                tipus.innerHTML = routine.tipus
+
+                let date = document.createElement('td')
+                date.innerHTML = routine.date
+
+                tr.appendChild(titol)
+                tr.appendChild(author)
+                tr.appendChild(tipus)
+                tr.appendChild(date)
+                taula.appendChild(tr)
+            })
+        */
+            const dataToExport = [`Rutines de: ${this.$options.filters.capitalize(this.$route.params.category)}`]
+            this.routines.forEach((routine, i) => dataToExport.push(`- Rutina ${i + 1}: ${routine.titol} ${routine.author} ${routine.tipus} ${routine.date}`))
+
+            pdf.text(dataToExport, 15, 17)
+            pdf.save(`routines-${this.$route.params.category}.pdf`)
         }
     }
 }
