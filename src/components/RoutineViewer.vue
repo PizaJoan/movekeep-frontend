@@ -27,7 +27,6 @@
             :config="config"
             :columns="columns"
             @refresh="getRoutines"
-            @rowclick="veureRutina"
         >
 
         </q-data-table>  
@@ -38,7 +37,8 @@
 import {
     QDataTable,
     date,
-    QBtn
+    QBtn,
+    Cookies
 } from 'quasar'
 
 import JsonExcel from 'vue-json-excel'
@@ -56,10 +56,9 @@ export default {
             routines: [],
             config: {
                 rowHeight: '50px',
-                title: `Rutines de ${this.$route.params.category}`,
+                title: `Rutines de ${this.$options.filters.capitalize(this.$route.params.category)}`,
                 refresh: true,
                 columnPicker: true,
-                noHeader: false,
                 pagination: {
                     rowsPerPage: 5,
                     options: [ 5, 10, 15, 20]
@@ -82,7 +81,7 @@ export default {
                     filter: true,
                     type: 'string',
                     sort: true,
-                    sorc(a, b) {
+                    sort(a, b) {
                         return a - b
                     }
                 },
@@ -127,6 +126,16 @@ export default {
     },
     mounted() {
         this.getRoutines()
+        //console.log(this.$children[this.$children.length - 1].getfiltering())
+        //console.log(this.$children[this.$children.length - 1].filtering.terms)
+        //console.log(this)
+        console.log()
+        //this.$children[this.$children.length - 1].filtering.terms
+    },
+    watch: {
+        terms(old, another) {
+            console.log(old, another)
+        }
     },
     methods: {
         getRoutines(done) {
@@ -186,11 +195,14 @@ export default {
                 taula.appendChild(tr)
             })
         */
-            const dataToExport = [`Rutines de: ${this.$options.filters.capitalize(this.$route.params.category)}`]
+            let dataToExport = [`Rutines de: ${this.$options.filters.capitalize(this.$route.params.category)}`]
             this.routines.forEach((routine, i) => dataToExport.push(`- Rutina ${i + 1}: ${routine.titol} ${routine.author} ${routine.tipus} ${routine.date}`))
 
             pdf.text(dataToExport, 15, 17)
             pdf.save(`routines-${this.$route.params.category}.pdf`)
+        },
+        change(e) {
+            console.log(e)
         }
     }
 }

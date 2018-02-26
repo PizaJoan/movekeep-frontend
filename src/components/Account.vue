@@ -11,11 +11,12 @@
             <q-item>
                 <q-item-side>
                     <q-item-side avatar>
-                        <img :src="user.picture" alt="userpic" class="avatar" />
+                        <img :src="`http://localhost:8080${user.picture}`" alt="userpic" class="avatar" />
                     </q-item-side>
                 </q-item-side>
                 <q-item-main>
                         <q-uploader
+                            ref="uploader"
                             prefix="Penja una foto de perfil distinta"
                             url="/api/imageUpload"
                             name="image"
@@ -27,6 +28,8 @@
                                     value: user.userName
                                 }
                             ]"
+                            @finish="getInfo"
+                            @uploaded="uploaded"
                         />
                 </q-item-main>
             </q-item>
@@ -38,34 +41,16 @@
                     :sublabel="user.userName"
                     label="Nom d'usuari:"
                 />
-                <q-item-side>
-                    <q-btn round icon="ion-edit" color="primary" disable />
-                </q-item-side>
             </q-item>
             <q-item>
                 <q-item-side>
                     <q-item-tile icon="ion-email"></q-item-tile>
                 </q-item-side>
                 <q-item-main 
-                    :sublabel="user.mail"
-                    label="Correu electronic:"
+                    :sublabel="user.creationDate"
+                    label="Data d'alta:"
                 />
-                <q-item-side>
-                    <q-btn round icon="ion-edit" color="primary" disable />
-                </q-item-side>
-            </q-item>
-            <q-item>
-                <q-item-side>
-                    <q-item-tile icon="ion-heart"></q-item-tile>
-                </q-item-side>
-                <q-item-main 
-                    :sublabel="user.score.toString()"
-                    label="Puntuació:"
-                />
-                <q-item-side v-if="$q.platform.is.desktop">
-                    Aquí veus el nº de vots que has obtingut dins les teves rutines
-                </q-item-side>
-            </q-item>                                        
+            </q-item>                         
         </q-list>
     </div>
 </template>
@@ -80,7 +65,8 @@ import {
     QItemSide,
     QListHeader,
     QUploader,
-    QField
+    QField,
+    LocalStorage
 } from 'quasar'
 export default {
     components: {
@@ -97,11 +83,10 @@ export default {
     data() {
         return  {
             user: {
-                name: 'Joan Pizà Ferrà',
-                userName: 'jpizaf',
-                mail: 'jpizaf@gmail.com',
-                score: 100,
-                picture: 'http://simpleicon.com/wp-content/uploads/user-5.png'
+                name: '',
+                userName: '',
+                picture: '',
+                creationDate: ''
             }
         }
     },
@@ -109,17 +94,24 @@ export default {
         /*
             TODO add some fetching data to get the user information...(maybe)
         */
-       this.$http.get('/api/getInfo', {
-            params: { 
-               username: 'jpizaf'
-            }
-        }).then(res => res.json(), console.log)
-        .then(user => {
-           this.user.name = user.name
-           this.user.userName = user.userName,
-           this.user.score = user.points
-        })
+
+       this.user.userName = JSON.parse(atob(LocalStorage.get.item('access_token').split('.')[1])).name
+       this.getInfo()
     },
+    methods: {
+        getInfo() {
+            this.$http.get(`/api/getInfo/${this.user.userName}`).then(res => res.json(), console.log)
+                .then(user => {
+                    this.user.name = user.name
+                    this.user.picture = user.pathToImage || 'http://simpleicon.com/wp-content/uploads/user-5.png'
+                    this.user.creationDate = user.creationDate
+            })
+        },
+        uploaded() {
+            this.$refs.uploader._data.files.pop()
+            //this.$refs.uploader.pop()
+        }
+    }
 }
 </script>
 
