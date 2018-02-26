@@ -11,7 +11,7 @@
             <q-item>
                 <q-item-side>
                     <q-item-side avatar>
-                        <img :src="`http://localhost:8080${user.picture}`" alt="userpic" class="avatar" />
+                        <img :src="user.picture | getUserPic" alt="userpic" class="avatar" />
                     </q-item-side>
                 </q-item-side>
                 <q-item-main>

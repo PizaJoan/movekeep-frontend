@@ -13,16 +13,17 @@
                 <span v-if="this.$q.platform.is.desktop" class="on-right">Dins aquesta pantalla podrás afegir, modificar i esborrar les teves pròpies rutines</span>
             </q-list-header>
             <q-item-separator />
-            <q-item v-for="animal in data" :key="animal.name">
+            <q-item v-for="routine in routines" :key="routine.id">
                 <q-item-side>
-                    <q-item-tile icon="ion-ios-paw" />
+                    <q-item-tile icon="ion-information-circled" />
                 </q-item-side>
-                <q-item-main 
-                    :label="animal | capitalize | isLovely" 
-                    :sublabel="`Té ${animal.age} anys i fa ${animal.height} d'altura`"
-                />
+                <q-item-main>
+                <q-item-tile label>Títol: {{ routine.title }}</q-item-tile>
+                <q-item-tile sublabel>Rutina de: {{ routine.type | getTypeRoutine }}</q-item-tile>
+                <q-item-tile sublabel>Creada el: {{ routine.creationDate }}</q-item-tile>
+                </q-item-main>
                 <q-item-side>
-                    <q-btn round color="primary" icon="ion-close-round" @click="deleteRoutineCheck($event, animal)">
+                    <q-btn round color="primary" icon="ion-close-round" @click="deleteRoutineCheck($event, routine)">
                         <q-tooltip>
                             Esborrar
                         </q-tooltip>    
@@ -51,6 +52,8 @@ import {
     QTooltip,
     QItemSeparator,
     Dialog,
+    LocalStorage,
+    Toast
 } from 'quasar'
 
 export default {
@@ -68,33 +71,15 @@ export default {
     },
     data() {
         return {
-            data: [],
-            requesting: {
-                indeterminate: false
-            }
+            routines: [],
+            userName: ''
         }
     },
     mounted() {
-        this.someMethod()
+        this.getMyRoutines()
     },
     methods: {
-        someMethod() {
-            this.data = [
-                {
-                    name: 'mimi',
-                    age: '1',
-                    lovely: true,
-                    height: 20
-                },
-                {
-                    name: 'dog',
-                    age: '2',
-                    lovely: true,
-                    height: 100
-                }
-            ]
-        },
-        deleteRoutineCheck: (e, routine) => {
+        deleteRoutineCheck(e, routine) {
             Dialog.create({
                 title: 'Estas segur que vols esborrar la rutina ' + routine.title,
                 message: 'Alerta, un cop borrat no es pot recuperar!',
@@ -109,22 +94,39 @@ export default {
                     {
                         label: 'OK',
                         handler: () => {
-                           let dialog = Dialog.create({
+                            let dialog = Dialog.create({
                                title: 'Esborrant...',
                                 progress: { 
                                     indeterminate: true 
                                 },
                                 noButtons: true,
                             })
-                            setTimeout(() => { 
-                                dialog.close()
-                            },  1000)
+
+                            setTimeout(() => {
+                                this.$http.delete('/api/deleteRoutine', {
+                                    params: {
+                                        routine: routine.id,
+                                        username: this.userName
+                                    }
+                                }).then(res => {
+                                    dialog.close()
+                                    if (res.status == 200) Toast.create('Rutina borrada amb éxit')
+                                    else Toast.create('No s\'ha pogut esborrar la rutina...')
+                                    this.getMyRoutines()
+                                }, console.log)
+                            }, 300)
                         },
                         color: 'negative',
                         raised: true,
                     }
                 ]
             })
+        },
+        getMyRoutines() {
+            this.userName = JSON.parse(atob(LocalStorage.get.item('access_token').split('.')[1])).name
+
+            this.$http.get(`/api/getMyRoutines/${this.userName}`).then(res => res.json(), console.log)
+                .then(myRoutines => this.routines = myRoutines)
         },
     }
 }

@@ -59,16 +59,6 @@ Vue.http.interceptors.push((req, next) => {
     next()
 })
 
-Vue.filter('capitalize', (animal) => {
-  animal.name = animal.name.charAt(0).toUpperCase() + animal.name.slice(1)
-  return animal
-})
-
-Vue.filter('isLovely', (animal) => {
-  let tmp = `En ${animal.name} `
-  return animal.lovely ? `${tmp} és carinyos` : `${tmp} no és molt carinyos`
-})
-
 Vue.filter('typeRoutine', (type) => {
     switch(type) {
         case 'time':
@@ -95,4 +85,9 @@ Vue.filter('capitalize', (title) => {
     if (!title) return ''
     title = title.toString()
     return title.charAt(0).toUpperCase() + title.slice(1)
+})
+
+Vue.filter('getUserPic', (path) => {
+    if (path.includes('http://')) return path
+    return `http://localhost:8080${path}`
 })
