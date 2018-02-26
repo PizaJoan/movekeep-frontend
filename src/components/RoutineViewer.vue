@@ -9,6 +9,19 @@
       >
 
       </q-data-table>
+
+      <download-excel 
+        :data="routines"
+        :fields="{
+                'Titol rutina': 'titol',
+                'Autor rutina': 'author',
+                'Temps/Repeticions': 'tipus',
+                'Data creacio': 'date'
+            }"
+        name="rutines.xls"
+      >
+
+      </download-excel>
   </div>
 </template>
 
@@ -18,9 +31,12 @@ import {
     date
 } from 'quasar'
 
+import JsonExcel from 'vue-json-excel'
+
 export default {
     components: {
         QDataTable,
+        DownloadExcel: JsonExcel
     },
     data() {
         return {
@@ -32,7 +48,7 @@ export default {
                 columnPicker: true,
                 noHeader: false,
                 pagination: {
-                    rowsPerPage: 10,
+                    rowsPerPage: 5,
                     options: [ 5, 10, 15, 20]
                 },
                 labels: {
@@ -69,17 +85,14 @@ export default {
                     }
                 },
                 {
-                    label: 'Tipus',
+                    label: 'Temps/Repeticions',
                     field: 'tipus',
                     width: '100px',
-                    format(type, row) {
-                        return type.charAt(0).toUpperCase() + type.slice(1)
-                    },
                     filter: true,
                     type: 'string',
                     sort: true,
                     sort(a, b) {
-                        return a - b
+                        return a > b ? 1 : -1
                     }
                 },
                 {
@@ -95,8 +108,8 @@ export default {
                     sort(a, b) {
                         return (new Date(b) - new Date(a))
                     }
-                }
-            ]
+                },
+            ],
         }
     },
     mounted() {
@@ -109,12 +122,11 @@ export default {
                 .then(res => res.json(), err => {
                     this.$router.push('/')
                 }).then(routines => {
-                    console.log(routines)
                     routines.forEach((routine, i) => {
                         this.routines.push({
                             titol: routine.title,
                             author: routine.user.name,
-                            tipus: routine.type,
+                            tipus: this.$options.filters.getTypeRoutine(routine.type),
                             date: routine.creationDate
                         })
                     })
@@ -122,6 +134,7 @@ export default {
                 })
         },
         veureRutina(row) {
+            //TODO implementar la funcionalitat per vure la rutina en sí per la próxima entrega
             console.log(row)
         }
     }

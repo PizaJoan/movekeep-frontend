@@ -77,8 +77,18 @@ Vue.filter('typeRoutine', (type) => {
             return 'Nº Repeticions*'
         default:
             return ''
-    }
-    
+    }  
+})
+
+Vue.filter('getTypeRoutine', type => {
+    switch(type) {
+        case 'time':
+            return 'Temps'
+        case 'reps':
+            return 'Repeticions'
+        default:
+            return ''
+    } 
 })
 
 Vue.filter('capitalize', (title) => {
