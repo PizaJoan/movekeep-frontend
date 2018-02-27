@@ -4,7 +4,7 @@
             <q-card-title align="center">
                 <img alt="logo" class="responsive" width="100px" src="./../statics/logo-movekeep-working-png-big.png" />
                 <h5>
-                    <span v-if="$route.params.id">Modificar rutina {{ $route.params.id | capitalize }}</span>
+                    <span v-if="this.id">Modificar rutina {{ this.title | capitalize }}</span>
                     <span v-else>Afegir rutina nova</span>
                 </h5>
             </q-card-title>
@@ -27,9 +27,6 @@
                 helper="Describeix la teva rutina breument"
                 error-label="Máxim 300 caràcters"
             >
-            <!--
-                !!!!!!! Validate will be that this field only allows max 160 characters in total!!!!!!!!!
-            -->
                 <q-input 
                     v-model.trim="description"
                     type="textarea"
@@ -48,10 +45,10 @@
                     v-if="$q.platform.is.desktop"
                     multiple
                     filter
+                    :options="categories"
                     v-model="categoriesSelected"
                     @focus="$v.categoriesSelected.$touch()"
                     filter-placeholder="Cerca una categoria"
-                    :options="categories"
                     float-label="Categories seleccionades"
                 />
                 <q-dialog-select 
@@ -131,7 +128,7 @@
                         :disable="$v.all.$error || !$v.all.$dirty"
                         @click="putRoutine"
                     >
-                        <span v-if="$route.params.id">Modificar rutina</span>
+                        <span v-if="this.id">Modificar rutina</span>
                         <span v-else>Afegir rutina</span>
                     </q-btn>
                 </div>
@@ -177,6 +174,7 @@ export default {
     },
     data() {
         return {
+            id: null,
             title: '',
             description: '',
             exercises: [
@@ -210,13 +208,12 @@ export default {
         },
         all: ['title', 'description', 'categoriesSelected', 'type']
     },
-    /* 
-        TODO need to check if there is a parameter from the url to fetch 
-        the data from the actual routine and be able modify
-    */
-    mounted() {
+
+    created(){
         this.getCategories()
-        if (this.$route.params.id) this.getConcreteRoutine()
+        this.id = this.$route.params.id
+        if (this.id) this.getConcreteRoutine()
+        this.$router.replace('/manage-routine')
     },
     methods: {
         addExercise(e) {
@@ -232,25 +229,23 @@ export default {
         },
         putRoutine() {
             this.$http.put('/api/addRoutine', {
+                id: this.id || null,
                 title: this.title,
                 description: this.description,
                 type: this.type,
                 exercises: this.exercises,
-                categories: this.categoriesSelected,
+                categories: this.categoriesSelected.map(categorySelected => ({ id: categorySelected })),
                 creationDate: date.formatDate(new Date(),'YYYY-MM-DD'),
                 user: this.user
-            }).then(console.log, console.log)
+            }).then(res => this.$router.push('/my-routines'), console.log)
         },
         getCategories() {
-            this.$http.get('/api/getCategories').then(res => res.json(), console.log)
+            this.$http.get('/api/getCategoriesWithId').then(res => res.json(), console.log)
                 .then(categories => {
-                    categories.forEach((category, i) => {
+                    categories.forEach(category => {
                         this.categories.push({ 
                             label: category.title, 
-                            value: {
-                                id: i+1,
-                                title: category.title
-                            } 
+                            value: category.id
                         })
                     })
             })
@@ -258,7 +253,7 @@ export default {
         getConcreteRoutine() {
             this.$http.get('/api/getRoutine', {
                 params: {
-                    routine: this.$route.params.id,
+                    routine: this.id,
                     username: this.user.userName
                 }
             }).then(res => res.json(), console.log)
@@ -267,7 +262,8 @@ export default {
                 this.description = routine.description || ''
                 this.type = routine.type
                 this.exercises = routine.exercises
-                this.categoriesSelected = routine.categories
+                this.categoriesSelected = routine.categories.map(category => category.id)
+                this.$v.all.$touch()
             })
         }
     },

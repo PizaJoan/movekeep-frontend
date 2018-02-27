@@ -56,7 +56,7 @@ export default {
             routines: [],
             config: {
                 rowHeight: '50px',
-                title: `Rutines de ${this.$options.filters.capitalize(this.$route.params.category)}`,
+                title: '',
                 refresh: true,
                 columnPicker: true,
                 pagination: {
@@ -126,19 +126,15 @@ export default {
     },
     mounted() {
         this.getRoutines()
-        //console.log(this.$children[this.$children.length - 1].getfiltering())
-        //console.log(this.$children[this.$children.length - 1].filtering.terms)
-        //console.log(this)
-        console.log()
-        //this.$children[this.$children.length - 1].filtering.terms
     },
-    watch: {
-        terms(old, another) {
-            console.log(old, another)
+    watch: {
+        '$route.params.category': function(id) {
+            this.getRoutines()
         }
     },
     methods: {
         getRoutines(done) {
+            this.config.title = `Rutines de ${this.$options.filters.capitalize(this.$route.params.category)}`
             this.routines = []
             this.$http.get(`/api/getRoutinesByCategory/${this.$route.params.category}`)
                 .then(res => res.json(), err => {

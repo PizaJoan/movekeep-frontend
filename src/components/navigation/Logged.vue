@@ -61,7 +61,7 @@
         <div slot="left">
             <q-list no-border separator>
                 <q-list-header>Categories</q-list-header>
-                <q-side-link item v-for="category in categories" exact :key="category.title" :to="`/routines/${category.title.toLowerCase()}`">
+                <q-side-link item v-for="category in categories" :key="category.title" :to="`/routines/${category.title.toLowerCase()}`">
                     <q-item-side icon="ion-android-list" />
                     <q-item-main :sublabel="category.title">Veure rutines de {{ category.title }}</q-item-main>
                 </q-side-link>
