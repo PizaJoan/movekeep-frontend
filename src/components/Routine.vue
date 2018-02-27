@@ -19,6 +19,7 @@
                     type="text"
                     float-label="Títol"
                     @click="$v.title.$touch()"
+                    @focus="$v.title.$touch()"
                 />
             </q-field>
             <q-field
@@ -34,7 +35,8 @@
                     type="textarea"
                     float-label="Breu descripció"
                     :max-height="50"  
-                    @click="$v.description.$touch()"                  
+                    @click="$v.description.$touch()" 
+                    @focus="$v.description.$touch()"                 
                 />
             </q-field>
             <q-field
@@ -89,7 +91,7 @@
                         <q-field class="col-md-5 col-xs-12">
                             <q-input
                                 :float-label="type | typeRoutine"
-                                v-model.trim="exercice.number"
+                                v-model.trim="exercice.amount"
                                 type="number"
                             />
                         </q-field>
@@ -127,6 +129,7 @@
                         color="primary"
                         big
                         :disable="$v.all.$error || !$v.all.$dirty"
+                        @click="putRoutine"
                     >
                         <span v-if="$route.params.id">Modificar rutina</span>
                         <span v-else>Afegir rutina</span>
@@ -149,6 +152,8 @@ import {
     QBtn,
     QDialogSelect,
     QSelect,
+    LocalStorage,
+    date
 } from 'quasar'
 
 import { 
@@ -176,19 +181,17 @@ export default {
             description: '',
             exercices: [
                 {
-                    number: 0,
-                    description: '',
-
-                },
-                {
-                    number: 0,
+                    amount: 0,
                     description: '',
 
                 }
             ],
             type: '',
             categories: [],
-            categoriesSelected: []
+            categoriesSelected: [],
+            user: {
+                userName: JSON.parse(atob(LocalStorage.get.item('access_token').split('.')[1])).name
+            }
         }
     },
     validations: {
@@ -219,8 +222,11 @@ export default {
     mounted() {
         this.$http.get('/api/getCategories').then(res => res.json(), console.log)
             .then(categories => {
-                categories.forEach(category => {
-                    this.categories.push({ label: category.title, value: category.id })
+                categories.forEach((category, i) => {
+                    this.categories.push({ label: category.title, value: {
+                        id: i+1,
+                        title: category.title
+                    } })
                 })
             })
     },
@@ -235,6 +241,17 @@ export default {
         removeExercice(e, exercice) {
             e.preventDefault()
             this.exercices.splice(this.exercices.indexOf(exercice), 1)
+        },
+        putRoutine() {
+            this.$http.put('/api/addRoutine', {
+                title: this.title,
+                description: this.description,
+                type: this.type,
+                exercises: this.exercices,
+                categories: this.categoriesSelected,
+                creationDate: date.formatDate(new Date(),'YYYY-MM-DD'),
+                user: this.user
+            }).then(console.log, console.log)
         }
     }
 
