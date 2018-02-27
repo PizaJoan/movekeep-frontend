@@ -82,23 +82,23 @@
                     ]"
                 />
             </q-field>
-            <div v-for="exercice in exercices" :key="exercice.title" v-show="type">
+            <div v-for="exercise in exercises" :key="exercise.title" v-show="type">
                 <q-field
-                    :label="`Exercici ${exercices.indexOf(exercice) + 1}`"
+                    :label="`Exercici ${exercises.indexOf(exercise) + 1}`"
                     :label-width="1"
                 >
                     <div class="row justify-between">
                         <q-field class="col-md-5 col-xs-12">
                             <q-input
                                 :float-label="type | typeRoutine"
-                                v-model.trim="exercice.amount"
+                                v-model.trim="exercise.amount"
                                 type="number"
                             />
                         </q-field>
                         <q-field class="col-md-5 col-xs-12">
                             <q-input
                                 class="col-md-5 col-xs-12"
-                                v-model.trim="exercice.description"
+                                v-model.trim="exercise.description"
                                 type="text"
                                 float-label="Descripció exercici"
                             />
@@ -109,7 +109,7 @@
                                 :round="$q.platform.is.desktop"
                                 icon="ion-close"
                                 color="primary"
-                                @click="removeExercice($event, exercice)"
+                                @click="removeExercise($event, exercise)"
                             />
                         </div> 
                     </div>
@@ -118,7 +118,7 @@
             <div class="row justify-around">
                 <div align="left" class="col-md-6 col-xs-5">
                     <q-btn
-                        @click="addExercice"
+                        @click="addExercise"
                         color="primary"
                     >
                         Afegir exercici
@@ -179,7 +179,7 @@ export default {
         return {
             title: '',
             description: '',
-            exercices: [
+            exercises: [
                 {
                     amount: 0,
                     description: '',
@@ -219,23 +219,23 @@ export default {
         if (this.$route.params.id) this.getConcreteRoutine()
     },
     methods: {
-        addExercice(e) {
+        addExercise(e) {
             e.preventDefault()
-            this.exercices.push({
+            this.exercises.push({
                 repeticions: 0,
                 descripcio: ''
             })
         },
-        removeExercice(e, exercice) {
+        removeExercise(e, exercise) {
             e.preventDefault()
-            this.exercices.splice(this.exercices.indexOf(exercice), 1)
+            this.exercises.splice(this.exercises.indexOf(exercise), 1)
         },
         putRoutine() {
             this.$http.put('/api/addRoutine', {
                 title: this.title,
                 description: this.description,
                 type: this.type,
-                exercises: this.exercices,
+                exercises: this.exercises,
                 categories: this.categoriesSelected,
                 creationDate: date.formatDate(new Date(),'YYYY-MM-DD'),
                 user: this.user
@@ -261,13 +261,12 @@ export default {
                     routine: this.$route.params.id,
                     username: this.user.userName
                 }
-            }).then(res => console.log(res), console.log)
-            .then(rutina => {
-                console.log(rutina)
+            }).then(res => res.json(), console.log)
+            .then(routine => {
                 this.title = routine.title
-                this.description = rutina.description || ''
+                this.description = routine.description || ''
                 this.type = routine.type
-                this.exercices = routine.exercices
+                this.exercises = routine.exercises
                 this.categoriesSelected = routine.categories
             })
         }
