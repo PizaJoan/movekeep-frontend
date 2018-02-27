@@ -214,21 +214,9 @@ export default {
         TODO need to check if there is a parameter from the url to fetch 
         the data from the actual routine and be able modify
     */
-    /*beforeRouteEnter(to, from, next) {
-        console.log(to, from, next)
-        if (!to.params.id) next()
-        next()
-    },*/
     mounted() {
-        this.$http.get('/api/getCategories').then(res => res.json(), console.log)
-            .then(categories => {
-                categories.forEach((category, i) => {
-                    this.categories.push({ label: category.title, value: {
-                        id: i+1,
-                        title: category.title
-                    } })
-                })
-            })
+        this.getCategories()
+        if (this.$route.params.id) this.getConcreteRoutine()
     },
     methods: {
         addExercice(e) {
@@ -252,9 +240,38 @@ export default {
                 creationDate: date.formatDate(new Date(),'YYYY-MM-DD'),
                 user: this.user
             }).then(console.log, console.log)
+        },
+        getCategories() {
+            this.$http.get('/api/getCategories').then(res => res.json(), console.log)
+                .then(categories => {
+                    categories.forEach((category, i) => {
+                        this.categories.push({ 
+                            label: category.title, 
+                            value: {
+                                id: i+1,
+                                title: category.title
+                            } 
+                        })
+                    })
+            })
+        },
+        getConcreteRoutine() {
+            this.$http.get('/api/getRoutine', {
+                params: {
+                    routine: this.$route.params.id,
+                    username: this.user.userName
+                }
+            }).then(res => console.log(res), console.log)
+            .then(rutina => {
+                console.log(rutina)
+                this.title = routine.title
+                this.description = rutina.description || ''
+                this.type = routine.type
+                this.exercices = routine.exercices
+                this.categoriesSelected = routine.categories
+            })
         }
-    }
-
+    },
 }
 </script>
 

@@ -28,7 +28,7 @@
                             Esborrar
                         </q-tooltip>    
                     </q-btn>
-                    <q-btn round color="primary" icon="ion-edit" @click="$router.push(`/manage-routine/${animal.name.toLowerCase()}`)">
+                    <q-btn round color="primary" icon="ion-edit" @click="$router.push(`/manage-routine/${routine.id}`)">
                         <q-tooltip>
                             Editar
                         </q-tooltip>
