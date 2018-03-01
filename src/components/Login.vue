@@ -41,7 +41,6 @@
                 </q-field>
                 <div id="bottom">
                     <div id="bottom-links">
-                        <router-link class="text-blue-5" to="reset">Recuperar Contrasenya</router-link>
                         <router-link class="text-blue-5" to="create">Creat compte</router-link>
                     </div>    
                     <q-btn color="primary" big @click="checkLogin" :disable="!user || !password">
@@ -104,7 +103,7 @@ export default {
     methods: {
         checkLogin(e) {
             e.preventDefault()
-            this.$http.post('/auth/token-local', {
+            this.$http.post('http://192.168.1.41:3000/token-local', {
                 username: this.user,
                 password: this.password
             }).then(res => {

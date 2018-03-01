@@ -45,7 +45,6 @@ const router =  new VueRouter({
       component: load('navigation/NotLogged'),
       children: [
         { path: 'login', component: load('Login') },
-        { path: 'reset', component: load('Reset') },
         { path: 'create', component: load('CreateAccount') },
         //{ path: '*', component: load('History') }
       ]

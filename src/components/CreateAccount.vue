@@ -39,18 +39,6 @@
                     />
                 </q-field>
                 <q-field 
-                    :error="$v.mail.$error"
-                >
-                    <q-input 
-                        float-label="* E-mail"
-                        suffix="ex: yourmail@movekeep.com"
-                        v-model="mail"
-                        type="email"
-                        @click="$v.mail.$touch()"
-                        @focus="$v.mail.$touch()"
-                    />
-                </q-field>
-                <q-field 
                     :error="$v.password.$error" 
                     error-label="La contrasenya ha de tenir mínim 6 caràcters"
                 >
@@ -129,7 +117,6 @@ export default {
             name: '',
             password: '',
             repeatPassword: '',
-            mail: '',
             ajuda: '*Aques camp es requerit'
         }
     },
@@ -140,10 +127,6 @@ export default {
         name: {
             required
         },
-        mail: {
-            required,
-            email
-        },
         password: {
             required,
             minLength: minLength(6)
@@ -152,7 +135,7 @@ export default {
             required,
             sameAsPassword: sameAs('password')
         },
-        all: [ 'user', 'mail', 'password', 'repeatPassword' ]
+        all: [ 'user', 'password', 'repeatPassword' ]
     },
     methods: {
         createUser(e) {
