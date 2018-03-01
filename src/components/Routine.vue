@@ -85,7 +85,9 @@
                     :label-width="12"
                 >
                     <div class="row justify-between">
-                        <q-field class="col-md-5 col-xs-12">
+                        <q-field 
+                            class="col-md-5 col-xs-12"
+                        >
                             <q-input
                                 :float-label="type | typeRoutine"
                                 v-model.trim="exercise.amount"

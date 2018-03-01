@@ -5,7 +5,8 @@
     >
         <q-toolbar slot="header">
             <q-tabs class="col-md-12">
-                <img v-if="$q.platform.is.desktop" slot="title" class="avatar self-center" src="./../../statics/logo-movekeep-png.png" alt="logo" />
+                <router-link to="/" tag="img" v-if="$q.platform.is.desktop" slot="title" class="avatar self-center" src="./../../statics/logo-movekeep-png.png" alt="logo">
+                </router-link>    
                 <q-tab 
                     slot="title" 
                     @click="$refs.layout.toggleLeft()" 
@@ -39,14 +40,14 @@
                     icon="ion-stats-bars"
                 >
                 </q-route-tab>
-                <q-route-tab 
+                <!--q-route-tab 
                     slot="title"
                     label="Historial"
                     to="/history"
                     icon="ion-ios-clock"
                     hide="label"
                 >
-                </q-route-tab>                        
+                </q-route-tab-->
                 <q-tab 
                     label="Tancar sesió"
                     slot="title"
@@ -124,13 +125,11 @@ export default {
         this.$http.get('/api/getCategories').then(response => response.json(), error => {
             console.log(error)
         }).then(categories => {
-            //console.log(categories)
             this.categories = categories
         })
     },
     methods: {
         logOut(e) {
-            console.log(e)
             LocalStorage.clear()
             this.$router.push('/')
         }

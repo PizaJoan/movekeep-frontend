@@ -110,7 +110,7 @@ export default {
             }).then(res => {
                 LocalStorage.set('access_token', res.headers.map.authorization[0].replace(/Bearer /, ''))
                 LocalStorage.set('refresh_token', res.body)
-                this.$router.push('/routines')
+                this.$router.push('/my-routines')
             }, error => {
                 //console.log(error)
                 this.checkCredentials()

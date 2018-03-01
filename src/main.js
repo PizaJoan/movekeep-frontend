@@ -49,12 +49,12 @@ if (LocalStorage.get.item('access_token')) {
 
 */
 Vue.http.interceptors.push((req, next) => {
-    if (!LocalStorage.get.item('access_token')) {
+    if (LocalStorage.get.item('access_token')) {
             //console.log('eee')
             //next('/login')
+            req.headers.set('authorization', `Bearer ${LocalStorage.get.item('access_token')}`)
     }
-    //console.log(req)
-    req.headers.set('authorization', `Bearer ${LocalStorage.get.item('access_token')}`)
+    //console.log(req
     //console.log(req, next)
     next()
 })

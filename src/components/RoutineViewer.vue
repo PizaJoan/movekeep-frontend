@@ -1,28 +1,32 @@
 <template>
-  <div>
-        <q-btn
-            color="primary"
-        >
-            <excel 
-                :data="routines"
-                :fields="{
-                        'Titol rutina': 'titol',
-                        'Autor rutina': 'author',
-                        'Temps/Repeticions': 'tipus',
-                        'Data creacio': 'date'
-                    }"
-                name="rutines.xls"
-                type="xls"
+    <div>
+      <div class="row justify-center separat">
+            <q-btn
+                color="primary"
+                class="on-left"
             >
-                Exportar Excel
-            </excel>
-        </q-btn>  
-        <q-btn
-            color="primary"
-            @click="pdfExport"
-        >
-            Exportar PDF
-        </q-btn>
+                <excel 
+                    :data="routines"
+                    :fields="{
+                            'Titol rutina': 'titol',
+                            'Autor rutina': 'author',
+                            'Temps/Repeticions': 'tipus',
+                            'Data creacio': 'date'
+                        }"
+                    name="rutines.xls"
+                    type="xls"
+                >
+                    Exportar Excel
+                </excel>
+            </q-btn>  
+            <q-btn
+                class="on-right"
+                color="primary"
+                @click="pdfExport"
+            >
+                Exportar PDF
+            </q-btn>
+        </div>
         <q-data-table
             ref="table"
             :data="routines"
@@ -31,7 +35,7 @@
             @refresh="getRoutines"
         >
         </q-data-table> 
-  </div>
+    </div>
 </template>
 
 <script>
@@ -214,6 +218,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+    .separat {
+        padding: 10px;
+    }
 
 </style>

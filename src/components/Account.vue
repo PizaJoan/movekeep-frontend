@@ -28,6 +28,9 @@
                                     value: user.userName
                                 }
                             ]"
+                            :headers="{
+                                'authorization': `Bearer ${user.access}`    
+                            }"
                             @finish="getInfo"
                             @uploaded="uploaded"
                         />
@@ -86,7 +89,8 @@ export default {
                 name: '',
                 userName: '',
                 picture: '',
-                creationDate: ''
+                creationDate: '',
+                access: LocalStorage.get.item('access_token')
             }
         }
     },
