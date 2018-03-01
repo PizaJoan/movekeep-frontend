@@ -12,6 +12,7 @@
                         'Data creacio': 'date'
                     }"
                 name="rutines.xls"
+                type="xls"
             >
                 Exportar Excel
             </excel>
@@ -23,13 +24,13 @@
             Exportar PDF
         </q-btn>
         <q-data-table
+            ref="table"
             :data="routines"
             :config="config"
             :columns="columns"
             @refresh="getRoutines"
         >
-
-        </q-data-table>  
+        </q-data-table> 
   </div>
 </template>
 
@@ -38,7 +39,7 @@ import {
     QDataTable,
     date,
     QBtn,
-    Cookies
+    LocalStorage,
 } from 'quasar'
 
 import JsonExcel from 'vue-json-excel'
@@ -126,11 +127,20 @@ export default {
     },
     mounted() {
         this.getRoutines()
+        this.$refs.table.filtering.terms = LocalStorage.get.item('last_search') || ''
+    },
+    computed: {
+        customSearch: function() {
+            let cerca = this.$refs.table.filtering.terms
+            LocalStorage.set('last_search', cerca)
+            if (cerca.length < 1) LocalStorage.remove('last_search')
+            return cerca
+        }
     },
     watch: {
-        '$route.params.category': function(id) {
+        '$route.params.category': function(category) {
             this.getRoutines()
-        }
+        }, 
     },
     methods: {
         getRoutines(done) {

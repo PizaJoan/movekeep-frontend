@@ -82,7 +82,7 @@
             <div v-for="exercise in exercises" :key="exercise.title" v-show="type">
                 <q-field
                     :label="`Exercici ${exercises.indexOf(exercise) + 1}`"
-                    :label-width="1"
+                    :label-width="12"
                 >
                     <div class="row justify-between">
                         <q-field class="col-md-5 col-xs-12">

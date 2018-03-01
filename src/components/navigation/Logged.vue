@@ -124,7 +124,7 @@ export default {
         this.$http.get('/api/getCategories').then(response => response.json(), error => {
             console.log(error)
         }).then(categories => {
-            console.log(categories)
+            //console.log(categories)
             this.categories = categories
         })
     },
