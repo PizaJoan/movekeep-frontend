@@ -79,11 +79,9 @@
                     ]"
                 />
             </q-field>
-            <div v-for="exercise in exercises" :key="exercise.title" v-show="type">
-                <q-field
-                    :label="`Exercici ${exercises.indexOf(exercise) + 1}`"
-                    :label-width="12"
-                >
+            <div class="column">
+                <div class="column pare" v-for="exercise in exercises" :key="exercise.title" v-show="type">
+                    <span>{{`Exercici ${exercises.indexOf(exercise) + 1}`}}</span>
                     <div class="row justify-between">
                         <q-field 
                             class="col-md-5 col-xs-12"
@@ -112,7 +110,7 @@
                             />
                         </div> 
                     </div>
-                </q-field>
+                </div>
             </div>
             <div class="row justify-around">
                 <div align="left" class="col-md-6 col-xs-5">
@@ -126,7 +124,6 @@
                 <div align="right" class="col-md-6 col-xs-5">
                     <q-btn
                         color="primary"
-                        big
                         :disable="$v.all.$error || !$v.all.$dirty"
                         @click="putRoutine"
                     >
@@ -221,7 +218,7 @@ export default {
         addExercise(e) {
             e.preventDefault()
             this.exercises.push({
-                repeticions: 0,
+                amount: 0,
                 descripcio: ''
             })
         },
@@ -272,6 +269,10 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+
+    .pare {
+        margin: 10px 0;
+    }
 
 </style>
