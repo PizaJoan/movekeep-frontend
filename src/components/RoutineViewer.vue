@@ -33,6 +33,7 @@
             :config="config"
             :columns="columns"
             @refresh="getRoutines"
+            @selection="saveSearch"
         >
         </q-data-table> 
     </div>
@@ -43,7 +44,7 @@ import {
     QDataTable,
     date,
     QBtn,
-    LocalStorage,
+    Cookies
 } from 'quasar'
 
 import JsonExcel from 'vue-json-excel'
@@ -131,15 +132,7 @@ export default {
     },
     mounted() {
         this.getRoutines()
-        this.$refs.table.filtering.terms = LocalStorage.get.item('last_search') || ''
-    },
-    computed: {
-        customSearch: function() {
-            let cerca = this.$refs.table.filtering.terms
-            LocalStorage.set('last_search', cerca)
-            if (cerca.length < 1) LocalStorage.remove('last_search')
-            return cerca
-        }
+        this.$refs.table.filtering.terms = Cookies.get('cerca')
     },
     watch: {
         '$route.params.category': function(category) {
@@ -150,7 +143,7 @@ export default {
         getRoutines(done) {
             this.config.title = `Rutines de ${this.$options.filters.capitalize(this.$route.params.category)}`
             this.routines = []
-            this.$http.get(`/api/getRoutinesByCategory/${this.$route.params.category}`)
+            this.$http.get(`http://192.168.1.41:8080/getRoutinesByCategory/${this.$route.params.category}`)
                 .then(res => res.json(), err => {
                     this.$router.push('/')
                 }).then(routines => {
@@ -172,47 +165,15 @@ export default {
         pdfExport(e) {
             e.preventDefault()
             let pdf = new jsPDF()
-        /*
-
-            let taula = document.createElement('table')
-            let tr = document.createElement('tr')
-            this.columns.forEach(col => {
-                let th = document.createElement('th')
-                th.innerHTML = col.label
-                tr.appendChild(th)
-            })
-            taula.appendChild(tr)
-
-            this.routines.forEach(routine => {
-                let tr = document.createElement('tr')
-                
-                let titol = document.createElement('td')
-                titol.innerHTML = routine.titol
-
-                let author = document.createElement('td')
-                author.innerHTML = routine.author
-
-                let tipus = document.createElement('td')
-                tipus.innerHTML = routine.tipus
-
-                let date = document.createElement('td')
-                date.innerHTML = routine.date
-
-                tr.appendChild(titol)
-                tr.appendChild(author)
-                tr.appendChild(tipus)
-                tr.appendChild(date)
-                taula.appendChild(tr)
-            })
-        */
             let dataToExport = [`Rutines de: ${this.$options.filters.capitalize(this.$route.params.category)}`]
-            this.routines.forEach((routine, i) => dataToExport.push(`- Rutina ${i + 1}: ${routine.titol} ${routine.author} ${routine.tipus} ${routine.date}`))
+            this.routines.forEach((routine, i) => 
+                dataToExport.push(`- Rutina ${i + 1}: ${routine.titol} ${routine.author} ${routine.tipus} ${routine.date}`))
 
             pdf.text(dataToExport, 15, 17)
             pdf.save(`routines-${this.$route.params.category}.pdf`)
         },
-        change(e) {
-            console.log(e)
+        saveSearch(e) {
+            Cookies.set('cerca', this.$refs.table.filtering.terms)
         }
     }
 }

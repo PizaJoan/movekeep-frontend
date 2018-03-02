@@ -45,7 +45,7 @@ module.exports = {
     // Also see /build/script.dev.js and search for "proxy api requests"
     // https://github.com/chimurai/http-proxy-middleware
     proxyTable: {
-      '/auth': {
+      /*'/auth': {
         target: 'http://localhost:3000/',
         changeOrigin: true,
         pathRewrite: {
@@ -58,7 +58,7 @@ module.exports = {
         pathRewrite: {
           '^/api': ''
         }
-      }
+      }*/
     }
   }
 }

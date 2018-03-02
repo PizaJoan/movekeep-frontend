@@ -111,7 +111,6 @@ export default {
                 LocalStorage.set('refresh_token', res.body)
                 this.$router.push('/my-routines')
             }, error => {
-                //console.log(error)
                 this.checkCredentials()
             })
         },
@@ -125,13 +124,11 @@ export default {
     },
     mounted() {
         if (LocalStorage.get.item('access_token')) {
-            this.$http.post('/auth/verify-token').then(res => res.json())
+            this.$http.post('http://192.168.1.41:3000/verify-token').then(res => res.json(), console.log)
                 .then(response => {
-                    console.log(response)
-                    if (response === 'OK') this.$router.push('/routines')
+                    if (response === 'OK') this.$router.push('/my-routines')
                 })
         }
-        //console.log(LocalStorage.get.item('token'))
     }
 }
 

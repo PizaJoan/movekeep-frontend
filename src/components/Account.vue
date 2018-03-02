@@ -95,16 +95,12 @@ export default {
         }
     },
     mounted() {
-        /*
-            TODO add some fetching data to get the user information...(maybe)
-        */
-
        this.user.userName = JSON.parse(atob(LocalStorage.get.item('access_token').split('.')[1])).name
        this.getInfo()
     },
     methods: {
         getInfo() {
-            this.$http.get(`/api/getInfo/${this.user.userName}`).then(res => res.json(), console.log)
+            this.$http.get(`http://192.168.1.41:8080/user/info/${this.user.userName}`).then(res => res.json(), console.log)
                 .then(user => {
                     this.user.name = user.name
                     this.user.picture = user.pathToImage || 'http://simpleicon.com/wp-content/uploads/user-5.png'
@@ -113,7 +109,6 @@ export default {
         },
         uploaded() {
             this.$refs.uploader._data.files.pop()
-            //this.$refs.uploader.pop()
         }
     }
 }

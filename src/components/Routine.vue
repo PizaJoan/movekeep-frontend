@@ -227,7 +227,7 @@ export default {
             this.exercises.splice(this.exercises.indexOf(exercise), 1)
         },
         putRoutine() {
-            this.$http.put('/api/addRoutine', {
+            this.$http.put('http://192.168.1.41:8080/routine/add', {
                 id: this.id || null,
                 title: this.title,
                 description: this.description,
@@ -239,18 +239,19 @@ export default {
             }).then(res => this.$router.push('/my-routines'), console.log)
         },
         getCategories() {
-            this.$http.get('/api/getCategoriesWithId').then(res => res.json(), console.log)
+            this.$http.get('http://192.168.1.41:8080/routine/category/all/id').then(res => res.json(), console.log)
                 .then(categories => {
-                    categories.forEach(category => {
-                        this.categories.push({ 
+                    this.categories = categories.map(category => (
+                        { 
                             label: category.title, 
                             value: category.id
-                        })
-                    })
+                        }
+                    )
+                )
             })
         },
         getConcreteRoutine() {
-            this.$http.get('/api/getRoutine', {
+            this.$http.get('http://192.168.1.41:8080/routine/get', {
                 params: {
                     routine: this.id,
                     username: this.user.userName
