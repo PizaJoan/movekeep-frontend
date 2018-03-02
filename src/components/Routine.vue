@@ -188,7 +188,8 @@ export default {
             categoriesSelected: [],
             user: {
                 userName: JSON.parse(atob(LocalStorage.get.item('access_token').split('.')[1])).name
-            }
+            },
+            creationDate: undefined
         }
     },
     validations: {
@@ -234,7 +235,7 @@ export default {
                 type: this.type,
                 exercises: this.exercises,
                 categories: this.categoriesSelected.map(categorySelected => ({ id: categorySelected })),
-                creationDate: date.formatDate(new Date(),'YYYY-MM-DD'),
+                creationDate: this.creationDate || date.formatDate(new Date(),'YYYY-MM-DD'),
                 user: this.user
             }).then(res => this.$router.push('/my-routines'), console.log)
         },
@@ -263,6 +264,7 @@ export default {
                 this.type = routine.type
                 this.exercises = routine.exercises
                 this.categoriesSelected = routine.categories.map(category => category.id)
+                this.creationDate = routine.creationDate
                 this.$v.all.$touch()
             })
         }

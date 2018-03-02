@@ -88,7 +88,8 @@ export default {
                     type: 'string',
                     sort: true,
                     sort(a, b) {
-                        return a - b
+                        if (a > b) return -1
+                        return a < b ? 1 : 0
                     }
                 },
                 {
@@ -99,7 +100,8 @@ export default {
                     type: 'string',
                     sort: true,
                     sort(a, b) {
-                        return a - b
+                        if (a > b) return -1
+                        return a < b ? 1 : 0
                     }
                 },
                 {
@@ -110,7 +112,8 @@ export default {
                     type: 'string',
                     sort: true,
                     sort(a, b) {
-                        return a > b ? 1 : -1
+                        if (a > b) return -1
+                        return a < b ? 1 : 0
                     }
                 },
                 {
