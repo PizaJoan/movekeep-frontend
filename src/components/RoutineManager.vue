@@ -5,7 +5,7 @@
                 Rutines
                 <router-link to="/manage-routine">
                     <q-btn round color="primary" icon="ion-plus" class="on-right">
-                        <q-tooltip>
+                        <q-tooltip v-if="this.$q.platform.is.desktop">
                             Afegir rutina
                         </q-tooltip>
                     </q-btn>
@@ -24,12 +24,12 @@
                 </q-item-main>
                 <q-item-side>
                     <q-btn round color="primary" icon="ion-close-round" @click="deleteRoutineCheck($event, routine)">
-                        <q-tooltip>
+                        <q-tooltip v-if="$q.platform.is.desktop">
                             Esborrar
                         </q-tooltip>    
                     </q-btn>
                     <q-btn round color="primary" icon="ion-edit" @click="$router.push(`/manage-routine/${routine.id}`)">
-                        <q-tooltip>
+                        <q-tooltip v-if="$q.platform.is.desktop">
                             Editar
                         </q-tooltip>
                     </q-btn>

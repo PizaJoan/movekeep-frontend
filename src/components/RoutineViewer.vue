@@ -4,6 +4,7 @@
             <q-btn
                 color="primary"
                 class="on-left"
+                v-if="this.$q.platform.is.desktop"
             >
                 <excel 
                     :data="routines"
@@ -23,6 +24,7 @@
                 class="on-right"
                 color="primary"
                 @click="pdfExport"
+                v-if="this.$q.platform.is.desktop"
             >
                 Exportar PDF
             </q-btn>

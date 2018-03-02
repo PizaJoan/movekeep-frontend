@@ -25,9 +25,9 @@ export default {}
 
     .carta {
         display: flex;
-        height: calc(100vh - 50px);
         justify-content: center;
         align-items: center;
+        padding-top: calc(20vh - 50px);
     }
 
 </style>
