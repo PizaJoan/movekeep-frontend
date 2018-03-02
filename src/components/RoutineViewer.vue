@@ -132,7 +132,7 @@ export default {
     },
     mounted() {
         this.getRoutines()
-        this.$refs.table.filtering.terms = Cookies.get('cerca')
+        this.$refs.table.filtering.terms = Cookies.get('cerca') || ''
     },
     watch: {
         '$route.params.category': function(category) {
@@ -143,18 +143,17 @@ export default {
         getRoutines(done) {
             this.config.title = `Rutines de ${this.$options.filters.capitalize(this.$route.params.category)}`
             this.routines = []
-            this.$http.get(`http://192.168.1.41:8080/getRoutinesByCategory/${this.$route.params.category}`)
+            this.$http.get(`http://192.168.1.41:8080/routine/all/category/${this.$route.params.category}`)
                 .then(res => res.json(), err => {
                     this.$router.push('/')
                 }).then(routines => {
-                    routines.forEach((routine, i) => {
-                        this.routines.push({
+                    this.routines = routines.map(routine => ({
                             titol: routine.title,
                             author: routine.user.name,
                             tipus: this.$options.filters.getTypeRoutine(routine.type),
                             date: routine.creationDate
                         })
-                    })
+                    )
                     if (done) done()
                 })
         },

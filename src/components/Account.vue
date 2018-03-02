@@ -18,8 +18,9 @@
                         <q-uploader
                             ref="uploader"
                             prefix="Penja una foto de perfil distinta"
-                            url="/api/imageUpload"
+                            url="http://192.168.1.41:8080/user/image"
                             name="image"
+                            method="PUT"
                             :multiple="false"
                             extenseions=".png.jpg.jpeg"
                             :additionalFields="[

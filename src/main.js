@@ -79,5 +79,5 @@ Vue.filter('capitalize', (title) => {
 
 Vue.filter('getUserPic', (path) => {
     if (path.includes('http://')) return path
-    return `http://localhost:8080${path}`
+    return `http://192.168.1.41:8080${path}`
 })
