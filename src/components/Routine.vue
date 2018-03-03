@@ -12,7 +12,7 @@
             <q-field
                 helper="Títol de la rutina"
                 :error="$v.title.$error"
-                error-label="Aquest camp s'ha d'emplenar"
+                error-label="Aquest camp s'ha d'emplenar i màxim 40 caràcters"
             >
                 <q-input 
                     v-model.trim="title"
@@ -194,7 +194,8 @@ export default {
     },
     validations: {
         title: {
-            required
+            required,
+            maxLength: maxLength(40)
         },
         description: {
             maxLength: maxLength(300)

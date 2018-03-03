@@ -151,7 +151,9 @@ export default {
                     this.$router.push('/account')
                 }, console.log)
             }, err => {
-                Toast.create('El nom d\'usuari ja existeix')
+                Toast.create.negative({
+                    html: 'El nom d\'usuari ja existeix'
+                })
                 this.user = ''
             })
         }

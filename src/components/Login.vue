@@ -115,7 +115,9 @@ export default {
             })
         },
         checkCredentials() {
-            Toast.create('L\'usuari o la contrasenya no són correctes')
+            Toast.create.negative({
+                html: 'L\'usuari o la contrasenya no són correctes',
+            })
             this.password = ''
         },
         checkKey(e) {

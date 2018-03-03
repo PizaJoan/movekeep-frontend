@@ -35,12 +35,7 @@ Quasar.start(() => {
   new Vue({
     el: '#q-app',
     router,
-    render: h => h(require('./App').default),
-    methods: {
-        saveToken() {
-            console.log('ejejejj')
-        }
-    }
+    render: h => h(require('./App').default)
   })
 })
 
@@ -49,7 +44,7 @@ Vue.http.interceptors.push((req, next) => {
     next()
 })
 
-Vue.filter('typeRoutine', (type) => {
+Vue.filter('typeRoutine', type => {
     switch(type) {
         case 'time':
             return 'Temps en segons*'
@@ -71,13 +66,13 @@ Vue.filter('getTypeRoutine', type => {
     } 
 })
 
-Vue.filter('capitalize', (title) => {
+Vue.filter('capitalize', title => {
     if (!title) return ''
     title = title.toString()
     return title.charAt(0).toUpperCase() + title.slice(1)
 })
 
-Vue.filter('getUserPic', (path) => {
+Vue.filter('getUserPic', path => {
     if (path.includes('http://')) return path
     return `${process.env.API}${path}`
 })

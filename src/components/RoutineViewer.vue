@@ -162,10 +162,6 @@ export default {
                     if (done) done()
                 })
         },
-        veureRutina(row) {
-            //TODO implementar la funcionalitat per vure la rutina en sí per la próxima entrega
-            console.log(row)
-        },
         pdfExport(e) {
             e.preventDefault()
             let pdf = new jsPDF()

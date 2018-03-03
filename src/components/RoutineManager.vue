@@ -4,8 +4,9 @@
             <q-list-header inset>
                 Rutines
                 <router-link to="/manage-routine">
-                    <q-btn round color="primary" icon="ion-plus" class="on-right">
-                        <q-tooltip v-if="this.$q.platform.is.desktop">
+                    <q-icon v-if="this.$q.platform.is.mobile" name="ion-plus" size="1.5rem" class="on-right" />
+                    <q-btn v-else round color="primary" icon="ion-plus" class="on-right">
+                        <q-tooltip>
                             Afegir rutina
                         </q-tooltip>
                     </q-btn>
@@ -17,19 +18,20 @@
                 <q-item-side>
                     <q-item-tile icon="ion-information-circled" />
                 </q-item-side>
-                <q-item-main>
-                <q-item-tile label>Títol: {{ routine.title }}</q-item-tile>
-                <q-item-tile sublabel>Rutina de: {{ routine.type | getTypeRoutine }}</q-item-tile>
-                <q-item-tile sublabel>Creada el: {{ routine.creationDate }}</q-item-tile>
+                <q-item-main @click="$router.push(`/manage-routine/${routine.id}`)">
+                    <q-item-tile label lines="3">Títol: {{ routine.title }}</q-item-tile>
+                    <q-item-tile sublabel>Rutina de: {{ routine.type | getTypeRoutine }}</q-item-tile>
+                    <q-item-tile sublabel>Creada el: {{ routine.creationDate }}</q-item-tile>
                 </q-item-main>
-                <q-item-side>
-                    <q-btn round color="primary" icon="ion-close-round" @click="deleteRoutineCheck($event, routine)">
+                <q-item-side right>
+                    <q-item-tile v-if="$q.platform.is.mobile" icon="ion-close-round" size="1.5rem" @click="deleteRoutineCheck($event, routine)" />
+                    <q-btn v-else round color="primary" icon="ion-close-round" @click="deleteRoutineCheck($event, routine)">
                         <q-tooltip v-if="$q.platform.is.desktop">
                             Esborrar
                         </q-tooltip>    
                     </q-btn>
-                    <q-btn round color="primary" icon="ion-edit" @click="$router.push(`/manage-routine/${routine.id}`)">
-                        <q-tooltip v-if="$q.platform.is.desktop">
+                    <q-btn v-if="$q.platform.is.desktop" round color="primary" icon="ion-edit" @click="$router.push(`/manage-routine/${routine.id}`)">
+                        <q-tooltip>
                             Editar
                         </q-tooltip>
                     </q-btn>
@@ -110,8 +112,15 @@ export default {
                                     }
                                 }).then(res => {
                                     dialog.close()
-                                    if (res.status == 200) Toast.create('Rutina borrada amb éxit')
-                                    else Toast.create('No s\'ha pogut esborrar la rutina...')
+                                    if (res.status == 200) {
+                                        Toast.create.info({
+                                            html: 'Rutina esborrada',
+                                        })
+                                    } else {
+                                        Toast.create.negative({ 
+                                            html: 'No s\'ha pogut esborrar la rutina...' 
+                                        })
+                                    }
                                     this.getMyRoutines()
                                 }, console.log)
                             }, 300)
