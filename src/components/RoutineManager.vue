@@ -103,7 +103,7 @@ export default {
                             })
 
                             setTimeout(() => {
-                                this.$http.delete('http://192.168.1.41:8080/routine/delete', {
+                                this.$http.delete(`${process.env.API}/routine/delete`, {
                                     params: {
                                         routine: routine.id,
                                         username: this.userName
@@ -125,7 +125,7 @@ export default {
         getMyRoutines() {
             this.userName = JSON.parse(atob(LocalStorage.get.item('access_token').split('.')[1])).name
 
-            this.$http.get(`http://192.168.1.41:8080/routine/user/${this.userName}`).then(res => res.json(), console.log)
+            this.$http.get(`${process.env.API}/routine/user/${this.userName}`).then(res => res.json(), console.log)
                 .then(myRoutines => this.routines = myRoutines)
         },
     }

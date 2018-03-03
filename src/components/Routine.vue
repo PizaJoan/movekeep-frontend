@@ -228,7 +228,7 @@ export default {
             this.exercises.splice(this.exercises.indexOf(exercise), 1)
         },
         putRoutine() {
-            this.$http.post('http://192.168.1.41:8080/routine/add', {
+            this.$http.post(`${process.env.API}/routine/add`, {
                 id: this.id || null,
                 title: this.title,
                 description: this.description,
@@ -240,7 +240,7 @@ export default {
             }).then(res => this.$router.push('/my-routines'), console.log)
         },
         getCategories() {
-            this.$http.get('http://192.168.1.41:8080/category/all/id').then(res => res.json(), console.log)
+            this.$http.get(`${process.env.API}/category/all/id`).then(res => res.json(), console.log)
                 .then(categories => {
                     this.categories = categories.map(category => (
                         { 
@@ -252,7 +252,7 @@ export default {
             })
         },
         getConcreteRoutine() {
-            this.$http.get('http://192.168.1.41:8080/routine/get', {
+            this.$http.get(`${process.env.API}/routine/get`, {
                 params: {
                     routine: this.id,
                     username: this.user.userName

@@ -87,7 +87,8 @@ import {
     QBtn,
     QField,
     date,
-    LocalStorage
+    LocalStorage,
+    Toast
 } from 'quasar'
 
 import {
@@ -136,18 +137,17 @@ export default {
     methods: {
         createUser(e) {
             e.preventDefault()
-            this.$http.post('http://192.168.1.41:3000/create-user', {
+            this.$http.post(`${process.env.AUTH}/create-user`, {
                 username: this.user,
                 password: this.password
             }).then(res => {
                 LocalStorage.set('access_token', res.headers.map.authorization[0].replace(/Bearer /, ''))
                 LocalStorage.set('refresh_token', res.body)
-                this.$http.post('http://192.168.1.41:8080/user/add', {
+                this.$http.post(`${process.env.API}/user/add`, {
                     userName: this.user,
                     name: this.name,
                     creationDate: date.formatDate(new Date(), 'YYYY-MM-DD')
                 }).then(response => {
-                    console.log(response)
                     this.$router.push('/account')
                 }, console.log)
             }, err => {

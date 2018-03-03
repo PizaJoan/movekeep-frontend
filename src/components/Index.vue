@@ -159,16 +159,6 @@ export default {
         QItem,
         QItemTile,
         QItemSide,
-    },
-    data() {
-        return {
-        }
-    },
-    mounted() {
-
-    },
-    methods: {
-
     }
 }
 </script>

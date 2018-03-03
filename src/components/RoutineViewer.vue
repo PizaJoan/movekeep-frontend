@@ -148,7 +148,7 @@ export default {
         getRoutines(done) {
             this.config.title = `Rutines de ${this.$options.filters.capitalize(this.$route.params.category)}`
             this.routines = []
-            this.$http.get(`http://192.168.1.41:8080/routine/all/category/${this.$route.params.category}`)
+            this.$http.get(`${process.env.API}/routine/all/category/${this.$route.params.category}`)
                 .then(res => res.json(), err => {
                     this.$router.push('/')
                 }).then(routines => {

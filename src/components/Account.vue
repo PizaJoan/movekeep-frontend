@@ -101,7 +101,7 @@ export default {
     },
     methods: {
         getInfo() {
-            this.$http.get(`http://192.168.1.41:8080/user/info/${this.user.userName}`).then(res => res.json(), console.log)
+            this.$http.get(`${process.env.API}/user/info/${this.user.userName}`).then(res => res.json(), console.log)
                 .then(user => {
                     this.user.name = user.name
                     this.user.picture = user.pathToImage || 'http://simpleicon.com/wp-content/uploads/user-5.png'

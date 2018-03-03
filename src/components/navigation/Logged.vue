@@ -122,7 +122,7 @@ export default {
         }
     },
     mounted() {
-        this.$http.get('http://192.168.1.41:8080/category/all').then(response => response.json(), error => {
+        this.$http.get(`${process.env.API}/category/all`).then(response => response.json(), error => {
             console.log(error)
         }).then(categories => {
             this.categories = categories

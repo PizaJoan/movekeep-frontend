@@ -103,7 +103,7 @@ export default {
     methods: {
         checkLogin(e) {
             e.preventDefault()
-            this.$http.post('http://192.168.1.41:3000/token-local', {
+            this.$http.post(`${process.env.AUTH}/token-local`, {
                 username: this.user,
                 password: this.password
             }).then(res => {
@@ -124,7 +124,7 @@ export default {
     },
     mounted() {
         if (LocalStorage.get.item('access_token')) {
-            this.$http.post('http://192.168.1.41:3000/verify-token').then(res => res.json(), console.log)
+            this.$http.post(`${process.env.AUTH}/verify-token`).then(res => res.json(), console.log)
                 .then(response => {
                     if (response === 'OK') this.$router.push('/my-routines')
                 })
