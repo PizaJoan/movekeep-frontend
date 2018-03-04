@@ -1,4 +1,4 @@
-# Quasar App
+# Movekeep
 
 > A Quasar project
 
@@ -8,14 +8,10 @@
 # install dependencies
 $ npm install
 
-# serve with hot reload at localhost:8080
+# serve with hot reload at localhost:8081
 $ quasar dev
 
 # build for production with minification
 $ quasar build
-
-# lint code not working
-$ quasar lint
 ```
-
 © Joan Piza Ferra
