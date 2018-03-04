@@ -77,7 +77,7 @@ Vue.filter('getUserPic', path => {
     return `${process.env.API}${path}`
 })
 
-if ('serviceWorker' in navigator) {
+if ('serviceWorker' in navigator && process.env.NODE_ENV === 'production') {
     window.addEventListener('load', () => {
         navigator.serviceWorker.register('./sw.js').then(registration => {
             console.log('Okay: ', registration);

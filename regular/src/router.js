@@ -29,7 +29,7 @@ const router =  new VueRouter({
 
     {
       path: '/',
-      component: load('navigation/Logged'),
+      component: load('navigation/MainNavigation'),
       children: [
         { path: 'account', component: load('Account'), meta: { requiresAuth: true} },
         { path: 'my-routines', component: load('RoutineManager'), meta: { requiresAuth: true} },
@@ -42,7 +42,7 @@ const router =  new VueRouter({
 
     { 
       path: '/', 
-      component: load('navigation/NotLogged'),
+      component: load('navigation/SecondaryNavigation'),
       children: [
         { path: 'login', component: load('Login') },
         { path: 'create', component: load('CreateAccount') },
