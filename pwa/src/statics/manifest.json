@@ -2,6 +2,7 @@
   "name": "Movekeep",
   "short_name": "Movekeep-PWA",
   "description": "App to help people get in shape",
+  "author": "Joan Piza Ferra",
   "icons": [
     {
       "src": "./logo-movekeep-png_100x100.png",
@@ -11,6 +12,7 @@
   ],
   "start_url": "/index.html",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#000000"
 }
