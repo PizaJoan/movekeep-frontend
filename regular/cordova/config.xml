@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.movekeep.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.movekeep.android" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Movekeep</name>
     <description>
-        Application for everyone to get in shape
+        App for helping people get in shape!
     </description>
     <author email="pizajoan97@gmail.com" href="http://www.github.com/pizajoan">
         Joan Piza Ferra
