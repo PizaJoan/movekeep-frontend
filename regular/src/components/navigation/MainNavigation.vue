@@ -41,7 +41,7 @@
                 >
                 </q-route-tab>
                 <q-tab 
-                    label="Tancar sesiÃ³"
+                    label="Tancar sesió"
                     slot="title"
                     icon="ion-android-exit"
                     @click="logOut"
@@ -63,7 +63,7 @@
         <router-view />
         <q-toolbar slot="footer">
             <q-toolbar-title class="toolbar-flex">
-                <img class="logo-footer" alr="logo" src="./../../statics/logo-movekeep-png.png" /> 
+                <img class="logo-footer" alt="logo" src="./../../statics/logo-movekeep-png.png" /> 
                 Movekeep
             </q-toolbar-title>
         </q-toolbar>
