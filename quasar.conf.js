@@ -3,7 +3,7 @@
 module.exports = function(ctx) {
     return {
         // app plugins (/src/plugins)
-        plugins: ['vue-resource', 'vuelidate'],
+        plugins: ['vue-resource', 'vuelidate', 'filters'],
         css: ['app.styl'],
         extras: [
             ctx.theme.mat ? 'roboto-font' : null,
@@ -19,7 +19,7 @@ module.exports = function(ctx) {
         },
         build: {
             scopeHoisting: true,
-            vueRouterMode: 'history',
+            vueRouterMode: 'hash',
             // gzip: true,
             // analyze: true,
             // extractCSS: false,

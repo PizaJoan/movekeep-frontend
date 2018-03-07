@@ -6,6 +6,7 @@ export default [
     component: () => import('layouts/MainLayout'),
     children: [
       { path: '', component: () => import('pages/Index') },
+      { path: 'routines/:category', component: () => import('pages/RoutineViewer') }
     ],
   },
 
