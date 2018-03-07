@@ -20,4 +20,12 @@ export default {
         text-decoration: none;
     }
 
+    .no-marge {
+        margin: 0;
+    }
+
+    .marge-top {
+        margin-top: 10px
+    }
+
 </style>

@@ -87,8 +87,8 @@
             }
         },
         mounted() {
-           // this.$http.get(`${process.env.API}/category/all`).then(res => res.json(), console.log)
-             //   .then(categories => this.categories = categories)
+            this.$http.get(`${process.env.API}/category/all`).then(res => res.json(), console.log)
+                .then(categories => this.categories = categories)
         }    
   }
 </script>
