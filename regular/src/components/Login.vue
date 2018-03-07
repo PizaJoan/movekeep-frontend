@@ -126,11 +126,9 @@ export default {
         if (LocalStorage.get.item('access_token')) {
             this.$http.post(`${process.env.AUTH}/verify-token`).then(res => res.json(), err => {
                 LocalStorage.clear()
-                this.$router.push('/login')
+            }).then(response => {
+                if (response === 'OK') this.$router.push('/my-routines')
             })
-                .then(response => {
-                    if (response === 'OK') this.$router.push('/my-routines')
-                })
         }
     }
 }

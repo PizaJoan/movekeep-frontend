@@ -119,10 +119,10 @@ export default {
                                     })
                                 }
                                 this.getMyRoutines()
-                                setTimeout(() => {
-                                    dialog.close()
-                                }, 200)
                             }, console.log)
+                            .then(res => {
+                                dialog.close()
+                            })
                         },
                         color: 'negative',
                         raised: true,
@@ -131,9 +131,9 @@ export default {
             })
         },
         getMyRoutines() {
-            this.userName = JSON.parse(atob(LocalStorage.get.item('access_token').split('.')[1])).name
+            this.userName = 'jpizaf' //JSON.parse(atob(LocalStorage.get.item('access_token').split('.')[1])).name
 
-            this.$http.get(`${process.env.API}/routine/user/${this.userName}`).then(res => res.json(), err => this.$router.push('/login'))
+            this.$http.get(`${process.env.API}/routine/user/${this.userName}`).then(res => res.json())
                 .then(myRoutines => this.routines = myRoutines)
         },
     }

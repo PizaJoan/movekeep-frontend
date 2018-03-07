@@ -39,9 +39,24 @@ Quasar.start(() => {
   })
 })
 
-Vue.http.interceptors.push((req, next) => {
+Vue.http.interceptors.push(function (req, next) {
     if (LocalStorage.get.item('access_token')) req.headers.set('Authorization', `Bearer ${LocalStorage.get.item('access_token')}`)
-    next()
+    next(res => {
+        if (res.status === 401) {
+            return new Promise(resolve => {
+                this.$http.post(`${process.env.AUTH}/refresh-token`, {
+                    refresh: LocalStorage.get.item('refresh_token')
+                }).then(res => {
+                    LocalStorage.set('access_token', res.headers.map.authorization[0].replace(/Bearer /, ''))
+                    LocalStorage.set('refresh_token', res.body)
+                    resolve(Vue.http(req))
+                }, error => {
+                    LocalStorage.clear()
+                    this.$router.push('/login')
+                })
+            })
+        }
+    })
 })
 
 Vue.filter('typeRoutine', type => {

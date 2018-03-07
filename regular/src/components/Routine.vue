@@ -214,7 +214,6 @@ export default {
         this.getCategories()
         this.id = this.$route.params.id
         if (this.id) this.getConcreteRoutine()
-        this.$router.replace('/manage-routine')
     },
     methods: {
         addExercise(e) {
@@ -258,7 +257,7 @@ export default {
                     routine: this.id,
                     username: this.user.userName
                 }
-            }).then(res => res.json(), err => this.$router.push('/login'))
+            }).then(res => res.json())
             .then(routine => {
                 this.title = routine.title
                 this.description = routine.description || ''
@@ -267,6 +266,7 @@ export default {
                 this.categoriesSelected = routine.categories.map(category => category.id)
                 this.creationDate = routine.creationDate
                 this.$v.all.$touch()
+                this.$router.replace('/manage-routine')
             })
         }
     },

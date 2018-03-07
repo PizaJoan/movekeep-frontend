@@ -120,10 +120,10 @@ export default {
                                     })
                                 }
                                 this.getMyRoutines()
-                                setTimeout(() => {
-                                    dialog.close()
-                                }, 200)
                             }, console.log)
+                            .then(res => {
+                                dialog.close()
+                            })
                         },
                         color: 'negative',
                         raised: true,
