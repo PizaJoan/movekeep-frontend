@@ -1,6 +1,6 @@
 <template>
-  <q-page class="flex flex-center">
-      <q-card :flat="this.$q.platform.is.mobile" square class="col-lg-4 col-xs-12">
+    <q-page class="flex flex-center">
+        <q-card :flat="this.$q.platform.is.mobile" square class="col-lg-4 col-xs-12">
             <q-card-title align="center">              
                 <router-link to="/" tag="img" class="responsive" width="100px" src="./../statics/logo-movekeep-working-png-big.png" alt="logo" />
                 <h5 class="no-marge">
@@ -69,7 +69,7 @@
                 </div>
             </q-card-main>
         </q-card>
-  </q-page>
+    </q-page>
 </template>
 
 <script>
@@ -136,9 +136,7 @@
                         {
                             label: '',
                             icon: 'ion-close',
-                            handler: () => {
-
-                            }
+                            handler: () => { }
                         }
                     ]
                 })
