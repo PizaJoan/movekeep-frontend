@@ -16,4 +16,8 @@ export default {
         width: 25px;
     }
 
+    a {
+        text-decoration: none;
+    }
+
 </style>
