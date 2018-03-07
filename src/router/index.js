@@ -1,5 +1,6 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
+import { LocalStorage} from 'quasar'
 
 import routes from './routes';
 
@@ -20,5 +21,13 @@ const Router = new VueRouter({
   scrollBehavior: () => ({ y: 0 }),
   routes,
 });
+
+Router.beforeEach((to, from, next) => {
+    if (to.matched.some(record => record.meta.requiresAuth) && !LocalStorage.get.item('access_token')) {
+        next('/login')
+    } else {
+        next()
+    }
+})
 
 export default Router;

@@ -1,7 +1,10 @@
 <template>
-  <q-page padding>
-    <!-- content -->
-  </q-page>
+    <q-page class="flex column">
+        <q-table
+            :data="routines"
+            :columns="config"
+        />
+    </q-page>
 </template>
 
 <script>
@@ -9,7 +12,30 @@
         data() {
             return {
                 routines: [],
-                title: `Rutines de ${this.$options.filters.capitalize(this.$route.params.category)}`
+                title: `Rutines de ${this.$options.filters.capitalize(this.$route.params.category)}`,
+                config: [
+                    {
+                        name: 'title',
+                        label: 'Title',
+                        field: 'titol'
+                    },
+                    {
+                        name: 'author',
+                        label: 'Autor',
+                        field: 'author'
+                    },
+                    {
+                        name: 'tipus',
+                        label: 'Tipus',
+                        field: 'tipus'
+                    },
+                    {
+                        name: 'date',
+                        label: 'Data',
+                        field: 'date'
+
+                    }
+                ],
             }
         },
         watch: {

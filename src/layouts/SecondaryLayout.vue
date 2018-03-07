@@ -3,8 +3,8 @@
         <q-layout-footer>
             <q-toolbar>
                 <q-toolbar-title>
-                    <router-link to="/" tag="img" class="logo-footer" src="statics/logo-movekeep-working-png-big.png" alt="logo" />
-                    Movekeep
+                    <router-link to="/" tag="img" class="avatar" alt="logo" src="statics/logo-movekeep-png.png" /> 
+                    <span>Movekeep</span>
                 </q-toolbar-title>
             </q-toolbar>
         </q-layout-footer>
@@ -26,10 +26,5 @@
     }
 </script>
 
-<style scoped>
-
-    .logo-footer {
-        width: 25px;
-    } 
-
+<style>
 </style>

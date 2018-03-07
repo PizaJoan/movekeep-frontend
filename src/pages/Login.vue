@@ -51,7 +51,6 @@
     import { required } from 'vuelidate/lib/validators'
 
     export default {
-    // name: 'PageName',
         data() {
             return {
                 user: '',
@@ -75,7 +74,7 @@
                 }).then(res => {
                     this.$q.localStorage.set('access_token', res.headers.map.authorization[0].replace(/Bearer /, ''))
                     this.$q.localStorage.set('refresh_token', res.body)
-                    //this.$router.push('/my-routines')
+                    this.$router.push('/my-routines')
                 }, this.checkCredentials)
             },
             checkCredentials() {
@@ -99,7 +98,6 @@
             }
         },
         mounted() {
-            console.log(this.$q.localStorage.has('access_token'))
             if (this.$q.localStorage.has('access_token')) {
                 this.$http.post(`${process.env.AUTH}/verify-token`).then(res => res.json(), err => {
                     this.$q.localStorage.clear()
