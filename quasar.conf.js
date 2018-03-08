@@ -80,7 +80,9 @@ module.exports = function(ctx) {
                 'QTable',
                 'QSearch',
                 'QUploader',
-                'QItemSeparator'
+                'QItemSeparator',
+                'QSelect',
+                'QOptionGroup'
             ],
             directives: ['Ripple'],
             // Quasar plugins

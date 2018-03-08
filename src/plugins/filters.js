@@ -24,4 +24,15 @@ export default ({ app, router, Vue }) => {
     Vue.filter('getUserPic', path => {
         return path.includes('http://') ? path : `${process.env.API}${path}`
     })
+
+    Vue.filter('typeRoutine', type => {
+        switch(type) {
+            case 'time':
+                return 'Temps en segons*'
+            case 'reps':
+                return 'Nº Repeticions*'
+            default:
+                return ''
+        }  
+    })
 }

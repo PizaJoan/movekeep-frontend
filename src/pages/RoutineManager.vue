@@ -1,6 +1,6 @@
 <template>
     <q-page>
-                <q-list stripped link separator no-border>
+        <q-list stripped link separator no-border>
             <q-list-header inset>
                 Rutines
                 <router-link to="/manage-routine">
