@@ -77,7 +77,8 @@ module.exports = function(ctx) {
                 'QField',
                 'QInput',
                 'QTooltip',
-                'QTable'
+                'QTable',
+                'QSearch'
             ],
             directives: ['Ripple'],
             // Quasar plugins
