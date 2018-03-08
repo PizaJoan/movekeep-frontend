@@ -20,4 +20,8 @@ export default ({ app, router, Vue }) => {
                 return ''
         } 
     })
+
+    Vue.filter('getUserPic', path => {
+        return path.includes('http://') ? path : `${process.env.API}${path}`
+    })
 }
