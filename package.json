@@ -1,9 +1,9 @@
 {
-  "name": "test-0-15",
+  "name": "movekeep",
   "version": "1.0.0",
-  "description": "A Quasar Framework app",
-  "productName": "Test v15",
-  "cordovaId": "com.example.v15",
+  "description": "App to help people get in shape",
+  "productName": "Movekeep",
+  "cordovaId": "com.movekeep",
   "author": "Juan <pizajoan97@gmail.com>",
   "private": true,
   "scripts": {
