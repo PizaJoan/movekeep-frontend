@@ -79,13 +79,15 @@ module.exports = function(ctx) {
                 'QTooltip',
                 'QTable',
                 'QSearch',
-                'QUploader'
+                'QUploader',
+                'QItemSeparator'
             ],
             directives: ['Ripple'],
             // Quasar plugins
             plugins: [
                 'Notify',
-                'LocalStorage'
+                'LocalStorage',
+                'Dialog'
             ]
         },
         // animations: 'all' --- includes all animations
