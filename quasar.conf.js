@@ -110,6 +110,16 @@ module.exports = function(ctx) {
                         src: 'statics/icons/logo-movekeep-100x100.png',
                         sizes: '100x100',
                         type: 'image/png'
+                    },
+                    {
+                        src: 'statics/icons/logo-movekeep-192x192.png',
+                        sizes: '192x192',
+                        type: 'image/png',
+                    },
+                    {
+                        src: 'statics/icons/logo-movekeep-512x512.png',
+                        sizes: '512x512',
+                        type: 'image/png',
                     }
                 ]
             }
