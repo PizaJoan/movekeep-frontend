@@ -1,6 +1,6 @@
 <template>
-    <q-page padding>
-        <q-card flat class="col-md-6">
+    <q-page class="flex justify-center">
+        <q-card flat class="col-md-6 col-xs-12">
             <q-card-title align="center">
                 <img alt="logo" class="responsive" width="100px" src="./../statics/logo-movekeep-working-png-big.png" />
                 <h5>
@@ -23,7 +23,7 @@
                     />
                 </q-field>
                 <q-field
-                    :error="$v.description.$error"
+                    :error="this.$v.description.$error"
                     helper="Describeix la teva rutina breument"
                     error-label="Máxim 300 caràcters"
                     class="marge-top"
@@ -39,7 +39,7 @@
                 </q-field>
                 <q-field
                     helper="Selecciona la/les categoríes de la rutina"
-                    :error="$v.categoriesSelected.$error"
+                    :error="this.$v.categoriesSelected.$error"
                     error-label="N'has de triar al manco 1"
                     class="marge-top"
                 >
@@ -57,14 +57,14 @@
                 <q-field
                     helper="Marca l'opció si la teva rutina va per temps o per repeticions"
                     error-label="Has de triar qualcuna opció"
-                    :error="$v.type.$error"
+                    :error="this.$v.type.$error"
                     class="marge-top"
                 >
                     <q-option-group
                         type="radio"
                         v-model="type"
                         inline
-                        @change="$v.type.$touch()"
+                        @input="$v.type.$touch()"
                         :options="[
                             { label:'De temps', value: 'time'},
                             { label:'De repeticions', value: 'reps'},
@@ -116,7 +116,7 @@
                     <div align="right" class="col-md-6 col-xs-5">
                         <q-btn
                             color="primary"
-                            :disable="this.$v.all.$error || !this.$v.all.$dirty"
+                            :disable="$v.all.$error || !$v.all.$dirty"
                             @click="putRoutine"
                         >
                             <span v-if="this.id">Modificar rutina</span>
@@ -132,6 +132,8 @@
 <script>
 
     import { required, maxLength, minLength } from 'vuelidate/lib/validators'
+
+    import { date } from 'quasar'
 
     export default {
         // name: 'PageName',

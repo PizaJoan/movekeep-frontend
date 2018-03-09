@@ -83,7 +83,8 @@
           },
         methods: {
             logOut() {
-              
+                this.$q.localStorage.clear()
+                this.$router.push('/')
             }
         },
         mounted() {

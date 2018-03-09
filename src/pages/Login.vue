@@ -31,7 +31,7 @@
                         float-label="Contrasenya"
                         no-pass-toggle
                         name="password"
-                        @keydown="checkKey($event)"
+                        @keydown.enter="checkLogin"
                         @click="$v.password.$touch()"
                         @focus="$v.password.$touch()"
                         />
@@ -93,9 +93,6 @@
                 })
                 this.password = ''
             },
-            checkKey(e) {
-                if (e.key === 'Enter' && this.user && this.password) this.checkLogin(e)
-            }
         },
         mounted() {
             if (this.$q.localStorage.has('access_token')) {

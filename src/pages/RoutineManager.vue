@@ -18,7 +18,7 @@
                 <q-item-side>
                     <q-item-tile icon="ion-information-circled" />
                 </q-item-side>
-                <q-item-main @click="$router.push(`/manage-routine/${routine.id}`)">
+                <q-item-main @click="this.$router.push(`/manage-routine/${routine.id}`)">
                     <q-item-tile label lines="3">Títol: {{ routine.title }}</q-item-tile>
                     <q-item-tile sublabel>Rutina de: {{ routine.type | getTypeRoutine }}</q-item-tile>
                     <q-item-tile sublabel>Creada el: {{ routine.creationDate }}</q-item-tile>
