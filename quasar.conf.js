@@ -98,9 +98,9 @@ module.exports = function(ctx) {
             cacheExt:
                 'js,html,css,ttf,eot,otf,woff,woff2,json,svg,gif,jpg,jpeg,png,wav,ogg,webm,flac,aac,mp4,mp3',
             manifest: {
-                // name: 'Quasar App',
-                // short_name: 'Quasar-PWA',
-                // description: 'Best PWA App in town!',
+                name: 'Movekeep',
+                short_name: 'Movekeep',
+                description: 'App to help people get in shape',
                 display: 'standalone',
                 orientation: 'portrait',
                 background_color: '#ffffff',

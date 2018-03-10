@@ -51,6 +51,11 @@
                 <q-toolbar-title>
                     Movekeep
                 </q-toolbar-title>
+                <span>
+                    Languages: <q-btn @click.native="changeLang('es')">Es</q-btn> |
+                    <q-btn @click.native="changeLang('ca')" tag="span" to="#" >Ca</q-btn> |
+                    <q-btn @click.native="changeLang('en-uk')" tag="span" to="#" >En</q-btn>
+                </span>
             </q-toolbar>
         </q-layout-footer>
         <q-layout-drawer
@@ -85,9 +90,15 @@
             logOut() {
                 this.$q.localStorage.clear()
                 this.$router.push('/')
+            },
+            changeLang(lang) {
+                import(`quasar-framework/i18n/${lang}`).then(lang => {
+                    this.$q.i18n.set(lang.default)
+                }) 
             }
         },
         mounted() {
+            console.log(this.$q.i18n.getLocale())
             this.$http.get(`${process.env.API}/category/all`).then(res => res.json(), console.log)
                 .then(categories => this.categories = categories)
         }    
