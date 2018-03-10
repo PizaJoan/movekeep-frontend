@@ -1,35 +1,3 @@
-<i18n>
-{
-    "es": {
-        "title": "Categorias",
-        "label": "Ver rutinas de",
-        "explore": "Explorar",
-        "home": "Inicio",
-        "account": "Cuenta",
-        "routines": "Rutinas",
-        "logout": "Cerrar sesión"
-    },
-    "ca": {
-        "title": "Categories",
-        "label": "Veure rutines de",
-        "explore": "Explora",
-        "home": "Inici",
-        "account": "Compte",
-        "routines": "Rutines",
-        "logout": "Tancar sesió"
-    },
-    "en-uk": {
-        "title": "Categories",
-        "label": "View routines of",
-        "explore": "Explore",
-        "home": "Home",
-        "account": "Account",
-        "routines": "Rutines",
-        "logout": "Logout"
-    }
-}
-</i18n>
-
 <template>
     <q-layout
         view="hhh LpR fff"
@@ -96,10 +64,10 @@
         >
             <q-scroll-area class="fit">
                 <q-list no-border separator>
-                    <q-list-header>{{ $t('title') }}</q-list-header>
+                    <q-list-header>{{ $t('categories') }}</q-list-header>
                     <q-item item v-for="category in categories" :key="category.title" :to="`/routines/${category.title.toLowerCase()}`">
                         <q-item-side icon="ion-android-list" />
-                        <q-item-main :sublabel="category.title"> {{ `${$t('label')} ${category.title}` }}</q-item-main>
+                        <q-item-main :sublabel="category.title"> {{ `${$t('viewRoutines')} ${category.title}` }}</q-item-main>
                     </q-item>
                 </q-list>
             </q-scroll-area>
@@ -124,10 +92,11 @@
                 this.$router.push('/')
             },
             changeLang(lang) {
-                this.$i18n.locale = lang || this.$q.i18n.getLocale()
+                if (lang) this.$q.localStorage.set('lang', lang)
+                this.$i18n.locale = this.$q.localStorage.get.item('lang') || lang || this.$q.i18n.getLocale()
                 import(`quasar-framework/i18n/${this.$i18n.locale}`).then(lang => {
                     this.$q.i18n.set(lang.default)
-                }) 
+                })
             }
         },
         mounted() {

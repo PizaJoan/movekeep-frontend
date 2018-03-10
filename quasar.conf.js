@@ -25,7 +25,7 @@ module.exports = function(ctx) {
             // extractCSS: false,
             // useNotifier: false,
             extendWebpack(cfg) {
-                cfg.module.rules[0].options.loaders.i18n = ['vue-i18n-loader', { loader: '@kazupon/vue-i18n-loader'}]
+               // cfg.module.rules[0].options.loaders.i18n = ['vue-i18n-loader', { loader: '@kazupon/vue-i18n-loader'}]
                // console.log(cfg.module.rules[0].options.loaders)
                 /*cfg.module.rules.push({
                     test: /\.vue$/,

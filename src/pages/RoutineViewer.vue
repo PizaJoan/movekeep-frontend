@@ -1,29 +1,3 @@
-<i18n>
-{
-    "es": {
-        "label": "Rutinas de",
-        "tableTitle": "Titulo",
-        "tableAuthor": "Autor",
-        "tableType": "Tipo",
-        "tableDate": "Fecha"
-    },
-    "ca": {
-        "label": "Rutines de",
-        "tableTitle": "Títol",
-        "tableAuthor": "Autor",
-        "tableType": "Tipus",
-        "tableDate": "Data"
-    },
-    "en-uk": {
-        "label": "Routines of",
-        "tableTitle": "Title",
-        "tableAuthor": "Author",
-        "tableType": "Type",
-        "tableDate": "Date"
-    }
-}
-</i18n>
-
 <template>
     <q-page class="flex column">
         <q-table
@@ -34,7 +8,7 @@
             :loading="loading"
         >
             <template slot="top" slot-scope="props">
-                <h5 class="col-md-6 col-xs-12">{{ `${$t('label')} ${$options.filters.capitalize($route.params.category)}` }}</h5>
+                <h5 class="col-md-6 col-xs-12">{{ `${$t('routineOf')} ${$options.filters.capitalize($route.params.category)}` }}</h5>
                 <q-search
                     v-model="filter"
                     class="col-md-6 col-xs-12"
@@ -52,7 +26,7 @@
                 config: [
                     {
                         name: 'title',
-                        label: 'title',
+                        label: this.$t('tableTitle'),
                         field: 'titol',
                         required: true,
                         sortable: true,
