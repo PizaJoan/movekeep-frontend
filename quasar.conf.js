@@ -125,7 +125,7 @@ module.exports = function(ctx) {
             }
         },
         cordova: {
-            // id: 'org.cordova.quasar.app'
+            id: 'com.movekeep'
         },
         electron: {
             extendWebpack(cfg) {
