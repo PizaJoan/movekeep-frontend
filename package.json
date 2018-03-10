@@ -11,10 +11,12 @@
     "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
+    "vue-i18n": "^7.4.2",
     "vue-resource": "^1.5.0",
     "vuelidate": "^0.6.2"
   },
   "devDependencies": {
+    "@kazupon/vue-i18n-loader": "^0.3.0",
     "babel-eslint": "8.2.1",
     "eslint": "4.15.0",
     "eslint-config-airbnb-base": "11.3.0",

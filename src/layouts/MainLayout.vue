@@ -1,3 +1,17 @@
+<i18n>
+{
+    "es": {
+        "title": "Categorias"
+    },
+    "ca": {
+        "title": "Categories"
+    },
+    "en-uk": {
+        "title": "Categories"
+    }
+}
+</i18n>
+
 <template>
     <q-layout
         view="hhh LpR fff"
@@ -64,7 +78,7 @@
         >
             <q-scroll-area class="fit">
                 <q-list no-border separator>
-                    <q-list-header>Categories</q-list-header>
+                    <q-list-header>{{ $t('title') }}</q-list-header>
                     <q-item item v-for="category in categories" :key="category.title" :to="`/routines/${category.title.toLowerCase()}`">
                         <q-item-side icon="ion-android-list" />
                         <q-item-main :sublabel="category.title">Veure rutines de {{ category.title }}</q-item-main>
@@ -92,13 +106,15 @@
                 this.$router.push('/')
             },
             changeLang(lang) {
-                import(`quasar-framework/i18n/${lang}`).then(lang => {
+                import(`quasar-framework/i18n/${lang || this.$q.i18n.getLocale()}`).then(lang => {
                     this.$q.i18n.set(lang.default)
+                    this.$i18n.locale = lang
+                    console.log(this.$i18n.locale)
                 }) 
             }
         },
         mounted() {
-            console.log(this.$q.i18n.getLocale())
+            this.changeLang()
             this.$http.get(`${process.env.API}/category/all`).then(res => res.json(), console.log)
                 .then(categories => this.categories = categories)
         }    

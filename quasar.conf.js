@@ -3,7 +3,7 @@
 module.exports = function(ctx) {
     return {
         // app plugins (/src/plugins)
-        plugins: ['vue-resource', 'vuelidate', 'filters'],
+        plugins: ['vue-resource', 'vuelidate', 'filters', 'i18n'],
         css: ['app.styl'],
         extras: [
             ctx.theme.mat ? 'roboto-font' : null,
@@ -25,12 +25,28 @@ module.exports = function(ctx) {
             // extractCSS: false,
             // useNotifier: false,
             extendWebpack(cfg) {
-                cfg.module.rules.push({
+                cfg.module.rules[0].options.loaders.i18n = ['vue-i18n-loader', { loader: '@kazupon/vue-i18n-loader' } ]
+                console.log(cfg.module.rules[0].options.loaders)
+                /*cfg.module.rules.push({
+                    test: /\.vue$/,
+                    use: ['vue-i18n-loader', { loader: '@kazupon/vue-i18n-loader'}]
+                })
+                //cfg.module.rules.push({
                     /*  enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
           exclude: /(node_modules|quasar)/*/
-                })
+               /* })
+                /*cfg.module.rules.push({
+                    test: /\.vue$/,
+                    loader: 'vue-loader',
+                    options: {
+                        loaders: {
+                            // you need to specify `i18n` loaders key with `vue-i18n-loader` (https://github.com/kazupon/vue-i18n-loader)
+                            i18n: '@kazupon/vue-i18n-loader'
+                        }
+                    }
+                })*/
             },
             env: ctx.dev
                 ? {
