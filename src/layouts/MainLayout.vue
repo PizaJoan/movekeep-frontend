@@ -1,13 +1,31 @@
 <i18n>
 {
     "es": {
-        "title": "Categorias"
+        "title": "Categorias",
+        "label": "Ver rutinas de",
+        "explore": "Explorar",
+        "home": "Inicio",
+        "account": "Cuenta",
+        "routines": "Rutinas",
+        "logout": "Cerrar sesión"
     },
     "ca": {
-        "title": "Categories"
+        "title": "Categories",
+        "label": "Veure rutines de",
+        "explore": "Explora",
+        "home": "Inici",
+        "account": "Compte",
+        "routines": "Rutines",
+        "logout": "Tancar sesió"
     },
     "en-uk": {
-        "title": "Categories"
+        "title": "Categories",
+        "label": "View routines of",
+        "explore": "Explore",
+        "home": "Home",
+        "account": "Account",
+        "routines": "Rutines",
+        "logout": "Logout"
     }
 }
 </i18n>
@@ -24,33 +42,33 @@
                         slot="title" 
                         @click="leftDrawer = !leftDrawer" 
                         icon="ion-navicon-round"
-                        label="Explora"
+                        :label="this.$t('explore')"
                         hide="label"
                     />
                     <q-route-tab 
                         to="/"
                         default 
-                        label="Inici" 
+                        :label="this.$t('home')"
                         slot="title"
                         icon="ion-home"
                         hide="label"
                     />
                     <q-route-tab 
                         to="/account" 
-                        label="Compte" 
+                        :label="this.$t('account')"
                         slot="title"
                         icon="ion-person"
                         hide="label"
                     />
                     <q-route-tab
                         to="/my-routines"
-                        label="Rutines"
+                        :label="this.$t('routines')"
                         slot="title"
                         hide="label"
                         icon="ion-stats-bars"
                     />
                     <q-tab 
-                        label="Tancar sesió"
+                        :label="this.$t('logout')"
                         slot="title"
                         icon="ion-android-exit"
                         @click="logOut"
@@ -81,7 +99,7 @@
                     <q-list-header>{{ $t('title') }}</q-list-header>
                     <q-item item v-for="category in categories" :key="category.title" :to="`/routines/${category.title.toLowerCase()}`">
                         <q-item-side icon="ion-android-list" />
-                        <q-item-main :sublabel="category.title">Veure rutines de {{ category.title }}</q-item-main>
+                        <q-item-main :sublabel="category.title"> {{ `${$t('label')} ${category.title}` }}</q-item-main>
                     </q-item>
                 </q-list>
             </q-scroll-area>
@@ -106,10 +124,9 @@
                 this.$router.push('/')
             },
             changeLang(lang) {
-                import(`quasar-framework/i18n/${lang || this.$q.i18n.getLocale()}`).then(lang => {
+                this.$i18n.locale = lang || this.$q.i18n.getLocale()
+                import(`quasar-framework/i18n/${this.$i18n.locale}`).then(lang => {
                     this.$q.i18n.set(lang.default)
-                    this.$i18n.locale = lang
-                    console.log(this.$i18n.locale)
                 }) 
             }
         },

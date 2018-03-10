@@ -25,8 +25,8 @@ module.exports = function(ctx) {
             // extractCSS: false,
             // useNotifier: false,
             extendWebpack(cfg) {
-                cfg.module.rules[0].options.loaders.i18n = ['vue-i18n-loader', { loader: '@kazupon/vue-i18n-loader' } ]
-                console.log(cfg.module.rules[0].options.loaders)
+                cfg.module.rules[0].options.loaders.i18n = ['vue-i18n-loader', { loader: '@kazupon/vue-i18n-loader'}]
+               // console.log(cfg.module.rules[0].options.loaders)
                 /*cfg.module.rules.push({
                     test: /\.vue$/,
                     use: ['vue-i18n-loader', { loader: '@kazupon/vue-i18n-loader'}]
@@ -35,27 +35,27 @@ module.exports = function(ctx) {
                     /*  enforce: 'pre',
           test: /\.(js|vue)$/,
           loader: 'eslint-loader',
-          exclude: /(node_modules|quasar)/*/
-               /* })
-                /*cfg.module.rules.push({
+          exclude: /(node_modules|quasar)/
+               })
+                cfg.module.rules.push({
                     test: /\.vue$/,
                     loader: 'vue-loader',
                     options: {
                         loaders: {
                             // you need to specify `i18n` loaders key with `vue-i18n-loader` (https://github.com/kazupon/vue-i18n-loader)
-                            i18n: '@kazupon/vue-i18n-loader'
+                            i18n: 'vue-i18n-loader'
                         }
                     }
                 })*/
             },
             env: ctx.dev
                 ? {
-                      API: JSON.stringify('http://192.168.1.41:8080'),
-                      AUTH: JSON.stringify('http://192.168.1.41:3000')
+                      API: JSON.stringify('http://192.168.1.37:8080'),
+                      AUTH: JSON.stringify('http://192.168.1.37:3000')
                   }
                 : {
-                      API: JSON.stringify('http://192.168.1.41:8080'),
-                      AUTH: JSON.stringify('http://192.168.1.41:3000')
+                      API: JSON.stringify('http://192.168.1.37:8080'),
+                      AUTH: JSON.stringify('http://192.168.1.37:3000')
                   }
         },
         devServer: {
