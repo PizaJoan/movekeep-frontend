@@ -1,4 +1,5 @@
 {
+    "you": "tú",
     "categories": "Categorias",
     "viewRoutines": "Ver rutinas de",
     "explore": "Explorar",
@@ -10,5 +11,36 @@
     "tableTitle": "Titulo",
     "tableAuthor": "Autor",
     "tableType": "Tipo",
-    "tableDate": "Fecha"
+    "tableDate": "Fecha",
+    "index": {
+        "title": "¿Que queremos conseguir?",
+        "card1": {
+            "title": "Mantenerse positivo",
+            "content": "Hoy en día es necesario para mantener una rutina de deporte mantenerse positivo y con ganas de seguir realizando actividad física"
+        },
+        "card2": {
+            "title": "Estar motivado",
+            "content": "Con una comunidad que quiere ayudar no tan sólo compartiendo rutinas de ejercicio de todo tipo sino que también dando ánimos"
+        },
+        "card3": {
+            "title": "Ser saludable",
+            "content": "Gracias a la comunidad y a las propias rutinas te mantendrás saludable y mejorarás tu condición física con el paso del tiempo"
+        },
+        "card4": {
+            "title": "Rutinas",
+            "content": "Gracias a la propia comunidad y ti tendrás acceso total a las rutinas y podrás hacer tantas como quieras"
+        },
+        "card5": {
+            "title": "Variedad",
+            "content": "Ya que todos contribuimos la variedad de rutinas es amplia separadas por categorías y descritas con contenido"
+        },
+        "card6": {
+            "title": "compromisos",
+            "content": "Dentro de esta app no se marca ningún tipo de objetivo menos el de mantenerse saludable y en movimiento"
+        },
+        "card7": {
+            "title": "decides",
+            "content": "Aquí tú eres quien marca lo que quieres, realizando rutinas sin ningún tipo de entrenador ni obligaciones"
+        }
+    }
 }

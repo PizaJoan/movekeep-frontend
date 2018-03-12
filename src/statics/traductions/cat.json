@@ -1,4 +1,5 @@
 {
+    "you": "tu",
     "categories": "Categories",
     "viewRoutines": "Veure rutines de",
     "explore": "Explora",
@@ -10,5 +11,36 @@
     "tableTitle": "Títol",
     "tableAuthor": "Autor",
     "tableType": "Tipus",
-    "tableDate": "Data"
+    "tableDate": "Data",
+    "index": {
+        "title": "Que volem aconseguir?",
+        "card1": {
+            "title": "Mantenir-se positiu",
+            "content": "Avui en día és necessari per mantenir una rutina de deport mantenir-se positiu i amb ganes de realitzar i seguir realitzant activitat física"
+        },
+        "card2": {
+            "title": "Estar motivat",
+            "content": "Amb una comunitat que volen ajudar no només compartint rutines d'exercici de tot tipus i manera sino que també donant ànims"
+        },
+        "card3": {
+            "title": "Ser saludable",
+            "content": "Gràcies a la comunitat i a les pròpies rutines et mantindràs saludable i milloraras la teva condició física amb el pas del temps"
+        },
+        "card4": {
+            "title": "Rutines",
+            "content": "Gràcies a la pròpia comunitat i a tu tindràs accés total a les rutines i podrás fer tantes com vulguis"
+        },
+        "card5": {
+            "title": "Varietat",
+            "content": "Ja que tots contribuïm la varietat de rutines és amplia separades per categoríes i descrites amb contingut"
+        },
+        "card6": {
+            "title": "compromisos",
+            "content": "Dins aquesta app no es marca cap tipus d'objectiu menys el clar de mantenir-se saludable i en moviment fent rutines"
+        },
+        "card7": {
+            "title": "decideixes",
+            "content": "Aquí tu ets qui marca el que vols fer realitzant rutines sense cap tipus d'entrenador ni obligacions tu decideixes"
+        }
+    }
 }

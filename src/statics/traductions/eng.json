@@ -1,4 +1,5 @@
 {
+    "you": "you",
     "categories": "Categories",
     "viewRoutines": "View routines of",
     "explore": "Explore",
@@ -10,5 +11,36 @@
     "tableTitle": "Title",
     "tableAuthor": "Author",
     "tableType": "Type",
-    "tableDate": "Date"    
+    "tableDate": "Date",
+    "index": {
+        "title": "What do we want to achieve?",
+        "card1": {
+            "title": "Stay positive",
+            "content": "Nowadays it's necessary to maintain a sports routine to stay positive and want to continue doing physical activity"
+        },
+        "card2": {
+            "title": "Stay motivated",
+            "content": "With a community that wants to help not only by sharing exercise routines of all kinds but also giving encouragement"
+        },
+        "card3": {
+            "title": "Be healthy",
+            "content": "Thanks to the community and the routines you will stay healthy and improve your physical condition over time"
+        },
+        "card4": {
+            "title": "Routines",
+            "content": "Thanks to the community itself and you will have full access to routines and you can do as many as you want"
+        },
+        "card5": {
+            "title": "Variety",
+            "content": "Since we all contribute the variety of routines it's wide, separated by categorization and described"
+        },
+        "card6": {
+            "title": "compromises",
+            "content": "This app does not mark any type of goal just to stay healthy and in motion by doing routines"
+        },
+        "card7": {
+            "title": "decide",
+            "content": "Here you are the one who marks what you want to do, routines without any coach or obligations"
+        }
+    } 
 }
