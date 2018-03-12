@@ -1,17 +1,22 @@
 {
+    "languages": "languages",
     "you": "you",
+    "userName": "username",
+    "creationDate": "creation date",
+    "info": "information of",
     "categories": "Categories",
     "viewRoutines": "View routines of",
     "explore": "Explore",
     "home": "Home",
     "account": "Account",
-    "routines": "Rutines",
+    "routines": "Routines",
     "logout": "Logout",
     "routineOf": "Routines of",
-    "tableTitle": "Title",
-    "tableAuthor": "Author",
-    "tableType": "Type",
-    "tableDate": "Date",
+    "routineOfSingular": "Routine of",
+    "title": "Title",
+    "author": "Author",
+    "type": "Type",
+    "date": "Date",
     "index": {
         "title": "What do we want to achieve?",
         "card1": {
@@ -42,5 +47,8 @@
             "title": "decide",
             "content": "Here you are the one who marks what you want to do, routines without any coach or obligations"
         }
-    } 
+    },
+    "manager": {
+        "explain": "On this screen you can add, modify and delete your own routines"
+    }
 }

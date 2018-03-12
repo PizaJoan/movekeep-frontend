@@ -1,5 +1,9 @@
 {
+    "languages": "lenguajes",
     "you": "tú",
+    "userName": "nombre de usuario",
+    "creationDate": "fecha de alta",
+    "info": "información de",
     "categories": "Categorias",
     "viewRoutines": "Ver rutinas de",
     "explore": "Explorar",
@@ -8,10 +12,11 @@
     "routines": "Rutinas",
     "logout": "Cerrar sesión",
     "routineOf": "Rutinas de",
-    "tableTitle": "Titulo",
-    "tableAuthor": "Autor",
-    "tableType": "Tipo",
-    "tableDate": "Fecha",
+    "routineOfSingular": "Rutina de",
+    "title": "Titulo",
+    "author": "Autor",
+    "type": "Tipo",
+    "date": "Fecha",
     "index": {
         "title": "¿Que queremos conseguir?",
         "card1": {
@@ -42,5 +47,8 @@
             "title": "decides",
             "content": "Aquí tú eres quien marca lo que quieres, realizando rutinas sin ningún tipo de entrenador ni obligaciones"
         }
+    },
+    "manager": {
+        "explain": "En esta pantalla podrás añadir, modificar y borrar tus propias rutinas"
     }
 }

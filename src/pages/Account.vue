@@ -6,7 +6,7 @@
             highlight
         >
             <q-list-header align="center">
-                Informació de {{ user.name }}
+                 {{ this.$t('info') | capitalize }} {{ user.name }}
             </q-list-header>
             <q-item>
                 <q-item-side>
@@ -44,7 +44,7 @@
                 </q-item-side>
                 <q-item-main 
                     :sublabel="user.userName"
-                    label="Nom d'usuari:"
+                    :label="`${this.$options.filters.capitalize(this.$t('userName'))}:`"
                 />
             </q-item>
             <q-item>
@@ -53,7 +53,7 @@
                 </q-item-side>
                 <q-item-main 
                     :sublabel="user.creationDate"
-                    label="Data d'alta:"
+                    :label="`${this.$options.filters.capitalize(this.$t('creationDate'))}:`"
                 />
             </q-item>                         
         </q-list>

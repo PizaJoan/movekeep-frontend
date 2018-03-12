@@ -26,7 +26,7 @@
                 config: [
                     {
                         name: 'title',
-                        label: this.$t('tableTitle'),
+                        label: this.$t('title'),
                         field: 'titol',
                         required: true,
                         sortable: true,
@@ -34,7 +34,7 @@
                     },
                     {
                         name: 'author',
-                        label: this.$t('tableAuthor'),
+                        label: this.$t('author'),
                         field: 'author',
                         required: true,
                         sortable: true,
@@ -42,7 +42,7 @@
                     },
                     {
                         name: 'tipus',
-                        label: this.$t('tableType'),
+                        label: this.$t('type'),
                         field: 'tipus',
                         required: true,
                         sortable: true,
@@ -50,7 +50,7 @@
                     },
                     {
                         name: 'date',
-                        label: this.$t('tableDate'),
+                        label: this.$t('date'),
                         field: 'date',
                         required: true,
                         sortable: true,

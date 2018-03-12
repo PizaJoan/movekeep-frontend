@@ -52,7 +52,7 @@
                     Movekeep
                 </q-toolbar-title>
                 <span>
-                    Languages: <q-btn @click.native="changeLang('es')">Es</q-btn> |
+                    <span v-if="this.$q.platform.is.desktop">{{ this.$t('languages') | capitalize }}:</span> <q-btn @click.native="changeLang('es')">Es</q-btn> |
                     <q-btn @click.native="changeLang('ca')" tag="span" to="#" >Ca</q-btn> |
                     <q-btn @click.native="changeLang('en-uk')" tag="span" to="#" >En</q-btn>
                 </span>

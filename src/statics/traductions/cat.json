@@ -1,5 +1,9 @@
 {
+    "languages": "llenguatges",
     "you": "tu",
+    "userName": "Nom d'usuari",
+    "info": "informació de",
+    "creationDate": "data d'alta",
     "categories": "Categories",
     "viewRoutines": "Veure rutines de",
     "explore": "Explora",
@@ -8,10 +12,11 @@
     "routines": "Rutines",
     "logout": "Tancar sesió",
     "routineOf": "Rutines de",
-    "tableTitle": "Títol",
-    "tableAuthor": "Autor",
-    "tableType": "Tipus",
-    "tableDate": "Data",
+    "routineOfSingular": "Rutina de",
+    "title": "Títol",
+    "author": "Autor",
+    "type": "Tipus",
+    "date": "Data",
     "index": {
         "title": "Que volem aconseguir?",
         "card1": {
@@ -42,5 +47,8 @@
             "title": "decideixes",
             "content": "Aquí tu ets qui marca el que vols fer realitzant rutines sense cap tipus d'entrenador ni obligacions tu decideixes"
         }
+    },
+    "manager": {
+        "explain" : "Dins aquesta pantalla podrás afegir, modificar i esborrar les teves pròpies rutines"
     }
 }
