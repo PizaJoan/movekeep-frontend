@@ -17,13 +17,14 @@
                 <q-item-main>
                         <q-uploader
                             ref="uploader"
-                            prefix="Canvia la teva foto"
+                            :stack-label="this.$t('changePhoto')"
                             :url="uploadURL"
                             name="image"
                             method="PUT"
                             :multiple="false"
                             extenseions=".png.jpg.jpeg"
                             hide-upload-progress
+                            hide-underline
                             :additionalFields="[
                                 {
                                     name: 'username',
