@@ -5,7 +5,7 @@
                 {{ this.$t('routines') }}
                 <router-link to="/manage-routine">
                     <template v-if="this.$q.platform.is.mobile">
-                        <q-icon name="ion-plus" size="1.5rem" class="on-right" />
+                        <q-icon name="ion-plus" color="info" size="1.5rem" class="on-right" />
                     </template>
                     <template v-else>
                         <q-btn round color="primary" icon="ion-plus" class="on-right" />

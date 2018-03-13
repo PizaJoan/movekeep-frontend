@@ -4,43 +4,43 @@
             <q-card-title align="center">
                 <img alt="logo" class="responsive" width="100px" src="./../statics/logo-movekeep-working-png-big.png" />
                 <h5>
-                    <span v-if="this.id">Modificar rutina {{ this.title | capitalize }}</span>
-                    <span v-else>Afegir rutina nova</span>
+                    <span v-if="this.id">{{ this.$t('modify') | capitalize }} {{ this.$t('routine') }} {{ this.title | capitalize }}</span>
+                    <span v-else>{{ this.$t('add') | capitalize }} {{ this.$t('routina') }}</span>
                 </h5>
             </q-card-title>
             <q-card-main>
                 <q-field
-                    helper="Títol de la rutina"
                     :error="$v.title.$error"
-                    error-label="Aquest camp s'ha d'emplenar i màxim 40 caràcters"
+                    :error-label="this.$t('fields.title.error')"
+                    :helper="this.$t('fields.title.info')"
                 >
                     <q-input 
                         v-model.trim="title"
                         type="text"
-                        float-label="Títol"
+                        :float-label="this.$t('title')"
                         @click="$v.title.$touch()"
                         @focus="$v.title.$touch()"
                     />
                 </q-field>
                 <q-field
                     :error="this.$v.description.$error"
-                    helper="Describeix la teva rutina breument"
-                    error-label="Máxim 300 caràcters"
+                    :helper="this.$t('fields.description.info')"
+                    :error-label="this.$t('fields.description.error')"
                     class="marge-top"
                 >
                     <q-input 
                         v-model.trim="description"
                         type="textarea"
-                        float-label="Breu descripció"
+                        :float-label="this.$t('description') | capitalize"
                         :max-height="50"  
                         @click="$v.description.$touch()" 
                         @focus="$v.description.$touch()"                 
                     />
                 </q-field>
                 <q-field
-                    helper="Selecciona la/les categoríes de la rutina"
                     :error="this.$v.categoriesSelected.$error"
-                    error-label="N'has de triar al manco 1"
+                    :helper="this.$t('fields.categories.info')"
+                    :error-label="this.$t('fields.categories.error')"
                     class="marge-top"
                 >
                     <q-select
@@ -49,14 +49,14 @@
                         :options="categories"
                         v-model="categoriesSelected"
                         @focus="$v.categoriesSelected.$touch()"
-                        filter-placeholder="Cerca una categoria"
-                        float-label="Categories seleccionades"
+                        :filter-placeholder="this.$t('fields.categories.placeholder')"
+                        :float-label="this.$t('categories')"
                     />
 
                 </q-field>
                 <q-field
-                    helper="Marca l'opció si la teva rutina va per temps o per repeticions"
-                    error-label="Has de triar qualcuna opció"
+                    :helper="this.$t('fields.type.info')"
+                    :error-label="this.$t('fields.type.error')"
                     :error="this.$v.type.$error"
                     class="marge-top"
                 >
@@ -66,14 +66,14 @@
                         inline
                         @input="$v.type.$touch()"
                         :options="[
-                            { label:'De temps', value: 'time'},
-                            { label:'De repeticions', value: 'reps'},
+                            { label: this.$t('time'), value: 'time'},
+                            { label: this.$t('reps'), value: 'reps'},
                         ]"
                     />
                 </q-field>
                 <div class="column">
                     <div class="column marge-top" v-for="exercise in exercises" :key="exercise.title" v-show="type">
-                        <span>{{`Exercici ${exercises.indexOf(exercise) + 1}`}}</span>
+                        <span>{{ $t('exercise') | capitalize }}  {{ exercises.indexOf(exercise) + 1 }}</span>
                         <div class="row justify-between marge-top">
                             <q-field 
                                 class="col-md-5 col-xs-12"
@@ -89,7 +89,7 @@
                                     class="col-md-5 col-xs-12"
                                     v-model.trim="exercise.description"
                                     type="text"
-                                    float-label="Descripció exercici"
+                                    :float-label="$t('description') | capitalize"
                                 />
                             </q-field>
                             <div class="row col-md-1">
@@ -110,7 +110,7 @@
                             @click="addExercise"
                             color="primary"
                         >
-                            Afegir exercici
+                            {{ this.$t('add') }} {{ this.$t('exercise') }}
                         </q-btn>
                     </div>
                     <div align="right" class="col-md-6 col-xs-5">
@@ -119,8 +119,8 @@
                             :disable="$v.all.$error || !$v.all.$dirty"
                             @click="putRoutine"
                         >
-                            <span v-if="this.id">Modificar rutina</span>
-                            <span v-else>Afegir rutina</span>
+                            <span v-if="this.id">{{ this.$t('modify') }} {{ this.$t('routine') }}</span>
+                            <span v-else>{{ this.$t('add') }} {{ this.$t('routine') }}</span>
                         </q-btn>
                     </div>
                 </div>    

@@ -8,13 +8,22 @@
     "viewRoutines": "Ver rutinas de",
     "explore": "Explorar",
     "home": "Inicio",
+    "time": "Tiempo",
+    "reps": "Repeticiones",
     "account": "Cuenta",
     "routines": "Rutinas",
     "logout": "Cerrar sesión",
     "routineOf": "Rutinas de",
     "routineOfSingular": "Rutina de",
     "changePhoto": "Cambia tu foto",
-    "title": "Titulo",
+    "exercise": "ejercicio",
+    "routine": "rutina",
+    "add": "añadir",
+    "modify": "modificar",
+    "min": "minimo",
+    "max": "maximo",
+    "description": "descripción",
+    "title": "Título",
     "author": "Autor",
     "type": "Tipo",
     "date": "Fecha",
@@ -51,5 +60,28 @@
     },
     "manager": {
         "explain": "En esta pantalla podrás añadir, modificar y borrar tus propias rutinas"
+    },
+    "fields": {
+        "title": {
+            "error": "Este campo és necesario y 40 como maximo carácteres",
+            "info": "Título descriptivo"
+        },
+        "description": {
+            "error": "Maximo 300 carácteres",
+            "info": "Describe brevemente la rutina"
+        },
+        "categories": {
+            "error": "Al menos elije una",
+            "info": "Selecciona las categorias",
+            "placeholder": "Buscar una categoria"
+        },
+        "type": {
+            "error": "Elije almenos una",
+            "info": "Marca dependiendo si la rutina és de tiempo o de repeticiones"
+        },
+        "exercise": {
+            "infoTime": "Tiempo en segundos",
+            "infoReps": "Nº de repetitiones"
+        }
     }
 }

@@ -28,9 +28,9 @@ export default ({ app, router, Vue }) => {
     Vue.filter('typeRoutine', type => {
         switch(type) {
             case 'time':
-                return 'Temps en segons*'
+                return app.i18n.t('fields.exercise.infoTime')
             case 'reps':
-                return 'Nº Repeticions*'
+                return app.i18n.t('fields.exercise.infoReps')
             default:
                 return ''
         }  

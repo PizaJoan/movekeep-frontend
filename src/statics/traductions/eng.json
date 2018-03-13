@@ -8,12 +8,21 @@
     "viewRoutines": "View routines of",
     "explore": "Explore",
     "home": "Home",
+    "time": "Time",
+    "reps": "Repetitions",
     "account": "Account",
     "routines": "Routines",
     "logout": "Logout",
     "routineOf": "Routines of",
     "routineOfSingular": "Routine of",
     "changePhoto": "Change your picture",
+    "exercise": "exercise",
+    "routine": "routine",
+    "add": "add",
+    "modify": "modify",
+    "min": "minimum",
+    "max": "maximum",
+    "description": "description",
     "title": "Title",
     "author": "Author",
     "type": "Type",
@@ -51,5 +60,28 @@
     },
     "manager": {
         "explain": "On this screen you can add, modify and delete your own routines"
+    },
+    "fields": {
+        "title": {
+            "error": "This field is required and maximum 40 characters",
+            "info": "Descriptive title"
+        },
+        "description": {
+            "error": "Maximum 300 characters",
+            "info": "Describe briefly the routine"
+        },
+        "categories": {
+            "error": "At least choose one",
+            "info": "Choose the categories",
+            "placeholder": "Search category"
+        },
+        "type": {
+            "error": "Choose at least one",
+            "info": "Choose one if your routine is of time or repetitions"
+        },
+        "exercise": {
+            "infoTime": "Time in seconds",
+            "infoReps": "Number of repetitions"
+        }
     }
 }

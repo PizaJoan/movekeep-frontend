@@ -6,7 +6,7 @@
             highlight
         >
             <q-list-header align="center">
-                 {{ this.$t('info') | capitalize }} {{ user.name }}
+                {{ this.$t('info') | capitalize }} {{ user.name }}
             </q-list-header>
             <q-item>
                 <q-item-side>
@@ -100,9 +100,7 @@
                         {
                             label: '',
                             icon: 'ion-close',
-                            handler: () => {
-
-                            }
+                            handler: () => {}
                         }
                     ]
                 })

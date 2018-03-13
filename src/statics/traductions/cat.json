@@ -8,12 +8,21 @@
     "viewRoutines": "Veure rutines de",
     "explore": "Explora",
     "home": "Inici",
+    "time": "Temps",
+    "reps": "Repeticions",
     "account": "Compte",
     "routines": "Rutines",
     "logout": "Tancar sesió",
     "routineOf": "Rutines de",
     "routineOfSingular": "Rutina de",
+    "routine": "rutina",
+    "add": "afegir",
+    "modify": "modificar",
+    "min": "mínim",
+    "max": "màxim",
+    "description": "descripció",
     "changePhoto": "Canvia la teva foto",
+    "exercise": "exercici",
     "title": "Títol",
     "author": "Autor",
     "type": "Tipus",
@@ -51,5 +60,28 @@
     },
     "manager": {
         "explain" : "Dins aquesta pantalla podrás afegir, modificar i esborrar les teves pròpies rutines"
+    },
+    "fields": {
+        "title": {
+            "error": "Aquest camp s'ha d'emplenar i màxim 40 caràcters",
+            "info": "Titol descriptiu"
+        },
+        "description": {
+            "error": "Máxim 300 caràcters",
+            "info": "Descriu breument la rutina"
+        },
+        "categories": {
+            "error": "N'has de triar al manco una",
+            "info": "Tria la/les categories",
+            "placeholder": "Cerca una categoria"
+        },
+        "type": {
+            "error": "Has de triar qualcuna opció",
+            "info": "Marca l'opció si la teva rutina va per temps o per repeticions"
+        },
+        "exercise": {
+            "infoTime": "Temps en segons",
+            "infoReps": "Nº repeticions"
+        }
     }
 }
