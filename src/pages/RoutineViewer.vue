@@ -59,12 +59,18 @@
                     }
                 ],
                 filter: '',
-                loading: false
+                loading: false,
             }
         },
         watch: {
             '$route.params.category': function(category) {
                 this.getRoutines()
+            },
+            '$i18n.locale': function(lang) {
+                this.config[0].label = this.$t('title')
+                this.config[1].label = this.$t('author')
+                this.config[2].label = this.$t('type')
+                this.config[3].label = this.$t('date')
             }
         },
         mounted() {
@@ -78,7 +84,7 @@
                     .then(res => res.json(), err => {
                         this.$q.notify({
                             type: 'negative',
-                            message: 'No s\'han pogut carregar rutines...',
+                            message: 'Error',
                             actions: [
                                 {
                                     label: '',
@@ -87,6 +93,7 @@
                                 }
                             ]
                         })
+                        this.loading = !this.loading
                     }).then(routines => {
                         this.routines = routines.map(routine => ({
                             titol: routine.title,
