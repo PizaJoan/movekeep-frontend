@@ -4,16 +4,15 @@
             <q-card-title align="center">              
                 <router-link to="/" tag="img" class="responsive" width="100px" src="./../statics/logo-movekeep-working-png-big.png" alt="logo" />
                 <h5 class="no-marge">
-                    Nou compte
+                    {{ this.$t('create') | capitalize }} {{ this.$t('account').toLowerCase() }}
                 </h5>
-                <span slot="subtitle">Crear nou compte</span>
             </q-card-title>
             <q-card-main>
                 <q-field 
                     :error="$v.user.$error"
                 >
                     <q-input
-                        float-label="* Nom d'usuari"
+                        :float-label="this.$t('userName') | capitalize"
                         suffix="ex: movekeep-user"
                         v-model="user"
                         @click="$v.user.$touch()"
@@ -25,7 +24,7 @@
                     class="marge-top"
                 >
                     <q-input
-                        float-label="* Nom complet"
+                        :float-label="this.$t('fullName') | capitalize"
                         suffix="ex: Movekeep User"
                         v-model="name"
                         @click="$v.name.$touch()"
@@ -35,10 +34,10 @@
                 <q-field 
                     class="marge-top"
                     :error="$v.password.$error" 
-                    error-label="La contrasenya ha de tenir mínim 6 caràcters"
+                    :error-label="this.$t('fields.password.password.error')"
                 >
                     <q-input 
-                        float-label="* Contrasenya"
+                        :float-label="this.$t('password') | capitalize"
                         v-model="password"
                         type="password"
                         @click="$v.password.$touch()"
@@ -48,10 +47,10 @@
                 <q-field 
                     class="marge-top"
                     :error="$v.repeatPassword.$error"
-                    error-label="Les contrasenyes han de coincidir"
+                    :error-label="this.$t('fields.password.repeat.error')"
                 >
                     <q-input 
-                        float-label="* Repetir contrasenya"
+                        :float-label="`${$options.filters.capitalize(this.$t('repeat'))} ${this.$t('password')}`"
                         v-model="repeatPassword"
                         type="password"
                         @click="$v.repeatPassword.$touch()"
@@ -64,7 +63,7 @@
                         :disable="$v.all.$error || !$v.all.$dirty"
                         @click="createUser($event).catch(error)"
                     >
-                        Enviar
+                        {{ this.$t('send') }}
                     </q-btn>
                 </div>
             </q-card-main>
@@ -90,7 +89,6 @@
                 name: '',
                 password: '',
                 repeatPassword: '',
-                ajuda: '*Aques camp es requerit'
             }
         },
         validations: {

@@ -3,9 +3,11 @@
     "you": "tú",
     "create": "crear",
     "send": "enviar",
-    "password": "password",
+    "password": "contraseña",
     "login": "iniciar sesión",
     "userName": "nombre de usuario",
+    "fullName": "nombre completo",
+    "repeat": "repetir",
     "creationDate": "fecha de alta",
     "info": "información de",
     "categories": "Categorias",
@@ -86,6 +88,14 @@
         "exercise": {
             "infoTime": "Tiempo en segundos",
             "infoReps": "Nº de repetitiones"
+        },
+        "password": {
+            "password": {
+                "error": "Mínimo 6 carácteres"
+            },
+            "repeat": {
+                "error": "Las contraseñas deben coincidir"
+            }
         }
     }
 }

@@ -6,6 +6,8 @@
     "password": "contraseña",
     "login": "log in",
     "userName": "username",
+    "fullName": "full name",
+    "repeat": "repeat",
     "creationDate": "creation date",
     "info": "information of",
     "categories": "Categories",
@@ -86,6 +88,14 @@
         "exercise": {
             "infoTime": "Time in seconds",
             "infoReps": "Number of repetitions"
+        },
+        "password": {
+            "password": {
+                "error": "Minimum 6 characters"
+            },
+            "repeat": {
+                "error": "Passwords must match"
+            }
         }
     }
 }

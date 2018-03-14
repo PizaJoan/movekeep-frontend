@@ -5,7 +5,9 @@
     "send": "enviar",
     "login": "iniciar sessió",
     "password": "contrasenya",
-    "userName": "Nom d'usuari",
+    "userName": "nom d'usuari",
+    "fullName": "nom complet",
+    "repeat": "repetir",
     "info": "informació de",
     "creationDate": "data d'alta",
     "categories": "Categories",
@@ -86,6 +88,14 @@
         "exercise": {
             "infoTime": "Temps en segons",
             "infoReps": "Nº repeticions"
+        },
+        "password": {
+            "password": {
+                "error": "Mínim 6 caràcters"
+            },
+            "repeat": {
+                "error": "Les contrasenyes han de coincidir"
+            }
         }
     }
 }
