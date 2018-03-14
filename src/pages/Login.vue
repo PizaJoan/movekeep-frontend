@@ -4,9 +4,8 @@
             <q-card-title align="center">            
                 <router-link to="/" tag="img" class="responsive" width="100px" src="./../statics/logo-movekeep-working-png-big.png" alt="logo" />
                 <h5 class="no-marge">
-                    Login
+                    {{ this.$t('login') | capitalize }}
                 </h5>
-                <span slot="subtitle">Formulari Login</span>
             </q-card-title>
             <q-card-main> 
                 <q-field  
@@ -15,7 +14,7 @@
                     <q-input
                         v-model.trim="user" 
                         type="text"
-                        float-label="Nom d'usuari"
+                        :float-label="this.$t('userName') | capitalize"
                         name="user"
                         @click="$v.user.$touch()"
                         @focus="$v.user.$touch()"
@@ -28,7 +27,7 @@
                     <q-input 
                         v-model.trim="password"
                         type="password" 
-                        float-label="Contrasenya"
+                        :float-label="this.$t('password') | capitalize"
                         no-pass-toggle
                         name="password"
                         @keydown.enter="checkLogin"
@@ -37,9 +36,9 @@
                         />
                 </q-field>
                 <div class="row justify-between marge-top">
-                    <router-link class="text-blue-5 marge-top" to="create">Creat compte</router-link>
+                    <router-link class="text-blue-5 marge-top" to="create">{{ this.$t('create') | capitalize }} {{ this.$t('account').toLowerCase() }}</router-link>
                     <q-btn color="primary" big @click="checkLogin" :disable="!user || !password">
-                        Enviar
+                        {{ this.$t('send') }}
                     </q-btn>
                 </div>
             </q-card-main>

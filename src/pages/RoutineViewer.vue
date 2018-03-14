@@ -26,7 +26,7 @@
                 config: [
                     {
                         name: 'title',
-                        label: this.$t('title'),
+                        label: '',
                         field: 'titol',
                         required: true,
                         sortable: true,
@@ -34,7 +34,7 @@
                     },
                     {
                         name: 'author',
-                        label: this.$t('author'),
+                        label: '',
                         field: 'author',
                         required: true,
                         sortable: true,
@@ -42,7 +42,7 @@
                     },
                     {
                         name: 'tipus',
-                        label: this.$t('type'),
+                        label: '',
                         field: 'tipus',
                         required: true,
                         sortable: true,
@@ -50,7 +50,7 @@
                     },
                     {
                         name: 'date',
-                        label: this.$t('date'),
+                        label: '',
                         field: 'date',
                         required: true,
                         sortable: true,
@@ -67,16 +67,20 @@
                 this.getRoutines()
             },
             '$i18n.locale': function(lang) {
+                this.setFields()
+            }
+        },
+        mounted() {
+            this.setFields()
+            this.getRoutines()
+        },
+        methods: {
+            setFields() {
                 this.config[0].label = this.$t('title')
                 this.config[1].label = this.$t('author')
                 this.config[2].label = this.$t('type')
                 this.config[3].label = this.$t('date')
-            }
-        },
-        mounted() {
-            this.getRoutines()
-        },
-        methods: {
+            },
             getRoutines() {
                 this.loading = !this.loading
                 this.routines = []

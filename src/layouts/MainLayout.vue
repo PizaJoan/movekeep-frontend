@@ -84,7 +84,6 @@
             return {
                 leftDrawer: true,
                 categories: [],
-                lang: ''
               }
           },
         methods: {
@@ -94,12 +93,10 @@
             },
             changeLang(lang) {
                 if (lang) this.$q.localStorage.set('lang', lang)
-                this.lang = this.$q.localStorage.get.item('lang') || lang || this.$q.i18n.getLocale()
-                this.$i18n.locale = this.lang
+                this.$i18n.locale = this.$q.localStorage.get.item('lang') || lang || this.$q.i18n.getLocale()
                 import(`quasar-framework/i18n/${this.$i18n.locale}`).then(lang => {
                     this.$q.i18n.set(lang.default)
                 })
-                
             }
         },
         mounted() {

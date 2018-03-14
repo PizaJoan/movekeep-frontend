@@ -6,7 +6,7 @@
                 <h5 class="no-marge">
                     Nou compte
                 </h5>
-                <span slot="subtitle">Crear nou compte (*) camp requerit </span>
+                <span slot="subtitle">Crear nou compte</span>
             </q-card-title>
             <q-card-main>
                 <q-field 

@@ -1,6 +1,10 @@
 {
     "languages": "languages",
     "you": "you",
+    "create": "create",
+    "send": "send",
+    "password": "contraseña",
+    "login": "log in",
     "userName": "username",
     "creationDate": "creation date",
     "info": "information of",
