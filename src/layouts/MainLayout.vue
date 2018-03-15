@@ -21,27 +21,38 @@
                         icon="ion-home"
                         hide="label"
                     />
-                    <q-route-tab 
-                        to="/account" 
-                        :label="this.$t('account')"
-                        slot="title"
-                        icon="ion-person"
-                        hide="label"
-                    />
-                    <q-route-tab
-                        to="/my-routines"
-                        :label="this.$t('routines')"
-                        slot="title"
-                        hide="label"
-                        icon="ion-stats-bars"
-                    />
-                    <q-tab 
-                        :label="this.$t('logout')"
-                        slot="title"
-                        icon="ion-android-exit"
-                        @click="logOut"
-                        hide="label"
-                    />
+                    <template v-if="this.$q.localStorage.has('access_token')">
+                        <q-route-tab 
+                            to="/account" 
+                            :label="this.$t('account')"
+                            slot="title"
+                            icon="ion-person"
+                            hide="label"
+                        />
+                        <q-route-tab
+                            to="/my-routines"
+                            :label="this.$t('routines')"
+                            slot="title"
+                            hide="label"
+                            icon="ion-stats-bars"
+                        />
+                        <q-tab 
+                            :label="this.$t('logout')"
+                            slot="title"
+                            icon="ion-android-exit"
+                            @click="logOut"
+                            hide="label"
+                        />
+                    </template>
+                    <template v-else>
+                        <q-route-tab 
+                            to="/account" 
+                            :label="this.$t('login') | capitalize"
+                            slot="title"
+                            icon="ion-person"
+                            hide="label"
+                        />
+                    </template>
               </q-tabs>
             </q-toolbar>
         </q-layout-header>
@@ -89,6 +100,10 @@
         methods: {
             logOut() {
                 this.$q.localStorage.clear()
+                this.$q.notify({
+                    type: 'info',
+                    message: 'S\'ha tancat sesió',
+                })
                 this.$router.push('/')
             },
             changeLang(lang) {

@@ -125,6 +125,8 @@
                     name: this.name,
                     creationDate: date.formatDate(new Date(), 'YYYY-MM-DD')
                 })
+
+                this.$router.push('/')
             },
             error(err) {
                 this.$q.notify({
