@@ -104,7 +104,7 @@
                     type: 'info',
                     message: 'S\'ha tancat sesió',
                 })
-                this.$router.push('/')
+                this.$router.go('/')
             },
             changeLang(lang) {
                 if (lang) this.$q.localStorage.set('lang', lang)

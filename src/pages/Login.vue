@@ -71,12 +71,13 @@
                     username: this.user,
                     password: this.password
                 }).then(res => {
+                    console.log(res)
                     this.$q.localStorage.set('access_token', res.headers.map.authorization[0].replace(/Bearer /, ''))
                     this.$q.localStorage.set('refresh_token', res.body)
                     this.$router.push('/my-routines')
                 }, this.checkCredentials)
             },
-            checkCredentials() {
+            checkCredentials(err) {
                 this.$q.notify({
                     type: 'negative',
                     message: 'L\'usuari o la contrasenya no són correctes',

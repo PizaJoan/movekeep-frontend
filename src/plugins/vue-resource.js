@@ -10,7 +10,7 @@ export default ({ app, router, Vue }) => {
     Vue.http.interceptors.push(function (req, next) {
         if (LocalStorage.has('access_token')) req.headers.set('Authorization', `Bearer ${LocalStorage.get.item('access_token')}`)
         next(res => {
-            if (res.status === 401) {
+            if (res.status === 401 && !res.url.includes('token-local')) {
                 return new Promise(resolve => {
                     this.$http.post(`${process.env.AUTH}/refresh-token`, {
                         refresh: LocalStorage.get.item('refresh_token')

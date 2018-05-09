@@ -113,18 +113,13 @@
                 e.preventDefault()
 
                 let auth = await this.$http.post(`${process.env.AUTH}/create-user`, {
+                    name: this.name,
                     username: this.user,
                     password: this.password
                 })
 
                 this.$q.localStorage.set('access_token', auth.headers.map.authorization[0].replace(/Bearer /, ''))
                 this.$q.localStorage.set('refresh_token', auth.body)
-
-                let apiUser = await this.$http.post(`${process.env.API}/user/add`, {
-                    userName: this.user,
-                    name: this.name,
-                    creationDate: date.formatDate(new Date(), 'YYYY-MM-DD')
-                })
 
                 this.$router.push('/')
             },

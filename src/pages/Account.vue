@@ -88,7 +88,7 @@
                 this.$http.get(`${process.env.API}/user/info/${this.user.userName}`).then(res => res.json(), this.fail)
                     .then(user => {
                         this.user.name = user.name
-                        this.user.picture = user.pathToImage || 'http://simpleicon.com/wp-content/uploads/user-5.png'
+                        this.user.picture = user.pathToImage || 'https://image.freepik.com/free-icon/male-user-shadow_318-34042.jpg'
                         this.user.creationDate = user.creationDate
                 })
             },

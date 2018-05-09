@@ -50,12 +50,12 @@ module.exports = function(ctx) {
             },
             env: ctx.dev
                 ? {
-                      API: JSON.stringify('http://192.168.1.37:8080'),
-                      AUTH: JSON.stringify('http://192.168.1.37:3000')
+                    API: JSON.stringify('https://api.movekeep.tk'),
+                    AUTH: JSON.stringify('https://auth.movekeep.tk')
                   }
                 : {
-                      API: JSON.stringify('http://192.168.1.37:8080'),
-                      AUTH: JSON.stringify('http://192.168.1.37:3000')
+                    API: JSON.stringify('https://api.movekeep.tk'),
+                    AUTH: JSON.stringify('https://auth.movekeep.tk')
                   }
         },
         devServer: {
