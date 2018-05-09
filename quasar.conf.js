@@ -50,8 +50,8 @@ module.exports = function(ctx) {
             },
             env: ctx.dev
                 ? {
-                    API: JSON.stringify('https://api.movekeep.tk'),
-                    AUTH: JSON.stringify('https://auth.movekeep.tk')
+                    API: JSON.stringify('http://localhost:8080'),
+                    AUTH: JSON.stringify('http://localhost:3000')
                   }
                 : {
                     API: JSON.stringify('https://api.movekeep.tk'),
@@ -98,7 +98,9 @@ module.exports = function(ctx) {
                 'QUploader',
                 'QItemSeparator',
                 'QSelect',
-                'QOptionGroup'
+                'QOptionGroup',
+                'QTr',
+                'QTd',
             ],
             directives: ['Ripple'],
             // Quasar plugins

@@ -14,6 +14,11 @@
                     class="col-md-6 col-xs-12"
                 />
             </template>
+            <q-tr slot="body" slot-scope="props" :props="props" @click.native="viewRoutine(props.row)" class="cursor-pointer">
+                <q-td v-for="col in props.cols" :key="col.name" :props="props">
+                    {{ col.value }} 
+                </q-td>
+            </q-tr>
         </q-table>
     </q-page>
 </template>
@@ -100,6 +105,8 @@
                         this.loading = !this.loading
                     }).then(routines => {
                         this.routines = routines.map(routine => ({
+                            id: routine.id,
+                            username: routine.user.userName,
                             titol: routine.title,
                             author: routine.user.name,
                             tipus: this.$options.filters.getTypeRoutine(routine.type),
@@ -108,6 +115,9 @@
                         this.loading = !this.loading
                     })
             },
+            viewRoutine(routine) {
+                this.$router.push(`/view-routine/${routine.username}/${routine.id}`)
+            }
         }
     }
 </script>
