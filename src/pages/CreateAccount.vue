@@ -12,6 +12,7 @@
                     :error="$v.user.$error"
                 >
                     <q-input
+                        :disable="loading"
                         :float-label="this.$t('userName') | capitalize"
                         suffix="ex: movekeep-user"
                         v-model="user"
@@ -24,6 +25,7 @@
                     class="marge-top"
                 >
                     <q-input
+                        :disable="loading"
                         :float-label="this.$t('fullName') | capitalize"
                         suffix="ex: Movekeep User"
                         v-model="name"
@@ -36,7 +38,8 @@
                     :error="$v.password.$error" 
                     :error-label="this.$t('fields.password.password.error')"
                 >
-                    <q-input 
+                    <q-input
+                        :disable="loading"
                         :float-label="this.$t('password') | capitalize"
                         v-model="password"
                         type="password"
@@ -50,6 +53,7 @@
                     :error-label="this.$t('fields.password.repeat.error')"
                 >
                     <q-input 
+                        :disable="loading"
                         :float-label="`${$options.filters.capitalize(this.$t('repeat'))} ${this.$t('password')}`"
                         v-model="repeatPassword"
                         type="password"
@@ -58,7 +62,8 @@
                     />
                 </q-field>
                 <div class="flex flex-center marge-top">
-                    <q-btn  
+                    <q-btn 
+                        :loading="loading"
                         color="primary"
                         :disable="$v.all.$error || !$v.all.$dirty"
                         @click="createUser($event).catch(error)"
@@ -89,6 +94,7 @@
                 name: '',
                 password: '',
                 repeatPassword: '',
+                loading: false,
             }
         },
         validations: {
@@ -111,17 +117,23 @@
         methods: {
             async createUser(e) {
                 e.preventDefault()
+                this.loading = !this.loading
+                try {
+                    let auth = await this.$http.post(`${process.env.AUTH}/create-user`, {
+                        name: this.name,
+                        username: this.user,
+                        password: this.password
+                    })
 
-                let auth = await this.$http.post(`${process.env.AUTH}/create-user`, {
-                    name: this.name,
-                    username: this.user,
-                    password: this.password
-                })
+                    this.$q.localStorage.set('access_token', auth.headers.map.authorization[0].replace(/Bearer /, ''))
+                    this.$q.localStorage.set('refresh_token', auth.body)
 
-                this.$q.localStorage.set('access_token', auth.headers.map.authorization[0].replace(/Bearer /, ''))
-                this.$q.localStorage.set('refresh_token', auth.body)
-
-                this.$router.push('/')
+                    this.$router.push('/')
+                } catch (e) {
+                    this.error(err)
+                } finally {
+                    this.loading = !this.loading
+                }
             },
             error(err) {
                 this.$q.notify({

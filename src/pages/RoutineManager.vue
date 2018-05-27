@@ -14,25 +14,35 @@
                 <span v-if="this.$q.platform.is.desktop" class="on-right">{{ this.$t('manager.explain') }}</span>
             </q-list-header>
             <q-item-separator />
-            <q-item v-for="routine in routines" :key="routine.id">
-                <q-item-side>
-                    <q-item-tile icon="ion-information-circled" />
-                </q-item-side>
-                <q-item-main @click.native="$router.push(`/manage-routine/${routine.id}`)">
-                    <q-item-tile label lines="3">{{ $t('title') }}: {{ routine.title }}</q-item-tile>
-                    <q-item-tile sublabel>{{ $t('routineOfSingular') }}: {{ routine.type | getTypeRoutine }}</q-item-tile>
-                    <q-item-tile sublabel>{{ $t('date') }}: {{ routine.creationDate }}</q-item-tile>
-                </q-item-main>
-                <q-item-side right>
-                    <template v-if="$q.platform.is.mobile">
-                        <q-item-tile  icon="ion-close-round" size="1.5rem" @click="deleteRoutineCheck($event, routine)" />
-                    </template>  
-                    <template v-else>
-                        <q-btn round color="primary" icon="ion-close-round" @click="deleteRoutineCheck($event, routine)" />
-                    </template>      
-                    <q-btn v-if="$q.platform.is.desktop" round color="primary" icon="ion-edit" @click="$router.push(`/manage-routine/${routine.id}`)" />
-                </q-item-side>
-            </q-item>
+            <transition
+                appear
+                enter-active-class="animated fadeInRight"
+            >
+                <div v-if="!loading">
+                    <q-item v-for="routine in routines" :key="routine.id">
+                        <q-item-side>
+                            <q-item-tile icon="ion-information-circled" />
+                        </q-item-side>
+                        <q-item-main @click.native="!routine.activeButton && $q.platform.is.mobile && $router.push(`/manage-routine/${routine.id}`)">
+                            <q-item-tile label lines="3">{{ $t('title') }}: {{ routine.title }}</q-item-tile>
+                            <q-item-tile sublabel>{{ $t('routineOfSingular') }}: {{ routine.type | getTypeRoutine }}</q-item-tile>
+                            <q-item-tile sublabel>{{ $t('date') }}: {{ routine.creationDate }}</q-item-tile>
+                        </q-item-main>
+                        <q-item-side right>
+                            <template v-if="$q.platform.is.mobile">
+                                <q-item-tile icon="ion-close-round" size="1.5rem" @click.native="!routine.activeButton && deleteRoutineCheck($event, routine)" />
+                            </template>  
+                            <template v-else>
+                                <q-btn round :loading="routine.activeButton" color="primary" icon="ion-close-round" @click="deleteRoutineCheck($event, routine)" />
+                            </template>      
+                            <q-btn :loading="routine.activeButton" v-if="$q.platform.is.desktop" round color="primary" icon="ion-edit" @click="$router.push(`/manage-routine/${routine.id}`)" />
+                        </q-item-side>
+                    </q-item>
+                </div>
+            </transition>
+            <q-inner-loading :visible="loading">
+                <q-spinner-mat size="50px" color="primary"></q-spinner-mat>
+            </q-inner-loading>
         </q-list>
     </q-page>
 </template>
@@ -43,7 +53,8 @@
         data() {
             return {
                 routines: [],
-                userName: JSON.parse(atob(this.$q.localStorage.get.item('access_token').split('.')[1])).name
+                userName: JSON.parse(atob(this.$q.localStorage.get.item('access_token').split('.')[1])).name,
+                loading: false,
             }
         },
         mounted() {
@@ -60,6 +71,7 @@
                     },
                     cancel: 'Cancelar'
                 }).then(() => {
+                    routine.activeButton = !routine.activeButton
                     let esborrant = this.$q.notify({
                         type: 'info',
                         message: 'Esborrant rutina...',
@@ -101,9 +113,18 @@
                     })
                 })
             },
-            getMyRoutines() {
-                this.$http.get(`${process.env.API}/routine/user/${this.userName}`).then(res => res.json())
-                    .then(myRoutines => this.routines = myRoutines)
+            async getMyRoutines() {
+                this.loading = !this.loading
+                try {
+                    let routinesToJson = await this.$http.get(`${process.env.API}/routine/user/${this.userName}`)
+                    let routines = await routinesToJson.json()
+                    this.routines = routines.map(routine => {
+                        routine.activeButton = false
+                        return routine
+                    })
+                } finally {
+                    this.loading = !this.loading
+                }
             },
 
         }

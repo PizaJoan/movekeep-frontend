@@ -21,7 +21,7 @@ module.exports = {
     '__statics': true
   },
   // add your custom rules here
-  'rules': {
+  /*'rules': {
     'no-param-reassign': 0,
 
     'import/first': 0,
@@ -35,5 +35,5 @@ module.exports = {
 
     // allow debugger during development
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 0
-  }
+  }*/
 }

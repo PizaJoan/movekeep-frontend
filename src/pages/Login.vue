@@ -12,6 +12,7 @@
                     :error="$v.user.$error"
                     >
                     <q-input
+                        :disable="loading"
                         v-model.trim="user" 
                         type="text"
                         :float-label="this.$t('userName') | capitalize"
@@ -25,6 +26,7 @@
                     :error="$v.password.$error"
                 >
                     <q-input 
+                        :disable="loading"
                         v-model.trim="password"
                         type="password" 
                         :float-label="this.$t('password') | capitalize"
@@ -37,7 +39,7 @@
                 </q-field>
                 <div class="row justify-between marge-top">
                     <router-link class="text-blue-5 marge-top" to="create">{{ this.$t('create') | capitalize }} {{ this.$t('account').toLowerCase() }}</router-link>
-                    <q-btn color="primary" big @click="checkLogin" :disable="!user || !password">
+                    <q-btn  :loading="loading" color="primary" big @click="checkLogin" :disable="!user || !password">
                         {{ this.$t('send') }}
                     </q-btn>
                 </div>
@@ -53,7 +55,8 @@
         data() {
             return {
                 user: '',
-                password: ''
+                password: '',
+                loading: true,
             }
         },
         validations: {
@@ -65,17 +68,22 @@
             }
         },
         methods: {
-            checkLogin(e) {
+            async checkLogin(e) {
                 e.preventDefault()
-                this.$http.post(`${process.env.AUTH}/token-local`, {
-                    username: this.user,
-                    password: this.password
-                }).then(res => {
-                    console.log(res)
+                this.loading = !this.loading
+                try {
+                    let res = await this.$http.post(`${process.env.AUTH}/token-local`, {
+                        username: this.user,
+                        password: this.password
+                    })
                     this.$q.localStorage.set('access_token', res.headers.map.authorization[0].replace(/Bearer /, ''))
                     this.$q.localStorage.set('refresh_token', res.body)
                     this.$router.push('/my-routines')
-                }, this.checkCredentials)
+                } catch (e) {
+                    this.checkCredentials(e)
+                } finally {
+                    this.loading = !this.loading
+                }
             },
             checkCredentials(err) {
                 this.$q.notify({
@@ -102,6 +110,7 @@
                     if (response === 'OK') this.$router.push('/my-routines')
                 })
             }
+            this.loading = !this.loading            
         }
     }
 </script>

@@ -25,6 +25,12 @@ module.exports = function(ctx) {
             // extractCSS: false,
             // useNotifier: false,
             extendWebpack(cfg) {
+                cfg.module.rules.push(
+                    {
+                        test: /\.s[a|c]ss$/,
+                        loader: 'style!css!sass'
+                    }
+                )
                // cfg.module.rules[0].options.loaders.i18n = ['vue-i18n-loader', { loader: '@kazupon/vue-i18n-loader'}]
                // console.log(cfg.module.rules[0].options.loaders)
                 /*cfg.module.rules.push({
@@ -87,6 +93,7 @@ module.exports = function(ctx) {
                 'QTab',
                 'QCard',
                 'QCardTitle',
+                'QCardSeparator',
                 'QCardMedia',
                 'QItemTile',
                 'QCardMain',
@@ -101,6 +108,8 @@ module.exports = function(ctx) {
                 'QOptionGroup',
                 'QTr',
                 'QTd',
+                'QInnerLoading',
+                'QSpinnerMat'
             ],
             directives: ['Ripple'],
             // Quasar plugins
@@ -111,7 +120,7 @@ module.exports = function(ctx) {
             ]
         },
         // animations: 'all' --- includes all animations
-        animations: [],
+        animations: 'all',
         pwa: {
             cacheExt:
                 'js,html,css,ttf,eot,otf,woff,woff2,json,svg,gif,jpg,jpeg,png,wav,ogg,webm,flac,aac,mp4,mp3',

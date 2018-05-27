@@ -11,7 +11,7 @@ export default [
       { path: 'account', component: () => import('pages/Account'), meta: { requiresAuth: true} },
       { path: 'manage-routine', component: () => import('pages/Routine'), meta: { requiresAuth: true } },
       { path: 'manage-routine/:id', component: () => import('pages/Routine'), meta: { requiresAuth: true } },
-      { path: 'view-routine/:user/:id', component: () => import('pages/viewRoutine') }
+      { path: 'view-routine/:user/:id', component: () => import('pages/ViewRoutine') }
     ],
   },
 
