@@ -15,7 +15,6 @@
             </q-list-header>
             <q-item-separator />
             <transition
-                appear
                 enter-active-class="animated fadeInRight"
             >
                 <div v-if="!loading">
