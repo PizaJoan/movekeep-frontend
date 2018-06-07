@@ -29,6 +29,7 @@
     "min": "minimo",
     "max": "maximo",
     "description": "descripción",
+    "comments": "comentarios",
     "title": "Título",
     "author": "Autor",
     "type": "Tipo",

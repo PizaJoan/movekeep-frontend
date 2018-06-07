@@ -6,7 +6,7 @@
             >   
                 <div v-if="!!routine.exercises">
                     <q-card-title>
-                        {{ routine.title }} - <span class="gray">{{ routine.user.name }}</span>
+                        <h4>{{ routine.title }} - <span class="gray">{{ routine.user.name }}</span></h4>
                     </q-card-title>  
                     <q-card-main>
                         <h6 class="gray">{{ $t('description') | capitalize }}</h6> 
@@ -15,7 +15,23 @@
                     <q-card-separator />
                     <q-card-main>
                         <h6 class="gray">{{ $tc('exercise', routine.exercises.lenght) | capitalize }}</h6> 
-                        <p>Test</p>
+                        <q-list no-border>
+                            <q-item v-for="(exercise, index) in routine.exercises" :key="index">
+                                {{ exercise.description }}
+                            </q-item>
+                        </q-list>
+                        <q-card-separator />
+                        <h6 class="gray">{{ $t('comments') | capitalize }}</h6>
+                        <template v-if="comments.lenght">
+                            <q-list no-border>
+                                <q-item v-for="comment in comments" :key="comment.id">
+                                    
+                                </q-item>        
+                            </q-list>
+                        </template>
+                        <template v-else>
+                            <p>{{ $t('no-comments') }}</p>
+                        </template>
                     </q-card-main>
                 </div>
             </transition>
@@ -35,7 +51,9 @@ export default {
     data() {
         return  {
             routine: '',
-            comments: []
+            comments: [],
+            socket: '',
+            stompClient: ''
         }
     },
     mounted() {
@@ -48,7 +66,7 @@ export default {
         }).then(res => res.json(), this.goBack)
         .then(routine => {
             this.routine = routine
-            this.connect()
+            // this.connect()
         })
     },
     methods: {
@@ -57,19 +75,19 @@ export default {
         },
         connect() {
             this.socket = new SockJS(process.env.WEBSOCK)
-            this.stompClient = Stomp.over(this.socket)
+            this.stompClient = Stomp.over(this.socket, { debug: !process.env.PROD })
             this.stompClient.connect({}, (frame) => {
                 this.sendComment()
-                this.stompClient.subscribe('/get-comments/get', (res) => {
-                    console.log('RES: ', res)
-                })
+                this.stompClient.subscribe('/get-comments/get', this.updateComments)
             })
         },
         sendComment(comment) {
-            console.log(this.comments)
-            if (!comment) this.comments.push({ routine: { id: this.routine.id } })
-            else this.comments.push(comment)
+            this.updateComments(comment)
             this.stompClient.send('/send-comments/insert', JSON.stringify(this.comments[this.comments.length - 1]), {})
+        },
+        updateComments(frame) {
+            if (!comment || !this.comments.length) this.comments.push({ routine: { id: this.routine.id } })
+            else this.comments.push(comment)
         }
     }
 }
