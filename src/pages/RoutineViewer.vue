@@ -3,9 +3,9 @@
         <q-table
             :data="routines"
             :columns="config"
-            :rows-per-page-options="[5, 10, 15, 20]"
             :filter="filter"
             :loading="loading"
+            :pagination="{ rowsPerPage: 20, page: 1 }"
         >
             <template slot="top" slot-scope="props">
                 <h5 class="col-md-6 col-xs-12">{{ `${$t('routineOf')} ${$options.filters.capitalize($route.params.category)}` }}</h5>

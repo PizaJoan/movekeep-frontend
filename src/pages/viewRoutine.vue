@@ -17,11 +17,21 @@
                         <h6 class="gray">{{ $tc('exercise', routine.exercises.lenght) | capitalize }}</h6> 
                         <q-list no-border>
                             <q-item v-for="(exercise, index) in routine.exercises" :key="index">
-                                {{ exercise.description }}
+                                <q-item-main>
+                                    {{ exercise.description }}
+                                </q-item-main>
+                                <q-item-side>
+                                    {{ exercise.amount }} {{ $t(`${routine.type}routine`) | capitalize }}
+                                </q-item-side>
                             </q-item>
                         </q-list>
                         <q-card-separator />
                         <h6 class="gray">{{ $t('comments') | capitalize }}</h6>
+                        <q-field
+                            :label="$t('routine-comments.add')"
+                        >
+                            <q-input></q-input>
+                        </q-field>
                         <template v-if="comments.lenght">
                             <q-list no-border>
                                 <q-item v-for="comment in comments" :key="comment.id">
@@ -30,7 +40,7 @@
                             </q-list>
                         </template>
                         <template v-else>
-                            <p>{{ $t('no-comments') }}</p>
+                            <p class="gray">{{ $t('no-comments') }}</p>
                         </template>
                     </q-card-main>
                 </div>
@@ -97,6 +107,11 @@ export default {
 
     .gray {
         color: darken(white, 63%);
+    }
+
+    h6 {
+        margin-top: 10px;
+        margin-bottom: 20px;
     }
 
 </style>

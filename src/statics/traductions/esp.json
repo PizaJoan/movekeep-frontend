@@ -1,5 +1,7 @@
 {
     "languages": "lenguajes",
+    "timeroutine": "segundos",
+    "repsroutine": "repeticiones",
     "you": "tú",
     "create": "crear",
     "send": "enviar",
@@ -34,6 +36,10 @@
     "author": "Autor",
     "type": "Tipo",
     "date": "Fecha",
+    "routine-comments": {
+        "add": "Añade un comentario"
+    },
+    "no-comments": "No hay comentarios actualmente",
     "index": {
         "title": "¿Que queremos conseguir?",
         "card1": {

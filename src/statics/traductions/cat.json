@@ -3,6 +3,8 @@
     "you": "tu",
     "create": "crear",
     "send": "enviar",
+    "timeroutine": "segons",
+    "repsroutine": "repeticions",
     "login": "iniciar sessió",
     "password": "contrasenya",
     "userName": "nom d'usuari",
@@ -34,6 +36,10 @@
     "author": "Autor",
     "type": "Tipus",
     "date": "Data",
+    "routine-comments": {
+        "add": "Afegeix un comentari"
+    },
+    "no-comments": "No hi ha comentaris actualment",
     "index": {
         "title": "Que volem aconseguir?",
         "card1": {

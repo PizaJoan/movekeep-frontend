@@ -2,6 +2,8 @@
     "languages": "languages",
     "you": "you",
     "create": "create",
+    "timeroutine": "seconds",
+    "repsroutine": "repetitions",
     "send": "send",
     "password": "contraseña",
     "login": "log in",
@@ -34,6 +36,10 @@
     "author": "Author",
     "type": "Type",
     "date": "Date",
+    "routine-comments": {
+        "add": "Add a comment"
+    },
+    "no-comments": "There are no comments",
     "index": {
         "title": "What do we want to achieve?",
         "card1": {

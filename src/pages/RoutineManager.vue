@@ -117,7 +117,7 @@
                 try {
                     let routinesToJson = await this.$http.get(`${process.env.API}/routine/user/${this.userName}`)
                     let routines = await routinesToJson.json()
-                    this.routines = routines.map(Object.assign.bind(undefined, { loadingButton: false }))
+                    this.routines = routines.map(routine =>  Object.assign({ loadingButton: false }, routine))
                 } finally {
                     this.loading = !this.loading
                 }
