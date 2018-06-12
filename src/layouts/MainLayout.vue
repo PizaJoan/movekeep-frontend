@@ -21,7 +21,7 @@
                         icon="ion-home"
                         hide="label"
                     />
-                    <template v-if="this.$q.localStorage.has('access_token')">
+                    <template v-if="this.$q.localStorage.has('access_token') && this.$q.localStorage.has('refresh_token')">
                         <q-route-tab 
                             to="/account" 
                             :label="this.$t('account')"
