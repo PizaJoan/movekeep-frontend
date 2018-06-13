@@ -47,7 +47,7 @@
                                     color="primary"
                                     :loading="loadingSendComment"
                                 >
-                                    {{ $t('send') | capitalize }}
+                                    {{ $t('send') | capitalize}}
                                 </q-btn>
                             </div>
                         </template>
@@ -91,6 +91,7 @@ export default {
         }
     },
     mounted() {
+        this.loadingComments = !this.loadingComments
         let { user, id } = this.$route.params
         this.$http.get(`${process.env.API}/routine/get/`,{
             params: {
@@ -101,7 +102,8 @@ export default {
         .then(routine => {
             this.comments = routine.comments
             delete routine.comments
-            this.routine = routine
+            this.routine =
+            this.loadingComments = !this.loadingComments routine
             this.connect()
         })
     },
@@ -111,13 +113,13 @@ export default {
         },
         connect() {
             this.socket = new SockJS(process.env.WEBSOCK)
-            this.stompClient = Stomp.over(this.socket, { debug: process.env.PROD })
+            this.stompClient = Stomp.over(this.socket, { debug: !process.env.PROD })
             this.stompClient.connect({}, (frame) => {
                 this.stompClient.subscribe('/get-comments/get', this.updateComments)
             })
         },
         sendComment(comment) {
-            this.swapLoading()
+            this.loadingSendComment = true
             this.stompClient.send('/send-comments/insert', JSON.stringify({
                 id: null,
                 user: { userName: JSON.parse(atob(this.$q.localStorage.get.item('access_token').split('.')[1])).name },
@@ -127,16 +129,12 @@ export default {
             }), {})
         },
         updateComments(frame) {
-            let comments = JSON.parse(frame.body)
-            this.comments.push.apply(this.comments, comments)
-            this.swapLoading()
+            let comment = JSON.parse(frame.body)
+            this.comments.push(comment)
+            this.loadingSendComment = false
         },
         isLogged() {
             return this.$q.localStorage.has('access_token') && this.$q.localStorage.has('refresh_token')
-        },
-        swapLoading() {
-            this.loadingSendComment = !this.loadingSendComment
-            this.loadingComments = !this.loadingComments
         }
     }
 }

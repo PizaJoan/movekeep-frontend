@@ -56,9 +56,9 @@ module.exports = function(ctx) {
             },
             env: ctx.dev
                 ? {
-                    API: JSON.stringify('http://localhost:8080'),
-                    AUTH: JSON.stringify('http://localhost:3000'),
-                    WEBSOCK: JSON.stringify('http://localhost:8080/movekeep-comments')
+                    API: JSON.stringify('http://192.168.1.41:8080'),
+                    AUTH: JSON.stringify('http://192.168.1.41:3000'),
+                    WEBSOCK: JSON.stringify('http://192.168.1.41:8080/movekeep-comments')
                   }
                 : {
                     API: JSON.stringify('https://api.movekeep.tk'),
