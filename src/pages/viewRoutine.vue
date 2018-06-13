@@ -99,6 +99,8 @@ export default {
             }
         }).then(res => res.json(), this.goBack)
         .then(routine => {
+            this.comments = routine.comments
+            delete routine.comments
             this.routine = routine
             this.connect()
         })
@@ -111,33 +113,23 @@ export default {
             this.socket = new SockJS(process.env.WEBSOCK)
             this.stompClient = Stomp.over(this.socket, { debug: process.env.PROD })
             this.stompClient.connect({}, (frame) => {
-                this.sendComment()
                 this.stompClient.subscribe('/get-comments/get', this.updateComments)
             })
         },
         sendComment(comment) {
             this.swapLoading()
-            this.updateLocalComments(comment)
-            this.stompClient.send('/send-comments/insert', JSON.stringify(this.comments[this.comments.length - 1]), {})
+            this.stompClient.send('/send-comments/insert', JSON.stringify({
+                id: null,
+                user: { userName: JSON.parse(atob(this.$q.localStorage.get.item('access_token').split('.')[1])).name },
+                routine: { id: this.routine.id },
+                content: comment,
+                date: null
+            }), {})
         },
         updateComments(frame) {
             let comments = JSON.parse(frame.body)
-            this.comments.splice(0, this.comments.length)
             this.comments.push.apply(this.comments, comments)
             this.swapLoading()
-        },
-        updateLocalComments(comment) {
-            if (!comment) this.comments.push({ routine: { id: this.routine.id } })
-            else {
-                comment = {
-                    id: null,
-                    user: { userName: JSON.parse(atob(this.$q.localStorage.get.item('access_token').split('.')[1])).name },
-                    routine: { id: this.routine.id },
-                    content: comment,
-                    date: null
-                }
-                this.comments.push(comment)
-            }
         },
         isLogged() {
             return this.$q.localStorage.has('access_token') && this.$q.localStorage.has('refresh_token')
