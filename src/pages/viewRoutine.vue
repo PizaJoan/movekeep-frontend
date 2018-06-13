@@ -47,7 +47,7 @@
                                     color="primary"
                                     :loading="loadingSendComment"
                                 >
-                                    {{ $t('send') | capitalizeÂ }}
+                                    {{ $t('send') | capitalize }}
                                 </q-btn>
                             </div>
                         </template>
@@ -109,7 +109,7 @@ export default {
         },
         connect() {
             this.socket = new SockJS(process.env.WEBSOCK)
-            this.stompClient = Stomp.over(this.socket, { debug: process.env.PROD })
+            this.stompClient = Stomp.over(this.socket, { debug: !process.env.PROD })
             this.stompClient.connect({}, (frame) => {
                 this.sendComment()
                 this.stompClient.subscribe('/get-comments/get', this.updateComments)
@@ -122,13 +122,13 @@ export default {
         },
         updateComments(frame) {
             let comments = JSON.parse(frame.body)
-            this.comments.splice(0, this.comments.length)
+            this.comments.splice(0)
             this.comments.push.apply(this.comments, comments)
             this.swapLoading()
         },
         updateLocalComments(comment) {
             if (!comment) this.comments.push({ routine: { id: this.routine.id } })
-            elseÂ {
+            else {
                 comment = {
                     id: null,
                     user: { userName: JSON.parse(atob(this.$q.localStorage.get.item('access_token').split('.')[1])).name },
