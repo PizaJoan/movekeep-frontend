@@ -39,7 +39,8 @@
                 </q-field>
                 <div class="row justify-between marge-top">
                     <router-link class="text-blue-5 marge-top" to="create">{{ this.$t('create') | capitalize }} {{ this.$t('account').toLowerCase() }}</router-link>
-                    <q-btn  :loading="loading" color="primary" big @click="checkLogin" :disable="!user || !password">
+                    <q-btn icon="ion-logo-google" :loading="loading" color="" big @click="googleLogin" />
+                    <q-btn  :loading="loading" color="primary" big @click="checkLogin">
                         {{ this.$t('send') }}
                     </q-btn>
                 </div>
@@ -68,6 +69,9 @@
             }
         },
         methods: {
+            googleLogin() {
+                location.assign(`${process.env.AUTH}/token-google`)
+            },
             async checkLogin(e) {
                 e.preventDefault()
                 this.loading = !this.loading

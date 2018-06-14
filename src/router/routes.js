@@ -8,7 +8,7 @@ export default [
     children: [
         { path: '', component: () => import('pages/Index') },
         { path: 'routines/:category', component: () => import('pages/RoutineViewer') },
-        { path: 'my-routines', component: () => import('pages/RoutineManager'), meta: { requiresAuth: true} },
+        { path: 'my-routines', component: () => import('pages/RoutineManager'), meta: { requiresAuth: true, oauthRedirect: true} },
         { path: 'account', component: () => import('pages/Account'), meta: { requiresAuth: true} },
         { path: 'manage-routine', component: () => import('pages/Routine'), meta: { requiresAuth: true } },
         { path: 'manage-routine/:id', component: () => import('pages/Routine'), meta: { requiresAuth: true } },

@@ -50,7 +50,7 @@
             </q-item>
             <q-item>
                 <q-item-side>
-                    <q-item-tile icon="ion-email"></q-item-tile>
+                    <q-item-tile icon="ion-mail"></q-item-tile>
                 </q-item-side>
                 <q-item-main 
                     :sublabel="user.creationDate"

@@ -21,7 +21,7 @@ export default ({ app, router, Vue }) => {
     })
 
     Vue.filter('getUserPic', path => {
-        return path.includes('http') ? path : `${process.env.API}${path}`
+        return path.includes('https') ? path : `${process.env.API}${path}`
     })
 
     Vue.filter('typeRoutine', type => {

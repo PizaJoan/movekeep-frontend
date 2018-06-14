@@ -9,7 +9,7 @@
                     <q-tab 
                         slot="title" 
                         @click="leftDrawer = !leftDrawer" 
-                        icon="ion-navicon-round"
+                        icon="ion-md-menu"
                         :label="this.$t('explore')"
                         hide="label"
                     />
@@ -34,12 +34,12 @@
                             :label="this.$t('routines')"
                             slot="title"
                             hide="label"
-                            icon="ion-stats-bars"
+                            icon="ion-stats"
                         />
                         <q-tab 
                             :label="this.$t('logout')"
                             slot="title"
-                            icon="ion-android-exit"
+                            icon="ion-exit"
                             @click="logOut"
                             hide="label"
                         />
@@ -77,7 +77,7 @@
                 <q-list no-border separator>
                     <q-list-header>{{ $t('categories') }}</q-list-header>
                     <q-item item v-for="category in categories" :key="category.title" :to="`/routines/${category.title.toLowerCase()}`">
-                        <q-item-side icon="ion-android-list" />
+                        <q-item-side icon="ion-list-box" />
                         <q-item-main :sublabel="category.title"> {{ `${$t('viewRoutines')} ${category.title}` }}</q-item-main>
                     </q-item>
                 </q-list>

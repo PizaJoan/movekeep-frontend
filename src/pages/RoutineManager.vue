@@ -5,10 +5,10 @@
                 {{ this.$t('routines') }}
                 <router-link to="/manage-routine">
                     <template v-if="this.$q.platform.is.mobile">
-                        <q-icon name="ion-plus" color="info" size="1.5rem" class="on-right" />
+                        <q-icon name="ion-md-add" color="info" size="1.5rem" class="on-right" />
                     </template>
                     <template v-else>
-                        <q-btn round color="primary" icon="ion-plus" class="on-right" />
+                        <q-btn round color="primary" icon="ion-md-add" class="on-right" />
                     </template>
                 </router-link>
                 <span v-if="this.$q.platform.is.desktop" class="on-right">{{ this.$t('manager.explain') }}</span>
@@ -20,7 +20,7 @@
                 <div v-if="!loading">
                     <q-item v-for="routine in routines" :key="routine.id">
                         <q-item-side>
-                            <q-item-tile icon="ion-information-circled" />
+                            <q-item-tile icon="ion-information-circle" />
                         </q-item-side>
                         <q-item-main @click.native="!routine.activeButton && $q.platform.is.mobile && $router.push(`/manage-routine/${routine.id}`)">
                             <q-item-tile label lines="3">{{ $t('title') }}: {{ routine.title }}</q-item-tile>
@@ -29,12 +29,12 @@
                         </q-item-main>
                         <q-item-side right>
                             <template v-if="$q.platform.is.mobile">
-                                <q-item-tile icon="ion-close-round" size="1.5rem" @click.native="!routine.activeButton && deleteRoutineCheck($event, routine)" />
+                                <q-item-tile icon="ion-close" size="1.5rem" @click.native="!routine.activeButton && deleteRoutineCheck($event, routine)" />
                             </template>  
                             <template v-else>
-                                <q-btn round :loading="routine.activeButton" color="primary" icon="ion-close-round" @click="deleteRoutineCheck($event, routine)" />
+                                <q-btn round :loading="routine.activeButton" color="primary" icon="ion-close" @click="deleteRoutineCheck($event, routine)" />
                             </template>      
-                            <q-btn :loading="routine.activeButton" v-if="$q.platform.is.desktop" round color="primary" icon="ion-edit" @click="$router.push(`/manage-routine/${routine.id}`)" />
+                            <q-btn :loading="routine.activeButton" v-if="$q.platform.is.desktop" round color="primary" icon="ion-create" @click="$router.push(`/manage-routine/${routine.id}`)" />
                         </q-item-side>
                     </q-item>
                 </div>

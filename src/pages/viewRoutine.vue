@@ -102,8 +102,8 @@ export default {
         .then(routine => {
             this.comments = routine.comments
             delete routine.comments
-            this.routine =
-            this.loadingComments = !this.loadingComments routine
+            this.routine = routine
+            this.loadingComments = !this.loadingComments
             this.connect()
         })
     },

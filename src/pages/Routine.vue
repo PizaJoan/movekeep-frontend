@@ -193,16 +193,19 @@
                 this.exercises.splice(this.exercises.indexOf(exercise), 1)
             },
             putRoutine() {
-                this.$http.post(`${process.env.API}/routine/add`, {
-                    id: this.id || null,
-                    title: this.title,
-                    description: this.description,
-                    type: this.type,
-                    exercises: this.exercises,
-                    categories: this.categoriesSelected.map(categorySelected => ({ id: categorySelected })),
-                    creationDate: this.creationDate || date.formatDate(new Date(),'YYYY-MM-DD'),
-                    user: this.user
-                }).then(res => this.$router.push('/my-routines'), err => this.$router.push('/login'))
+                this.exercises = this.exercises.filter(exercise => exercise.amount && exercise.descripcio)
+                if (!this.exercises.length) {
+                    this.$http.post(`${process.env.API}/routine/add`, {
+                        id: this.id || null,
+                        title: this.title,
+                        description: this.description,
+                        type: this.type,
+                        exercises: this.exercises,
+                        categories: this.categoriesSelected.map(categorySelected => ({ id: categorySelected })),
+                        creationDate: this.creationDate || date.formatDate(new Date(),'YYYY-MM-DD'),
+                        user: this.user
+                    }).then(res => this.$router.push('/my-routines'), err => this.$router.push('/login'))
+                }
             },
             getCategories() {
                 this.$http.get(`${process.env.API}/category/all/id`).then(res => res.json(), err => this.$router.push('/login'))

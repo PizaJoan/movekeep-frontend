@@ -9,7 +9,7 @@
                     </q-card-media>
                     <q-card-title align="center">
                         {{ this.$t('index.card1.title') }}
-                        <q-icon name="ion-plus" class="on-right" />
+                        <q-icon name="ion-add" class="on-right" />
                     </q-card-title>
                     <q-card-main>
                         <q-item-tile sublabel align="center">
@@ -25,7 +25,7 @@
                     </q-card-media>
                     <q-card-title align="center">
                         {{ this.$t('index.card2.title') }}
-                        <q-icon name="ion-android-happy" class="on-right" />
+                        <q-icon name="ion-happy" class="on-right" />
                     </q-card-title>
                     <q-card-main>
                         <q-item-tile sublabel align="center">
@@ -41,7 +41,7 @@
                     </q-card-media>
                     <q-card-title align="center"> 
                         {{ this.$t('index.card3.title') }}
-                        <q-icon name="ion-thumbsup" class="on-right" />
+                        <q-icon name="ion-thumbs-up" class="on-right" />
                     </q-card-title>
                     <q-card-main>
                         <q-item-tile sublabel align="center">
@@ -59,7 +59,7 @@
                     </q-card-media>
                     <q-card-title align="center">
                         {{ this.$t('index.card4.title') }}
-                        <q-icon name="ion-android-walk" class="on-right" />
+                        <q-icon name="ion-walk" class="on-right" />
                     </q-card-title>
                     <q-card-main>
                         <q-item-tile sublabel align="center">
@@ -75,7 +75,7 @@
                     </q-card-media>
                     <q-card-title align="center"> 
                         {{ this.$t('index.card5.title') }}
-                        <q-icon name="ion-ios-box" class="on-right" />
+                        <q-icon name="ion-archive" class="on-right" />
                     </q-card-title>
                     <q-card-main>
                         <q-item-tile sublabel align="center">

@@ -13,10 +13,10 @@ module.exports = function(ctx) {
             // 'fontawesome'
         ],
         supportIE: true,
-        vendor: {
+        /* vendor: {
             add: [],
             remove: []
-        },
+        }, */
         build: {
             scopeHoisting: true,
             vueRouterMode: 'hash',
@@ -25,12 +25,6 @@ module.exports = function(ctx) {
             // extractCSS: false,
             // useNotifier: false,
             extendWebpack(cfg) {
-                cfg.module.rules.push(
-                    {
-                        test: /\.s[a|c]ss$/,
-                        loader: 'style!css!sass'
-                    }
-                )
                // cfg.module.rules[0].options.loaders.i18n = ['vue-i18n-loader', { loader: '@kazupon/vue-i18n-loader'}]
                // console.log(cfg.module.rules[0].options.loaders)
                 /*cfg.module.rules.push({
@@ -56,9 +50,9 @@ module.exports = function(ctx) {
             },
             env: ctx.dev
                 ? {
-                    API: JSON.stringify('http://192.168.1.41:8080'),
-                    AUTH: JSON.stringify('http://192.168.1.41:3000'),
-                    WEBSOCK: JSON.stringify('http://192.168.1.41:8080/movekeep-comments')
+                    API: JSON.stringify('http://localhost:8080'),
+                    AUTH: JSON.stringify('http://localhost:3000'),
+                    WEBSOCK: JSON.stringify('http://localhost:8080/movekeep-comments')
                   }
                 : {
                     API: JSON.stringify('https://api.movekeep.tk'),
