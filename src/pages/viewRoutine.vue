@@ -72,7 +72,7 @@
                                             <span class="float-right" v-if="$q.platform.is.mobile">{{ comment.date }}</span>
                                         </q-item-tile>
                                         <q-item-tile sublabel :lines="comment.content / 20">
-                                            {{ comment.content | addSpaces }}
+                                            {{ comment.content | addSpaces($q.platform.is.mobile) }}
                                         </q-item-tile>
                                     </q-item-main>
                                     <q-item-side v-if="$q.platform.is.desktop">
@@ -160,8 +160,9 @@ export default {
         }
     },
     filters: {
-        addSpaces(comment) {
-            if (comment.includes(' ')) return comment
+        addSpaces(comment, platform) {
+            let maxlength = platform ? 50 : 150
+            if (comment.includes(' ') || comment.length <= maxlength) return comment
             else {
                 let tmpComment = Object.assign({}, comment)
                 return comment.split('').map((letter, i) => {

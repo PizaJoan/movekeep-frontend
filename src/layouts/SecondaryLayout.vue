@@ -3,7 +3,7 @@
         <q-layout-footer>
             <q-toolbar>
                 <q-toolbar-title>
-                    <router-link to="/" tag="img" class="avatar" alt="logo" src="statics/logo-movekeep-png.png" /> 
+                    <router-link to="/" tag="img" class="avatar cursor-pointer" alt="logo" src="statics/logo-movekeep-png.png" /> 
                     Movekeep
                 </q-toolbar-title>
                 <span>

@@ -2,7 +2,7 @@
     <q-page class="flex flex-center">
         <q-card :flat="this.$q.platform.is.mobile" square class="col-lg-4 col-xs-12">
             <q-card-title align="center">              
-                <router-link to="/" tag="img" class="responsive" width="100px" src="./../statics/logo-movekeep-working-png-big.png" alt="logo" />
+                <router-link to="/" tag="img" class="cursor-pointer responsive" width="100px" src="./../statics/logo-movekeep-working-png-big.png" alt="logo" />
                 <h5 class="no-marge">
                     {{ this.$t('create') | capitalize }} {{ this.$t('account').toLowerCase() }}
                 </h5>

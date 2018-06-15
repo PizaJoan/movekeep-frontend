@@ -5,7 +5,7 @@
         <q-layout-header>
             <q-toolbar>
                 <q-tabs class="col-md-12">
-                    <router-link to="/" tag="img" v-if="$q.platform.is.desktop" slot="title" class="avatar self-center" src="statics/logo-movekeep-png.png" alt="logo" />
+                    <router-link to="/" tag="img" v-if="$q.platform.is.desktop" slot="title" class="avatar self-center cursor-pointer" src="statics/logo-movekeep-png.png" alt="logo" />
                     <q-tab 
                         slot="title" 
                         @click="leftDrawer = !leftDrawer" 
@@ -58,7 +58,7 @@
         </q-layout-header>
         <q-layout-footer>
             <q-toolbar color="primary">
-                <img class="avatar" alt="logo" src="statics/logo-movekeep-png.png" /> 
+                <img class="cursor-pointer avatar" alt="logo" src="statics/logo-movekeep-png.png" /> 
                 <q-toolbar-title>
                     Movekeep
                 </q-toolbar-title>
