@@ -14,9 +14,10 @@ export default ({ app, router, Vue }) => {
         locale: 'es',
         fallbackLocale: 'en-uk',
         messages: {
-        "es": esp,
-        "ca": cat,
-        "en-uk": eng
-      }
+            "es": esp,
+            "ca": cat,
+            "en-uk": eng
+        },
+        silentTranslationWarn: true
     })
 }

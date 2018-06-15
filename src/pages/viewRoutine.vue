@@ -25,8 +25,8 @@
                                 </q-item-side>
                             </q-item>
                         </q-list>
-                        <q-card-separator />
                         <template v-if="this.isLogged()">
+                        <q-card-separator />
                             <q-field
                                 class="q-mt-sm"
                                 :label-width="12"
@@ -38,6 +38,10 @@
                                     color="white"
                                     type="textarea"
                                     v-model="currentComment"
+                                    :disable="loadingSendComment"
+                                    ref="commentInput"
+                                    maxlength="255"
+                                    placeholder="Max 255"
                                 />
                             </q-field>
                             <div class="row justify-center">
@@ -46,6 +50,7 @@
                                     class="q-mt-sm"
                                     color="primary"
                                     :loading="loadingSendComment"
+                                    :disabled="!currentComment.length"
                                 >
                                     {{ $t('send') | capitalize}}
                                 </q-btn>
@@ -54,9 +59,25 @@
                         <q-card-separator class="q-mt-md" />
                         <h6 class="grey">{{ $t('comments') | capitalize }}</h6>
                         <template v-if="comments.length">
-                            <q-list no-border>
-                                <q-item v-for="comment in comments" :key="comment.id">
-                                    {{ comment.content }}
+                            <q-list 
+                                separator
+                                no-border
+                            >
+                                <q-item v-for="comment in comments" :key="comment.id" multiline>
+                                    <q-item-main
+                                    >
+                                        <q-item-tile label>
+                                            <q-icon name="ion-person" />
+                                            {{ comment.user.name }}
+                                            <span class="float-right" v-if="$q.platform.is.mobile">{{ comment.date }}</span>
+                                        </q-item-tile>
+                                        <q-item-tile sublabel :lines="comment.content / 20">
+                                            {{ comment.content | addSpaces }}
+                                        </q-item-tile>
+                                    </q-item-main>
+                                    <q-item-side v-if="$q.platform.is.desktop">
+                                        {{ comment.date }}
+                                    </q-item-side>
                                 </q-item>        
                             </q-list>
                         </template>
@@ -127,6 +148,7 @@ export default {
                 content: comment,
                 date: null
             }), {})
+            this.$refs.commentInput.clear()
         },
         updateComments(frame) {
             let comment = JSON.parse(frame.body)
@@ -135,6 +157,18 @@ export default {
         },
         isLogged() {
             return this.$q.localStorage.has('access_token') && this.$q.localStorage.has('refresh_token')
+        }
+    },
+    filters: {
+        addSpaces(comment) {
+            if (comment.includes(' ')) return comment
+            else {
+                let tmpComment = Object.assign({}, comment)
+                return comment.split('').map((letter, i) => {
+                    if (i % Math.round(Math.random() * 10) == 0) letter += ' '
+                    return letter
+                }).join('')
+            }
         }
     }
 }

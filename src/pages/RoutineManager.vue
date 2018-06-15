@@ -82,7 +82,6 @@
                         }
                     }).then(res => {
                         if (res.status === 200) {
-                            esborrant()
                             this.$q.notify({
                                 type: 'info',
                                 message: 'Rutina esborrada',
@@ -95,7 +94,6 @@
                                 ]
                             })
                         } else {
-                            esborrant()
                             this.$q.notify({
                                 type: 'negative',
                                 message: 'No s\'ha pogut esborrar la rutina...',

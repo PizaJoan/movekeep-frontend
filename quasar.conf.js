@@ -67,6 +67,7 @@ module.exports = function(ctx) {
         },
         // framework: 'all' --- includes everything; for dev only!
         framework: {
+            i18n: 'es',
             components: [
                 'QLayout',
                 'QLayoutHeader',
@@ -118,8 +119,6 @@ module.exports = function(ctx) {
         // animations: 'all' --- includes all animations
         animations: 'all',
         pwa: {
-            cacheExt:
-                'js,html,css,ttf,eot,otf,woff,woff2,json,svg,gif,jpg,jpeg,png,wav,ogg,webm,flac,aac,mp4,mp3',
             manifest: {
                 name: 'Movekeep',
                 short_name: 'Movekeep',
