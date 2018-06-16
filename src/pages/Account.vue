@@ -11,7 +11,7 @@
             <q-item>
                 <q-item-side>
                     <q-item-side avatar>
-                        <img :src="user.picture | getUserPic" alt="userpic" class="avatar" />
+                        <img v-if="user.picture" :src="user.picture | getUserPic" alt="userpic" class="avatar" />
                     </q-item-side>
                 </q-item-side>
                 <q-item-main>

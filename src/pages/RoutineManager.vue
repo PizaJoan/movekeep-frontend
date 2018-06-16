@@ -34,7 +34,7 @@
                             <template v-else>
                                 <q-btn round :loading="routine.activeButton" color="primary" icon="ion-close" @click="deleteRoutineCheck($event, routine)" />
                             </template>      
-                            <q-btn :loading="routine.activeButton" v-if="$q.platform.is.desktop" round color="primary" icon="ion-create" @click="$router.push(`/manage-routine/${routine.id}`)" />
+                            <q-btn  class="q-ml-xs" :loading="routine.activeButton" v-if="$q.platform.is.desktop" round color="primary" icon="ion-create" @click="$router.push(`/manage-routine/${routine.id}`)" />
                         </q-item-side>
                     </q-item>
                 </div>
