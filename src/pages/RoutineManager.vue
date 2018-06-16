@@ -56,6 +56,9 @@
                 loading: false,
             }
         },
+        created() {
+            if (this.$route.query.access || this.$route.query.refresh) this.$router.replace('/my-routines')
+        },
         mounted() {
             this.getMyRoutines()
         },

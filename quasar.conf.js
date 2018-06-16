@@ -57,7 +57,7 @@ module.exports = function(ctx) {
                 : {
                     API: JSON.stringify('https://api.movekeep.tk'),
                     AUTH: JSON.stringify('https://auth.movekeep.tk'),
-                    WEBSOCK: JSON.stringify('https://auth.movekeep.tk/movekeep-comments')
+                    WEBSOCK: JSON.stringify('https://api.movekeep.tk/movekeep-comments')
                   }
         },
         devServer: {

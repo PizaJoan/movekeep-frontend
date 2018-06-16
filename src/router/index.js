@@ -30,8 +30,9 @@ Router.beforeEach((to, from, next) => {
             LocalStorage.set('access_token', access_token)
             LocalStorage.set('refresh_token', refresh_token)
             next()
+        } else {
+            next('/login')
         }
-        next('/login')
     } else {
         next()
     }
